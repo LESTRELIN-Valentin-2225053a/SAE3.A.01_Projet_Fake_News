@@ -36,6 +36,11 @@
         createImageDiv("computer", "images/room/computer.png");
         createImageDiv("shelf", "images/room/shelf.png");
         createRectDiv("obscurity", "#000000", "100%", "100%");
+        createImageDiv("closeCross", "images/room/closeCross.png");
+        createImageDiv("computerScreen", "images/room/computerScreen.png");
+        createImageDiv("note", "images/room/note.png");
+        createImageDiv("leftArrow", "images/room/leftArrow.png");
+        createImageDiv("rightArrow", "images/room/rightArrow.png");
       ?>
     </div>
   </body>
