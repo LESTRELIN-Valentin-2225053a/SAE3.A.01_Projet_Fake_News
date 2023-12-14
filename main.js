@@ -1,17 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
   const mainContainer = document.getElementById("main-container");
-  const iutLogo = document.getElementById("IUTLogo");
-  const creatorsText = document.getElementById(
-    "creatorsText");
-  const forText = document.getElementById("forText");
-  const marsactuLogo = document.getElementById("MarsactuLogo");
-
-  function dimensions() {
-    mainContainer.style.height = window.innerHeight + "px";
-  }
-
-  function imageParams(image, x, y, w, h) { document.addEventListener("DOMContentLoaded", function() {
-  const mainContainer = document.getElementById("main-container");
   
   const iutLogo = document.getElementById("iutLogo");
   const creatorsText = document.getElementById("creatorsText");
@@ -32,6 +20,12 @@ document.addEventListener("DOMContentLoaded", function() {
   const computer = document.getElementById("computer");
   const shelf = document.getElementById("shelf");
   const obscurity = document.getElementById("obscurity");
+  const closeCross = document.getElementById("closeCross");
+  const computerScreen = document.getElementById("computerScreen");
+  const note = document.getElementById("note");
+  const leftArrow = document.getElementById("leftArrow");
+  const rightArrow = document.getElementById("rightArrow");
+  
   var t = 20000;
 
   function dimensions() {
@@ -83,13 +77,40 @@ document.addEventListener("DOMContentLoaded", function() {
       imgsOpct([elmnt], "1");
     });
   }
-  /*
+  
   function clickOnElement(elmnt) {
-    elmnt.addEventListener("click" {
-      
-    });
+    if (elmnt == computer || elmnt == shelf) {
+      elmnt.addEventListener("click", function() {
+        rectParams(obscurity, 0, 0);
+        imgsOpct([obscurity], "0.75");
+        imageParams(closeCross, 0, 0, 3.65, 6.48);
+        imgsOpct([closeCross], "1");
+        detectElement(closeCross);
+        if (elmnt == computer) {
+          imageParams(computerScreen, 20, 20, 60, 60);
+          imgsOpct([computerScreen], "1");
+        }
+        if (elmnt == shelf) {
+          imageParams(note, 37.5, 18.52, 25, 62.96);
+          imageParams(leftArrow, 25, 44.9, 3.65, 10.19);
+          imageParams(rightArrow, 71.35, 44.9, 3.65, 10.19);
+          imgsOpct([note, leftArrow, rightArrow], "1");
+        }
+      });
+    }
+    if (elmnt == closeCross) {
+      elmnt.addEventListener("click", function() {
+        imgsOpct([closeCross, computerScreen, note, leftArrow, rightArrow, obscurity], "0");
+        imageParams(closeCross, 100, 100, 3.65, 6.48);
+        imageParams(computerScreen, 100, 100, 60, 60);
+        imageParams(note, 100, 100, 25, 62.96);
+        imageParams(leftArrow, 100, 100, 3.65, 10.19);
+        imageParams(rightArrow, 100, 100, 3.65, 10.19);
+        rectParams(obscurity, 100, 100);
+      });
+    }
   }
-  */
+  
   dimensions();
   window.addEventListener("resize", dimensions);
 
@@ -107,16 +128,17 @@ document.addEventListener("DOMContentLoaded", function() {
   
   imageParams(whiteWall, 0, 0, 100, 100);
   imageParams(desk, 0, 75, 100, 25);
-  imageParams(corkBoard, 30, 20, 50, 50);
-  imageParams(computer, 25, 50, 40, 40);
-  imageParams(shelf, 84, -15, 16, 100);
+  imageParams(corkBoard, 25, 10, 50, 50);
   
   detectElement(computer);
   detectElement(shelf);
-  //clickOnElement(computer, displayRoom());
-  //clickOnElement(corkBoard, displayRoom());
+  detectElement(leftArrow);
+  detectElement(rightArrow);
+  clickOnElement(computer);
+  clickOnElement(shelf);
+  clickOnElement(closeCross);
 
-  //rectParams(obscurity, 0, 0);
+  
   
   function displayRoom() {
     let movesNb = 0;
@@ -125,6 +147,8 @@ document.addEventListener("DOMContentLoaded", function() {
     let imgsX = [movingImg0[0], movingImg1[0]];
     let intervalId;
     imgsOpct([titleBottomRect, titleExamples0, titleExamples1, titleUpRect, fekniouzeLogo, startText, imgsSubtitle], "0");
+    imageParams(computer, 25, 50, 40, 40);
+    imageParams(shelf, 84, -15, 16, 100);
     imgsOpct([whiteWall, desk, corkBoard, computer, shelf], "1");
     //imgsOpct([obscurity], "0.5");
   }
@@ -166,52 +190,4 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 10);
   }, 12000); 
 
-});
-    image.style.position = "absolute";
-    image.style.left = x + '%';
-    image.style.top = y + '%';
-    image.style.width = w + '%';
-    image.style.height = h + '%';
-    image.style.opacity = "0";
-    mainContainer.appendChild(image);
-  }
-
-  function textParams(text, r, g, b, font, x, y, w, h) {
-    text.style.color = `rgb(${r},${g},${b})`;
-    text.style.fontSize = '3vw';
-    text.style.fontFamily = font;
-    text.style.position = "absolute";
-    text.style.left = x + '%';
-    text.style.top = y + '%';
-    text.style.width = w + '%';
-    text.style.height = h + '%';
-    text.style.opacity = "0";
-    mainContainer.appendChild(text);
-  }
-
-  dimensions();
-  window.addEventListener("resize", dimensions);
-
-  imageParams(iutLogo, 25, 20, 50, 30);
-  textParams(creatorsText, 0, 0, 0, "Arial", 25, 50, 50, 30);
-  textParams(forText, 0, 0, 0, "Arial", 25, 20, 50, 30);
-  imageParams(marsactuLogo, 25, 30, 50, 30);
- 
-  setTimeout(() => {
-    iutLogo.style.opacity = "1";
-    creatorsText.style.opacity = "1";
-    setTimeout(() => {      
-      iutLogo.style.opacity = "0";
-      creatorsText.style.opacity = "0";
-    }, 11000);
-  }, 1000);
-
-  setTimeout(() => {
-    forText.style.opacity = "1";
-    marsactuLogo.style.opacity = "1";
-    setTimeout(() => {      
-      forText.style.opacity = "0";
-      marsactuLogo.style.opacity = "0";
-    }, 21000);
-  }, 11000);
 });
