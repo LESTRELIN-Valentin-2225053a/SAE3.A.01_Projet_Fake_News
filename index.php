@@ -41,6 +41,23 @@
         createImageDiv("note", "images/room/note.png");
         createImageDiv("leftArrow", "images/room/leftArrow.png");
         createImageDiv("rightArrow", "images/room/rightArrow.png");
+        createImageDiv("playButton", "images/room/playButton.png");
+        createImageDiv("resumeButton", "images/room/resumeButton.png");
+        createImageDiv("doneButton", "images/room/doneButton.png");
+        createTextDiv("currentNoteText", "");
+
+        createImageDiv("mcThumbnail", "notes/macron/mcThumbnail.jpg");
+        createImageDiv("tTThumbnail", "notes/trumpTweets/tTThumbnail.jpg");
+        createImageDiv("fWThumbnail", "notes/fraudulentWebsites/fWThumbnail.png");
+        createImageDiv("ivThumbnail", "notes/interview/ivThumbnail.jpg");
+        createImageDiv("cTThumbnail", "notes/clozeTest/cTThumbnail.jpg");
+        createImageDiv("sOThumbnail", "notes/seriesOf/sOThumbnail.jpg");
+        createImageDiv("c19Thumbnail", "notes/covid19/c19Thumbnail.jpg");
+      
+        createImageDiv("macron0", "notes/macron/macron0.jpg");
+        createImageDiv("macron1", "notes/macron/macron1.jpg");
+        createImageDiv("macron2", "notes/macron/macron2.jpg");
+        createImageDiv("macron3", "notes/macron/macron3.jpg");
       ?>
     </div>
   </body>
