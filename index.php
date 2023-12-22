@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <script src="main.js"></script>
     <div id="main-container">
       <?php
         function createImageDiv(string $divId, string $path) {
@@ -60,5 +59,8 @@
         createImageDiv("macron3", "notes/macron/macron3.jpg");
       ?>
     </div>
+    <script src="elements.js"></script>
+    <script src="interactions.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>
