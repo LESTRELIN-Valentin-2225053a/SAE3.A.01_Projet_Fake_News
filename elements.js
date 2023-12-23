@@ -37,10 +37,15 @@ const cTThumbnail = document.getElementById("cTThumbnail");
 const sOThumbnail = document.getElementById("sOThumbnail");
 const c19Thumbnail = document.getElementById("c19Thumbnail");
 
-const macron0 = document.getElementById("macron0");
-const macron1 = document.getElementById("macron1");
-const macron2 = document.getElementById("macron2");
-const macron3 = document.getElementById("macron3");
+const mc0 = document.getElementById("mc0");
+const mc1 = document.getElementById("mc1");
+const mc2 = document.getElementById("mc2");
+const mc3 = document.getElementById("mc3");
+const mc4 = document.getElementById("mc4");
+const mc5 = document.getElementById("mc5");
+const mc6 = document.getElementById("mc6");
+
+const tT0 = document.getElementById("tT0");
 
 function imageParams(image, x, y, w, h) { 
   image.style.position = "absolute";
