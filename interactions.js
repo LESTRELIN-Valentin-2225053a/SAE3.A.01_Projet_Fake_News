@@ -46,8 +46,12 @@ function detectElement(elmnt) {
   });
 }
 
+var computerWindow = false;
+var corkBoardWindow = false;
+var shelfWindow = false;
+
 function clickOnElement(elmnt) {
-  if (elmnt == computer || elmnt == shelf || elmnt == corkBoard) {
+  if (elmnt == computer || elmnt == corkBoard || elmnt == shelf) {
     elmnt.addEventListener("click", function() {
       rectParams(obscurity, 0, 0);
       imgsOpct([obscurity], "0.75");
@@ -55,10 +59,15 @@ function clickOnElement(elmnt) {
       imgsOpct([closeCross], "1");
       detectElement(closeCross);
       if (elmnt == computer) {
+        computerWindow = true;
         imageParams(computerScreen, 20, 20, 60, 60);
         imgsOpct([computerScreen], "1");
       }
+      if (elmnt == corkBoard) {
+        corkBoardWindow = true;
+      }
       if (elmnt == shelf) {
+        shelfWindow = true;
         imageParams(note, 37.5, 18.52, 25, 62.96);
         imageParams(leftArrow, 25, 44.9, 3.65, 10.19);
         imageParams(rightArrow, 71.35, 44.9, 3.65, 10.19);
@@ -108,6 +117,9 @@ function clickOnElement(elmnt) {
   }
   if (elmnt == closeCross) {
     elmnt.addEventListener("click", function() {
+      computerWindow = false;
+      corkBoardWindow = false;
+      shelfWindow = false;
       imgsOpct([closeCross, computerScreen, note, leftArrow, rightArrow, playButton, resumeButton, doneButton, obscurity], "0");
       imageParams(closeCross, 100, 100, 3.65, 6.48);
       imageParams(computerScreen, 100, 100, 60, 60);
