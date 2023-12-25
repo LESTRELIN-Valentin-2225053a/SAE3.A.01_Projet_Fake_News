@@ -10,5 +10,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'SAÉ3.A.01_Projet_Fake_News';
+  title = 'SAE3.A.01_Projet_Fake_News';
 }
