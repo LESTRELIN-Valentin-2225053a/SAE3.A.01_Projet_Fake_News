@@ -1,11 +1,13 @@
 var notesList = {"Macron ou non ?" : [mcThumbnail, "todo"], //todo, acting, done
-                 "Trump et le réchauffement climatique" : [tTThumbnail, "todo"],
+                 "Le réchauffement climatique sur Twitter" : [mcThumbnail, "todo"],
+                 "Les tweets de Donald Trump" : [tTThumbnail, "todo"],
                  "Les sites frauduleux" : [fWThumbnail, "todo"],
                  "Vérification des faits d'un entretien" : [ivThumbnail, "todo"],
                  "Texte à trous" : [cTThumbnail, "todo"],
                  "Série de photos et vidéos" : [sOThumbnail, "todo"],
-                 "Covid-19" : [c19Thumbnail, "todo"]
-                 };
+                 "Désinformation autour du Covid-19" : [c19Thumbnail, "todo"],
+                 "Des images en lien sur des thèmes" : [mcThumbnail, "todo"],
+                 "Détails d'images IA" : [mcThumbnail, "todo"]};
 var noteIndex = 0;
 
 function displayNoteButton(notesListKey) {
@@ -33,7 +35,7 @@ function displayNoteButton(notesListKey) {
 
 function displayCurrentNoteText(noteTitle) {
   currentNoteText.innerText = noteIndex + 1 + "/" + Object.keys(notesList).length + " " + noteTitle;
-  textParams(currentNoteText, 150, 0, 0, "Helvetica", 37.5, 10, 25, 8, 1.5);
+  textParams(currentNoteText, 150, 150, 150, "Helvetica", 37.5, 5, 25, 8, 2);
   imgsOpct([currentNoteText], "1");
 }
 
