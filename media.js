@@ -1,17 +1,18 @@
 class Media {
-  constructor(file, status, truth, choice, x, y, w, h) {
+  constructor(file, status, truth, choice, x, y, w, h, explanation) {
     this.file = file;
-    this.status = status;
-    this.truth = truth;
-    this.choice = choice;
+    this.status = status; //a été fait ou non
+    this.truth = truth; //vrai, vrai/faux ou en faux par défaut
+    this.choice = choice; //choix du joueur
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
+    this.explanation = explanation;
   }
 
   get infos() {
-    return new Array([file, statuses, x, y, w, h]);
+    return new Array([file, status, truth, choice, x, y, w, h, explanation]);
   }
 
   updateStatus(status) {
