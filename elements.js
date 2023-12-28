@@ -1,51 +1,25 @@
 const mainContainer = document.getElementById("main-container");
 
-const iutLogo = document.getElementById("iutLogo");
-const creatorsText = document.getElementById("creatorsText");
-const forText = document.getElementById("forText");
-const marsactuLogo = document.getElementById("marsactuLogo");
+const elementsList = ["iutLogo", "creatorsText", "forText", "marsactuLogo",
+                     "titleBottomRect", "titleExamples0", "titleExamples1",
+                     "titleUpRect", "fekniouzeLogo", "startText",
+                     "imgsSubtitle", "whiteWall", "desk", "corkBoard",
+                     "computer", "shelf", "obscurity", "closeCross",
+                     "computerScreen", "note", "leftArrow", "rightArrow",
+                     "playButton", "resumeButton", "doneButton",
+                     "currentNoteText", "vrai", "faux", "vraiFaux",
+                     "mcThumbnail", "mc0", "mc1", "mc2", "mc3", "mc4", "mc5", "mc6",
+                     "gWT0", "gWT1", "gWT2", "gWT3",
+                     "tTThumbnail", "tT0", "tT1", "tT2", "tT3", "tT4", "tT5", "tT6",
+                     "fWThumbnail",
+                     "ivThumbnail", 
+                     "cTThumbnail", 
+                     "sOThumbnail",
+                     "c19Thumbnail"];
 
-const titleBottomRect = document.getElementById("titleBottomRect");
-const titleExamples0 = document.getElementById("titleExamples0");
-const titleExamples1 = document.getElementById("titleExamples1");
-const titleUpRect = document.getElementById("titleUpRect");
-const fekniouzeLogo = document.getElementById("fekniouzeLogo");
-const startText = document.getElementById("startText");
-const imgsSubtitle = document.getElementById("imgsSubtitle");
-
-const whiteWall = document.getElementById("whiteWall");
-const desk = document.getElementById("desk");
-const corkBoard = document.getElementById("corkBoard");
-const computer = document.getElementById("computer");
-const shelf = document.getElementById("shelf");
-const obscurity = document.getElementById("obscurity");
-const closeCross = document.getElementById("closeCross");
-const computerScreen = document.getElementById("computerScreen");
-const note = document.getElementById("note");
-const leftArrow = document.getElementById("leftArrow");
-const rightArrow = document.getElementById("rightArrow");
-const playButton = document.getElementById("playButton");
-const resumeButton = document.getElementById("resumeButton");
-const doneButton = document.getElementById("doneButton");
-const currentNoteText = document.getElementById("currentNoteText");
-
-const mcThumbnail = document.getElementById("mcThumbnail");
-const tTThumbnail = document.getElementById("tTThumbnail");
-const fWThumbnail = document.getElementById("fWThumbnail");
-const ivThumbnail = document.getElementById("ivThumbnail");
-const cTThumbnail = document.getElementById("cTThumbnail");
-const sOThumbnail = document.getElementById("sOThumbnail");
-const c19Thumbnail = document.getElementById("c19Thumbnail");
-
-const mc0 = document.getElementById("mc0");
-const mc1 = document.getElementById("mc1");
-const mc2 = document.getElementById("mc2");
-const mc3 = document.getElementById("mc3");
-const mc4 = document.getElementById("mc4");
-const mc5 = document.getElementById("mc5");
-const mc6 = document.getElementById("mc6");
-
-const tT0 = document.getElementById("tT0");
+for (let i = 0; i < elementsList.length; ++i) {
+  eval('const ' + elementsList[i] + ' = document.getElementById("' + elementsList[i] + '")');
+}
 
 function imageParams(image, x, y, w, h) { 
   image.style.position = "absolute";
