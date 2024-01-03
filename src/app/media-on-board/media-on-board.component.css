@@ -1,0 +1,19 @@
+.media_on_board {
+    aspect-ratio: 1/1;
+    display: grid;
+    place-items: center;
+    position: absolute;
+    background: #fff;
+    width: inherit;
+    box-shadow: 0 0.2rem 1.2rem rgba(0,0,0,0.2);
+}
+
+.media_on_board img {
+    width: 80%;
+    height: 80%;
+}
+
+.media_on_board:hover {
+  opacity: 0.5;
+}
+

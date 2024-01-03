@@ -1,0 +1,8 @@
+<div cdkDrag
+     [cdkDragData]="media"
+     [cdkDragBoundary]="boundaryElement"
+     [cdkDragFreeDragPosition]="{x : media.pos.x*board.offsetWidth, y : media.pos.y*board.offsetHeight}"
+     (cdkDragEnded)="onDragEnd($event)"
+     class="media_on_board">
+  <img class="picture" alt="Media picture" [src]="media.picture">
+</div>
