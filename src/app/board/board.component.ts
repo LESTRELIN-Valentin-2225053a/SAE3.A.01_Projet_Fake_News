@@ -1,8 +1,9 @@
 import {Component, Input} from '@angular/core';
-import {Media} from "../media-on-board/media";
+import {Media} from "../media";
 import {MediaOnBoardComponent} from "../media-on-board/media-on-board.component";
 import {NgForOf} from "@angular/common";
 import {CdkDragEnd} from "@angular/cdk/drag-drop";
+import {MediaLocation} from "../media-location";
 
 @Component({
   selector: 'app-board',
@@ -59,33 +60,41 @@ export class BoardComponent {
     }
   ];
 
-  mediaLocationPositions = [
+  mediaLocationPositions: MediaLocation[] = [
     {
       x : 0.02,
-      y : 0.75
+      y : 0.75,
+      media : {id : -1} as Media
     },
     {
       x : 0.25,
-      y : 0.65
+      y : 0.65,
+      media : {id : -1} as Media
     },
     {
        x : 0.45,
-       y : 0.74
+       y : 0.74,
+       media : {id : -1} as Media
     },
     {
        x : 0.75,
-       y : 0.6
+       y : 0.6,
+       media : {id : -1} as Media
     }
   ]
 
   checkIfDraggedOnMediaLocation($event : CdkDragEnd<Media>) {
       var media: Media = $event.source.data;
-      this.mediaLocationPositions.forEach(position => {
+      this.mediaLocationPositions.forEach(mediaLocation => {
           const heightRatio = (this.boardWidth/this.boardHeight)*this.mediaRatio;
-          if (media.pos.x > position.x-this.mediaRatio && media.pos.x < position.x+this.mediaRatio && media.pos.y > position.y-heightRatio && media.pos.y < position.y+heightRatio){
-              media.pos = {x : position.x, y : position.y};
+          if (media.pos.x > mediaLocation.x-this.mediaRatio && media.pos.x < mediaLocation.x+this.mediaRatio
+            && media.pos.y > mediaLocation.y-heightRatio && media.pos.y < mediaLocation.y+heightRatio
+            && mediaLocation.media.id == -1){
+              media.pos = {x : mediaLocation.x, y : mediaLocation.y};
+              mediaLocation.media = media;
               $event.source.setFreeDragPosition({x : media.pos.x*this.boardWidth, y : media.pos.y*this.boardHeight});
-          }
+          } else if (mediaLocation.media.id == media.id)
+              mediaLocation.media = {id : -1} as Media;
       });
   }
 }

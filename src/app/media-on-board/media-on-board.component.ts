@@ -1,6 +1,6 @@
 import {Component, ElementRef, EventEmitter, Input, Output} from '@angular/core';
 import {CdkDragEnd, DragDropModule, Point} from '@angular/cdk/drag-drop';
-import {Media} from "./media";
+import {Media} from "../media";
 
 @Component({
   selector: 'app-media-on-board',
