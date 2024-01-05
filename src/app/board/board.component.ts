@@ -32,8 +32,8 @@ export class BoardComponent {
   mediasList: Media[] = [
     {
       id: 0,
-      type: 'img',
-      link: 'https://i.imgur.com/CfPPR7j.png',
+      type: 'video',
+      link: 'https://i.imgur.com/IyADypp.mp4',
       picture: 'https://i.imgur.com/CfPPR7j.png',
       pos: {x: 0.12, y : 0}
     },
