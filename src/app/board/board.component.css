@@ -1,11 +1,12 @@
 .board {
   position: relative; /* à garder, nécéssaire pour placer les médias dans le tableau */
   left: 20px;
-  background-color: #000000;
+  margin: 1%;
+  background-image: url("../../assets/fond-texture-panneau-liege_118047-1436.png");
 }
 
 .mediaLocation{
   position: absolute;
   aspect-ratio : 1 / 1;
-  background-color: green;
+  background-image: url("../../assets/blackfond.png");
 }

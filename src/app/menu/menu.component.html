@@ -1,0 +1,16 @@
+<div *ngIf="!showContent" class="menuprinci">
+
+  <div class="principal">
+    {{ title }}
+    <h1 class="titremenu">Menu</h1>
+    <button class="menubutton" (click)="toggleContent()">Continuer</button><br>
+    <button class="menubutton" (click)="toggleContent()">Commencer</button><br>
+    <button class="menubutton">Tutoriel</button><br>
+    <button class="menubutton">Quitter</button><br>
+  </div>
+</div>
+
+<div *ngIf="showContent">
+  <menu-lateral (contentToggled)="onContentToggled()"></menu-lateral>
+  <app-board [mediaRatio]="0.12" [boardWidth]="1200" [boardHeight]="700"></app-board>
+</div>
