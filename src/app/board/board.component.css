@@ -4,8 +4,8 @@
   background-color: #000000;
 }
 
-.mediaLocation{
-  position: absolute;
-  aspect-ratio : 1 / 1;
-  background-color: green;
+.svgBoard{
+  height: inherit;
+  width: inherit;
 }
+

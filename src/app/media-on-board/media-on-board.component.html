@@ -9,7 +9,7 @@
 </div>
 <ng-template>
   <img *ngIf="media.type == 'img'" class="media" alt="Media" [src]="media.link">
-  <video *ngIf="media.type == 'video'" class="media" alt="Media" controls>
-    <source [src]="media.link" type="video/webm">
+  <video *ngIf="media.type == 'video'" class="media" controls>
+    <source [src]="media.link" type="video/mp4">
   </video>
 </ng-template>
