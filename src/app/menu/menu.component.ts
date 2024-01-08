@@ -15,7 +15,6 @@ import {MenuLateralComponent} from "../menu-lateral/menu-lateral.component";
   styleUrls: ['./menu.component.css']
 })
 export class Afichemenu {
-  title = 'SAE3.A.01_Projet_Fake_News';
   showContent: boolean = false;
 
   toggleContent() {
