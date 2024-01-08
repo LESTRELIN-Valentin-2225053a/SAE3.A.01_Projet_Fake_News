@@ -1,0 +1,25 @@
+.computer{
+  display: grid;
+  place-items: center;
+  width: 1900px;
+  height: 700px;
+  background-color: black;
+}
+
+.screen{
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  height: 95%;
+  background-color: white;
+}
+
+.website{
+  flex: 1;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: row;
+}
+

@@ -1,0 +1,8 @@
+<div class="computer">
+  <div class="screen">
+    <div cdkDropList cdkDropListOrientation="horizontal" class="tabs" (cdkDropListDropped)="drop($event)">
+      <app-tab *ngFor="let website of websites" cdkDrag [website]="website" (tabClicked)="changeTab($event)"></app-tab>
+    </div>
+    <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(this.actualWebsite.link)" class="website"></iframe>
+  </div>
+</div>

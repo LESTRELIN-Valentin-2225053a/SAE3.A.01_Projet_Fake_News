@@ -1,0 +1,25 @@
+.mediaLocation{
+  position: absolute;
+  aspect-ratio : 1 / 1;
+  background-color: green;
+}
+
+.post-it{
+  position: absolute;
+  aspect-ratio : 1 / 1;
+  width: 35%;
+  background-color: yellow;
+  right: -15%;
+  bottom: -15%;
+  z-index: 2;
+}
+
+.post-it:hover{
+  opacity: 50%;
+}
+
+.openedPost-It{
+  aspect-ratio: 1/1;
+  height: 25vw;
+  background-color: yellow;
+}
