@@ -1,0 +1,14 @@
+div.livre {
+  background-color: #D3D3D3;
+  width: 70%;  /* Taille du livre en pourcentage de la largeur de l'écran */
+  max-width: 500px; /* Largeur maximale du livre */
+  padding: 5%;
+  border: 2px solid #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 15%;
+}
+.PagePrincipale {
+  display: flex;
+  justify-content: center;
+  background-color: brown;
+}

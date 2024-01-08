@@ -1,0 +1,15 @@
+<div class="PagePrincipale">
+  <div class="livre" [style.width.%]="30" [style.height.%]="30">
+
+    Titre : {{ titre }} <br>
+    Description : {{ description }} <br>
+    Enquetes deja faite : {{ EstElleFaite }} <br>
+    Page : {{ page }} <br>
+
+    <button>Selectioner</button> <br>
+
+    <button (click)="LessPage()">Page précedente</button>
+    <button (click)="PlusPage()">Page suivante</button>
+
+  </div>
+</div>
