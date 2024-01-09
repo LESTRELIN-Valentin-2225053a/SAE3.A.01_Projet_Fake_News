@@ -1,4 +1,4 @@
-div.livre {
+.Book{
   background-color: #D3D3D3;
   width: 70%;  /* Taille du livre en pourcentage de la largeur de l'écran */
   max-width: 500px; /* Largeur maximale du livre */
@@ -7,7 +7,7 @@ div.livre {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-top: 15%;
 }
-.PagePrincipale {
+.MainPage {
   display: flex;
   justify-content: center;
   background-color: brown;

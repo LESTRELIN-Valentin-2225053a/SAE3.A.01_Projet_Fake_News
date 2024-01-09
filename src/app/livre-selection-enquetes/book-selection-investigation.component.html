@@ -1,0 +1,30 @@
+<div class="MainPage">
+  <div class="Book" [style.width.%]="30" [style.height.%]="30">
+
+    Titre : {{ title }} <br>
+    Description: {{ description }} <br>
+    Enquetes en cours : {{ investigationList[currentInvestigation].title }} <br>
+    {{ correctionMessage }} <br>
+
+    Enquetes deja faite :
+    <div *ngIf="investigationList[page].success">
+      <img src="../../assets/CeckVert.png" alt="" class="verif">
+    </div>
+    <div *ngIf="!investigationList[page].success">
+      <img src="../../assets/CroixRouge.png" alt="" class="verif">
+    </div>
+    <br>
+
+    <button *ngIf="!isConductingInvestigation" (click)="selectInvestigation()">Selectioner  </button> <br>
+    <button *ngIf="isConductingInvestigation" (click)="validateResponse()">Valider mes réponses</button> <br>
+    <button *ngIf="isConductingInvestigation" (click)="abandonInvestigation()">Abandonner</button> <br>
+
+    <div class="footer">
+      Page: {{ page }} <br>
+      <div *ngIf="!isConductingInvestigation">
+        <button (click)="decreasePage()">Page précedente</button>
+        <button (click)="increasePage()">Page suivante</button>
+      </div>
+    </div>
+  </div>
+</div>
