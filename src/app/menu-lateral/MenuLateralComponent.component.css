@@ -1,7 +1,7 @@
-h1.titremenu{
+.menuTitle{
   font-size: 300%;
 }
-.overlay {
+.menuOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@ h1.titremenu{
   backdrop-filter: blur(13px);
   z-index: 999;
 }
-div.menulaterale{
+div.menuSidebar{
   text-align: center;
   margin-top: 10%;
 }
@@ -21,7 +21,7 @@ button{
   cursor: pointer;
   background-color: transparent;
 }
-button.menubutton {
+.menuOption {
   border: none;
   outline: none;
   cursor: pointer;
@@ -29,6 +29,6 @@ button.menubutton {
   font-size: 200%;
   background-color: transparent;
 }
-button.boutonmenu {
+.menuButton {
   position: absolute;
 }

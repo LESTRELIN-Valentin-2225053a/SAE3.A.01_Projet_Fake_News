@@ -1,4 +1,4 @@
-.menuprinci {
+.mainMenuContainer {
   text-align: center;
   position: fixed;
   top: 0;
@@ -9,7 +9,8 @@
   background-image: url("../../assets/MenuBackground.png");
   background-size: cover;
 }
-.menuprinci::before {
+
+.mainMenuContainer::before {
   content: "";
   position: absolute;
   top: 0;
@@ -21,32 +22,13 @@
   z-index: -1;
 }
 
-button {
-  border: none;
-  outline: none;
-}
-.principal{
-  text-align: left;
+.mainContent{
   background-color: brown;
   position: absolute;
   top: 0;
   bottom: 0;
-}
-h1.titremenu{
-  font-size: 300%;
-}
-
-button {
-  border: none;
-  outline: none;
-}
-
-.principal {
   text-align: center;
   background-color: rgba(139, 69, 19, 0.8);
-  position: absolute;
-  top: 0;
-  bottom: 0;
   left: 5%;
   right: 65%;
   display: flex;
@@ -55,12 +37,17 @@ button {
   align-items: center;
 }
 
-h1.titremenu {
+button {
+  border: none;
+  outline: none;
+}
+
+.menuTitle {
   font-size: 300%;
   margin-bottom: 15%;
 }
 
-.menubutton {
+.menuButton {
   cursor: pointer;
   margin: 10px;
   font-size: 200%;
