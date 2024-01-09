@@ -3,13 +3,28 @@
 
     Titre : {{ titre }} <br>
     Description : {{ description }} <br>
-    Enquetes deja faite : {{ EstElleFaite }} <br>
-    Page : {{ page }} <br>
+    Enquetes en cours : {{ enquetesList[CurrentEnquete].titre}} <br>
+      {{messagecorrection}} <br>
 
-    <button>Selectioner</button> <br>
+    Enquetes deja faite :
+      <div *ngIf="enquetesList[page].reussite">
+          <img src="../../assets/CeckVert.png" alt="" class="verif">
+      </div>
+      <div *ngIf="!enquetesList[page].reussite">
+          <img src="../../assets/CroixRouge.png" alt="" class="verif">
+      </div>
+      <br>
 
-    <button (click)="LessPage()">Page précedente</button>
-    <button (click)="PlusPage()">Page suivante</button>
+      <button *ngIf="!DoingAEnquete" (click)="SelectionEnquete()">Selectioner </button> <br>
+      <button *ngIf="DoingAEnquete" (click)="ValidationReponse()">Valider mes réponses</button> <br>
+      <button *ngIf="DoingAEnquete" (click)="AbandonEnquete()">Abandonner</button> <br>
 
+      <div  class="footer">
+          Page : {{ page }} <br>
+        <div *ngIf="!DoingAEnquete">
+          <button id="PagePrécedente" (click)="LessPage()">Page précedente</button>
+          <button id="PageSuivante" (click)="PlusPage()">Page suivante</button>
+        </div>
+      </div>
   </div>
 </div>
