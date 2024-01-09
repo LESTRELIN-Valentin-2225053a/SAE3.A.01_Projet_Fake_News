@@ -1,7 +1,7 @@
 <div cdkDrag
      [cdkDragData]="media"
      [cdkDragBoundary]="boundaryElement"
-     [cdkDragFreeDragPosition]="{x : media.pos.x*board.offsetWidth, y : media.pos.y*board.offsetHeight}"
+     [cdkDragFreeDragPosition]="{x : media.pos.x*board.boardWidth, y : media.pos.y*board.boardHeight}"
      (cdkDragEnded)="onDragEnd($event)"
      (dblclick)="openDialog()"
      class="media_on_board">

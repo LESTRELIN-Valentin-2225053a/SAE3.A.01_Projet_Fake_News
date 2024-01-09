@@ -8,6 +8,7 @@ import {CdkDragEnd, DragDropModule, Point} from '@angular/cdk/drag-drop';
 import {Media} from "../media";
 import {Dialog} from "@angular/cdk/dialog";
 import {NgIf} from "@angular/common";
+import {BoardComponent} from "../board/board.component";
 
 
 @Component({
@@ -20,7 +21,7 @@ import {NgIf} from "@angular/common";
 export class MediaOnBoardComponent {
   @Input() media! : Media;
   @Input('cdkDragBoundary') boundaryElement! : string;
-  @Input() board!: HTMLElement;
+  @Input() board!: BoardComponent;
   @Output('cdkDragEnded') dragEndedEvent = new EventEmitter<CdkDragEnd<Media>>();
   @ViewChild(TemplateRef) clickedMediaTemplate!:TemplateRef<any>;
 
@@ -28,12 +29,12 @@ export class MediaOnBoardComponent {
 
   onDragEnd($event: CdkDragEnd){
     var newMediaPosition: Readonly<Point> = $event.source.getFreeDragPosition();
-    this.media.pos = {x : newMediaPosition.x/this.board.offsetWidth, y : newMediaPosition.y/this.board.offsetHeight };
+    this.media.pos = {x : newMediaPosition.x/this.board.boardWidth, y : newMediaPosition.y/this.board.boardHeight };
     this.dragEndedEvent.emit($event);
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(this.clickedMediaTemplate,{
+    this.dialog.open(this.clickedMediaTemplate,{
       autoFocus : 'false',
     });
   }

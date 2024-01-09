@@ -1,11 +1,5 @@
 .board {
   position: relative; /* à garder, nécéssaire pour placer les médias dans le tableau */
-  left: 20px;
   background-color: #000000;
-}
-
-.svgBoard{
-  height: inherit;
-  width: inherit;
 }
 
