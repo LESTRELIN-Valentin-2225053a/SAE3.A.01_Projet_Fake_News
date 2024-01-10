@@ -6,7 +6,7 @@ import {MediaService} from "../services/media.service";
 import {MediaLocationService} from "../services/media-location.service";
 import {CdkDragEnd} from "@angular/cdk/drag-drop";
 import {MediaLocationOnBoardComponent} from "../media-location-on-board/media-location-on-board.component";
-import {MediaOnBoardComponent} from "../media-on-board/media-on-board.component";
+import {DraggableMediaOnBoardComponent} from "../draggable-media-on-board/draggable-media-on-board.component";
 import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
@@ -14,7 +14,7 @@ import {NgForOf, NgIf} from "@angular/common";
   standalone: true,
   imports: [
     MediaLocationOnBoardComponent,
-    MediaOnBoardComponent,
+    DraggableMediaOnBoardComponent,
     NgForOf,
     NgIf,
     BoardComponent
@@ -37,7 +37,7 @@ export class BoardWithMediasComponent extends BoardComponent implements AfterVie
   }
 
   ngAfterViewInit(): void {
-    this.mediaHeightRatio = (this.boardWidth/this.boardHeight)*this.mediaWidthRatio;
+    this.mediaHeightRatio = (this.width/this.height)*this.mediaWidthRatio;
   }
 
   checkIfDraggedOnMediaLocation($event : CdkDragEnd<Media>) {
@@ -48,7 +48,7 @@ export class BoardWithMediasComponent extends BoardComponent implements AfterVie
       if (hasMediaEnteredMediaLocation && (mediaLocation.media.id == -1 || mediaLocation.media.id == media.id)){
         media.pos = {x : mediaLocation.x, y : mediaLocation.y};
         mediaLocation.media = media;
-        $event.source.setFreeDragPosition({x : media.pos.x*this.boardWidth, y : media.pos.y*this.boardHeight});
+        $event.source.setFreeDragPosition({x : media.pos.x*this.width, y : media.pos.y*this.height});
       } else if (mediaLocation.media.id == media.id)
         mediaLocation.media = {id : -1} as Media;
     });

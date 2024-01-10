@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {MediaOnBoardComponent} from "../media-on-board/media-on-board.component";
+import {DraggableMediaOnBoardComponent} from "../draggable-media-on-board/draggable-media-on-board.component";
 import {NgForOf, NgIf} from "@angular/common";
 import {MediaLocationOnBoardComponent} from "../media-location-on-board/media-location-on-board.component";
 
@@ -8,7 +8,7 @@ import {MediaLocationOnBoardComponent} from "../media-location-on-board/media-lo
   selector: 'app-board',
   standalone: true,
   imports: [
-    MediaOnBoardComponent,
+    DraggableMediaOnBoardComponent,
     NgForOf,
     MediaLocationOnBoardComponent,
     NgIf,
@@ -17,7 +17,7 @@ import {MediaLocationOnBoardComponent} from "../media-location-on-board/media-lo
   styleUrl: './board.component.css'
 })
 export class BoardComponent{
-  @Input() boardWidth! : number;
-  @Input() boardHeight! : number;
+  @Input() width! : number;
+  @Input() height! : number;
 
 }

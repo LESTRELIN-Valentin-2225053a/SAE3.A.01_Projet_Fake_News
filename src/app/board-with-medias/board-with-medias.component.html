@@ -1,7 +1,7 @@
-<app-board #board [boardHeight]="boardHeight" [boardWidth]="boardWidth">
+<app-board #board [height]="height" [width]="width">
   <app-media-location-on-board *ngFor="let mediaLocation of mediaLocations" [data]="mediaLocation"
                                [mediaRatio]="mediaWidthRatio"/>
-  <app-media-on-board (cdkDragEnded)="checkIfDraggedOnMediaLocation($event)" *ngFor="let media of medias"
+  <app-draggable-media-on-board (cdkDragEnded)="checkIfDraggedOnMediaLocation($event)" *ngFor="let media of medias"
                       [media]="media"
                       [style.width.%]="mediaWidthRatio*100"
                       [board]="board"
