@@ -1,0 +1,35 @@
+.office{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.desk {
+  position: fixed;
+  aspect-ratio: 3;
+  background-image : url("/assets/desk.png");
+  image-rendering: pixelated;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 80%;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.computer{
+  position: absolute;
+  background-color: transparent;
+  image-rendering: pixelated;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  width: 30%;
+  left: 10%;
+  top: -5%;
+}
+
+.computer img {
+  width: 100%;
+  height: 100%;
+}
