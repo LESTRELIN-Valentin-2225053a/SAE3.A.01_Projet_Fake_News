@@ -1,0 +1,5 @@
+<app-board [height]="height" [width]="width">
+  <app-validable-media-on-board *ngFor="let media of medias"
+                                [media]="media"
+                                [style.width.%]="mediaWidthRatio*100"/>
+</app-board>

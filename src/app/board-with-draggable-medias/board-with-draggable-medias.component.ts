@@ -1,13 +1,13 @@
-import {AfterViewInit, Component, inject, Input} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {BoardComponent} from "../board/board.component";
 import {Media} from "../media";
 import {MediaLocation} from "../media-location";
-import {MediaService} from "../services/media.service";
 import {MediaLocationService} from "../services/media-location.service";
 import {CdkDragEnd} from "@angular/cdk/drag-drop";
 import {MediaLocationOnBoardComponent} from "../media-location-on-board/media-location-on-board.component";
 import {DraggableMediaOnBoardComponent} from "../draggable-media-on-board/draggable-media-on-board.component";
 import {NgForOf, NgIf} from "@angular/common";
+import {BoardWithMediasComponent} from "../board-with-medias/board-with-medias.component";
 
 @Component({
   selector: 'app-board-with-draggable-medias',
@@ -22,22 +22,13 @@ import {NgForOf, NgIf} from "@angular/common";
   templateUrl: './board-with-draggable-medias.component.html',
   styleUrl: './board-with-draggable-medias.component.css'
 })
-export class BoardWithDraggableMediasComponent extends BoardComponent implements AfterViewInit{
-  @Input() mediaWidthRatio! : number;
-  mediaHeightRatio! : number;
-  medias: Media[] = [];
+export class BoardWithDraggableMediasComponent extends BoardWithMediasComponent{
   mediaLocations: MediaLocation[] = [];
-  mediaService: MediaService = inject(MediaService);
   mediaLocationService : MediaLocationService = inject(MediaLocationService);
 
   constructor() {
     super();
-    this.medias = this.mediaService.getInitialMedias();
     this.mediaLocations = this.mediaLocationService.getInitialMediaLocations();
-  }
-
-  ngAfterViewInit(): void {
-    this.mediaHeightRatio = (this.width/this.height)*this.mediaWidthRatio;
   }
 
   checkIfDraggedOnMediaLocation($event : CdkDragEnd<Media>) {
