@@ -10,7 +10,7 @@ import {DraggableMediaOnBoardComponent} from "../draggable-media-on-board/dragga
 import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
-  selector: 'app-board-with-medias',
+  selector: 'app-board-with-draggable-medias',
   standalone: true,
   imports: [
     MediaLocationOnBoardComponent,
@@ -19,10 +19,10 @@ import {NgForOf, NgIf} from "@angular/common";
     NgIf,
     BoardComponent
   ],
-  templateUrl: './board-with-medias.component.html',
-  styleUrl: './board-with-medias.component.css'
+  templateUrl: './board-with-draggable-medias.component.html',
+  styleUrl: './board-with-draggable-medias.component.css'
 })
-export class BoardWithMediasComponent extends BoardComponent implements AfterViewInit{
+export class BoardWithDraggableMediasComponent extends BoardComponent implements AfterViewInit{
   @Input() mediaWidthRatio! : number;
   mediaHeightRatio! : number;
   medias: Media[] = [];

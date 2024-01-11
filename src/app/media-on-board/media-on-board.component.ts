@@ -11,7 +11,7 @@ import {Dialog} from "@angular/cdk/dialog";
 })
 export class MediaOnBoardComponent {
   @Input() media! : Media;
-  @ViewChild(TemplateRef) clickedMediaTemplate!:TemplateRef<any>;
+  @ViewChild('dialog', { read: TemplateRef }) clickedMediaTemplate!:TemplateRef<any>;
 
   constructor(public dialog: Dialog) {}
 

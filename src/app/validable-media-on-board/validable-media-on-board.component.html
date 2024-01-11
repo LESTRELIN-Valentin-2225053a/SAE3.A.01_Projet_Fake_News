@@ -1,0 +1,16 @@
+<div [style.left.%]="media.pos.x*100"
+     [style.top.%]="media.pos.y*100"
+     (click)="openDialog()"
+     class="media_on_board">
+  <img class="stamp" *ngIf="isMediaTrustWorthy != null && isMediaTrustWorthy" alt="checkmark" src="/assets/checkmark.png">
+  <img class="stamp" *ngIf="isMediaTrustWorthy != null && !isMediaTrustWorthy" alt="crossmark" src="/assets/crossmark.png">
+  <img class="picture" alt="Media picture" [src]="media.picture">
+</div>
+<ng-template #dialog>
+  <img *ngIf="media.type == 'img'" class="media" alt="Media" [src]="media.link">
+  <video *ngIf="media.type == 'video'" class="media" controls>
+    <source [src]="media.link" type="video/mp4">
+  </video>
+  <button (click)="mediaIsTruthworthy()">V</button>
+  <button (click)="mediaIsNotTruthworthy()">X</button>
+</ng-template>

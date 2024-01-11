@@ -7,7 +7,7 @@
      class="media_on_board">
   <img class="picture" alt="Media picture" [src]="media.picture">
 </div>
-<ng-template>
+<ng-template #dialog>
   <img *ngIf="media.type == 'img'" class="media" alt="Media" [src]="media.link">
   <video *ngIf="media.type == 'video'" class="media" controls>
     <source [src]="media.link" type="video/mp4">

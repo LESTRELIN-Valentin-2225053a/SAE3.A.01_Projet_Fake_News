@@ -8,6 +8,8 @@ export class MediaService {
   initialMedias: Media[] = [
     {
       id: 0,
+      description : "Première rencontre d'Emmanuel Macron avec Donald Trump.",
+      trustWorthy : true,
       type: 'img',
       link: 'https://i.imgur.com/c3GO3QL.jpg',
       picture: 'https://i.imgur.com/NfQgT5R.png',
@@ -15,6 +17,8 @@ export class MediaService {
     },
     {
       id: 1,
+      description : "Première rencontre d'Emmanuel Macron avec Kim Jong-Un.",
+      trustWorthy : false,
       type: 'img',
       link: 'https://imgur.com/yW6Y3Ku.png',
       picture: 'https://imgur.com/yW6Y3Ku.png',
@@ -22,6 +26,8 @@ export class MediaService {
     },
     {
       id: 2,
+      description : "Emmanuel Macron accompagné de deux personnes de couleur de peau noire",
+      trustWorthy : false,
       type: 'img',
       link: 'https://i.imgur.com/jXd0AQS.png',
       picture: 'https://i.imgur.com/jXd0AQS.png',
@@ -29,6 +35,8 @@ export class MediaService {
     },
     {
       id: 3,
+      description : "Emmanuel Macron accompagné de deux personnes de couleur de peau noire",
+      trustWorthy : true,
       type: 'img',
       link: 'https://i.imgur.com/Ij8ySMS.png',
       picture: 'https://i.imgur.com/Ij8ySMS.png',
@@ -36,6 +44,8 @@ export class MediaService {
     },
     {
       id: 4,
+      description : "Emmanuel Macron en gilet jaune",
+      trustWorthy : true,
       type: 'img',
       link: 'https://i.imgur.com/DRwWPS1.png',
       picture: 'https://i.imgur.com/DRwWPS1.png',
@@ -43,6 +53,8 @@ export class MediaService {
     },
     {
       id: 5,
+      description : "Emmanuel Macron en gilet jaune",
+      trustWorthy : false,
       type: 'img',
       link: 'https://i.imgur.com/vlyqcrC.png',
       picture: 'https://i.imgur.com/vlyqcrC.png',
@@ -50,10 +62,12 @@ export class MediaService {
     },
     {
       id: 6,
+      description : "Rencontre d'Emmanuel Macron avec Vladimir Poutine.",
+      trustWorthy : false,
       type: 'img',
       link: 'https://i.imgur.com/VYRltBR.png',
       picture: 'https://i.imgur.com/VYRltBR.png',
-      pos: {x: 0.64, y : 0.1}
+      pos: {x: 0.52, y : 0.05}
     }
   ];
 

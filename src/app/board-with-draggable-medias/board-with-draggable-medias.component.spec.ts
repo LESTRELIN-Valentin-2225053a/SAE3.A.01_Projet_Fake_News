@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BoardWithMediasComponent } from './board-with-medias.component';
+import { BoardWithDraggableMediasComponent } from './board-with-draggable-medias.component';
 
 describe('BoardWithMediasComponent', () => {
-  let component: BoardWithMediasComponent;
-  let fixture: ComponentFixture<BoardWithMediasComponent>;
+  let component: BoardWithDraggableMediasComponent;
+  let fixture: ComponentFixture<BoardWithDraggableMediasComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BoardWithMediasComponent]
+      imports: [BoardWithDraggableMediasComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(BoardWithMediasComponent);
+
+    fixture = TestBed.createComponent(BoardWithDraggableMediasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
