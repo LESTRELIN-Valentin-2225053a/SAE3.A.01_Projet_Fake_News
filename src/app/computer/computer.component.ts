@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {Website} from "../website";
+import {Website} from "../interfaces/website";
 import {DomSanitizer} from "@angular/platform-browser";
 import {CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray} from "@angular/cdk/drag-drop";
 import {TabComponent} from "../tab/tab.component";

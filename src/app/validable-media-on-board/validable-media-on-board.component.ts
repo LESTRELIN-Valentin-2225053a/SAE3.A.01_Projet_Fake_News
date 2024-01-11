@@ -14,15 +14,14 @@ import {NgIf} from "@angular/common";
   styleUrl: './validable-media-on-board.component.css'
 })
 export class ValidableMediaOnBoardComponent extends MediaOnBoardComponent{
-  isMediaTrustWorthy : boolean | null = null;
 
   mediaIsTruthworthy() : void {
-    this.isMediaTrustWorthy = true;
+    this.media.userTrustWorthy = true;
     this.dialog.closeAll();
   }
 
   mediaIsNotTruthworthy() : void {
-    this.isMediaTrustWorthy = false;
+    this.media.userTrustWorthy = false;
     this.dialog.closeAll();
   }
 }

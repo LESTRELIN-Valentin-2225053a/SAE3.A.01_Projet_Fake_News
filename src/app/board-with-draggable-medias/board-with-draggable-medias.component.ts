@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {BoardComponent} from "../board/board.component";
-import {Media} from "../media";
-import {MediaLocation} from "../media-location";
+import {Media} from "../interfaces/media";
+import {MediaLocation} from "../interfaces/media-location";
 import {MediaLocationService} from "../services/media-location.service";
 import {CdkDragEnd} from "@angular/cdk/drag-drop";
 import {MediaLocationOnBoardComponent} from "../media-location-on-board/media-location-on-board.component";

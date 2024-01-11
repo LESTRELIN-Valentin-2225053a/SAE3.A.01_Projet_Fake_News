@@ -1,5 +1,5 @@
 import {Component, Input, TemplateRef, ViewChild} from '@angular/core';
-import {MediaLocation} from "../media-location";
+import {MediaLocation} from "../interfaces/media-location";
 import {Dialog} from "@angular/cdk/dialog";
 
 @Component({

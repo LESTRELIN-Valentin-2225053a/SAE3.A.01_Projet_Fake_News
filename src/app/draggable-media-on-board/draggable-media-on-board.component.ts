@@ -5,7 +5,7 @@ import {
   Output
 } from '@angular/core';
 import {CdkDragEnd, DragDropModule, Point} from '@angular/cdk/drag-drop';
-import {Media} from "../media";
+import {Media} from "../interfaces/media";
 import {NgIf} from "@angular/common";
 import {BoardComponent} from "../board/board.component";
 import {MediaOnBoardComponent} from "../media-on-board/media-on-board.component";

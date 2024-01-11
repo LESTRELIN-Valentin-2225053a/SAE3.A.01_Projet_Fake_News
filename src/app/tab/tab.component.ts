@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Website} from "../website";
+import {Website} from "../interfaces/website";
 import {CdkDrag} from "@angular/cdk/drag-drop";
 
 @Component({

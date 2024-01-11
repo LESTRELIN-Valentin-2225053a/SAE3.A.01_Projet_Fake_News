@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, inject, Input} from '@angular/core';
 import {BoardComponent} from "../board/board.component";
-import {Media} from "../media";
+import {Media} from "../interfaces/media";
 import {MediaService} from "../services/media.service";
 
 @Component({
