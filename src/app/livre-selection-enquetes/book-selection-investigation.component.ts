@@ -3,7 +3,7 @@
 // ============================================
 import { Component, OnInit } from '@angular/core';
 import { Investigation } from "../investigation";
-import { NgIf } from "@angular/common";
+import {NgIf, NgOptimizedImage} from "@angular/common";
 
 // ============================================
 //                Component
@@ -12,7 +12,8 @@ import { NgIf } from "@angular/common";
   selector: 'app-livre-selection-enquetes',
   standalone: true,
   imports: [
-    NgIf
+    NgIf,
+    NgOptimizedImage
   ],
   templateUrl: './book-selection-investigation.component.html',
   styleUrl: './book-selection-investigation.component.css'
@@ -59,9 +60,9 @@ export class BookSelectionInvestigationComponent implements OnInit {
   page: number = 1;
 
   /**
-   * Maximum page number of the book = length of the Investigation list
+   * Maximum investigation number of the book = length of the Investigation list
    */
-  pageMax: number = this.investigationList.length;
+  maxInvestigation: number = this.investigationList.length;
 
   /**
    * Investigation title retrieved based on the current page
@@ -93,6 +94,10 @@ export class BookSelectionInvestigationComponent implements OnInit {
    */
   correctionMessage: string = "";
 
+  /**
+   *
+   */
+  idInvestigationShow: number = 1;
 
   // ============================================
   //                Methods
@@ -105,8 +110,9 @@ export class BookSelectionInvestigationComponent implements OnInit {
    * @returns {void}
    */
   increasePage(): void {
-    if (this.page < this.pageMax) {
-      this.page += 1;
+    if (this.idInvestigationShow < this.maxInvestigation) {
+      this.idInvestigationShow += 1
+      this.page += 2;
       this.updateInvestigation();
     }
   }
@@ -117,8 +123,9 @@ export class BookSelectionInvestigationComponent implements OnInit {
    * @returns {void}
    */
   decreasePage(): void {
-    if (this.page > 1) {
-      this.page -= 1;
+    if (this.idInvestigationShow > 1) {
+      this.idInvestigationShow -= 1
+      this.page -= 2;
       this.updateInvestigation();
     }
   }
@@ -139,8 +146,8 @@ export class BookSelectionInvestigationComponent implements OnInit {
    * @returns {void}
    */
   updateInvestigation(): void {
-    this.title = this.investigationList[this.page].title;
-    this.description = this.investigationList[this.page].description;
+    this.title = this.investigationList[this.idInvestigationShow].title;
+    this.description = this.investigationList[this.idInvestigationShow].description;
   }
 
   /**
@@ -149,7 +156,7 @@ export class BookSelectionInvestigationComponent implements OnInit {
    * @returns {void}
    */
   selectInvestigation(): void {
-    this.currentInvestigation = this.page;
+    this.currentInvestigation = this.idInvestigationShow;
     this.isConductingInvestigation = true;
   }
 
@@ -160,7 +167,7 @@ export class BookSelectionInvestigationComponent implements OnInit {
    */
   validateResponse(): void {
     if (this.isCorrect) {
-      this.investigationList[this.page].success = true;
+      this.investigationList[this.idInvestigationShow].success = true;
       this.correctionMessage = "Bravo vous avez réussi l'enquete!";
       this.isConductingInvestigation = false;
       this.currentInvestigation = 0;

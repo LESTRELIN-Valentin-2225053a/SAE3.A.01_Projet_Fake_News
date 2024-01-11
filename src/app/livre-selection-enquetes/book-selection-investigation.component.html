@@ -1,30 +1,48 @@
 <div class="MainPage">
-  <div class="Book" [style.width.%]="30" [style.height.%]="30">
-
-    Titre : {{ title }} <br>
-    Description: {{ description }} <br>
-    Enquetes en cours : {{ investigationList[currentInvestigation].title }} <br>
-    {{ correctionMessage }} <br>
-
-    Enquetes deja faite :
-    <div *ngIf="investigationList[page].success">
-      <img src="../../assets/CeckVert.png" alt="" class="verif">
+  <div class="Book">
+    <div class="LeftPart">
+      <button (click)="decreasePage()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5"/>
+        </svg>
+      </button>
     </div>
-    <div *ngIf="!investigationList[page].success">
-      <img src="../../assets/CroixRouge.png" alt="" class="verif">
+    <div class="LeftPage" *ngIf="!isConductingInvestigation">
+      <h2 style="text-align: center">{{ title }}</h2>  <br>
+
+      <div class="description">
+        {{ description }}
+      </div> <br>
+        {{ correctionMessage }}
+
+      <div class="NumPageLeft"> Page: {{ page }} </div> <br>
+
+
     </div>
-    <br>
-
-    <button *ngIf="!isConductingInvestigation" (click)="selectInvestigation()">Selectioner  </button> <br>
-    <button *ngIf="isConductingInvestigation" (click)="validateResponse()">Valider mes réponses</button> <br>
-    <button *ngIf="isConductingInvestigation" (click)="abandonInvestigation()">Abandonner</button> <br>
-
-    <div class="footer">
-      Page: {{ page }} <br>
-      <div *ngIf="!isConductingInvestigation">
-        <button (click)="decreasePage()">Page précedente</button>
-        <button (click)="increasePage()">Page suivante</button>
+    <div class="RightPage">
+      <div>
+        Enquetes deja faite :
+        <div *ngIf="investigationList[page].success">
+          <img ngSrc="../../assets/CeckVert.png" alt="" class="verif" height="225" width="225">
+        </div>
+        <div *ngIf="!investigationList[page].success">
+          <img ngSrc="../../assets/CroixRouge.png" alt="" class="verif" height="512" width="512">
+        </div>
       </div>
+
+      <button *ngIf="!isConductingInvestigation" (click)="selectInvestigation()">Selectioner  </button> <br>
+      <button *ngIf="isConductingInvestigation" (click)="validateResponse()">Valider mes réponses</button> <br>
+      <button *ngIf="isConductingInvestigation" (click)="abandonInvestigation()">Abandonner</button> <br>
+
+      <div class="NumPageRight"> Page: {{ page + 1 }} </div> <br>
+    </div>
+    <div class="RightPart" *ngIf="!isConductingInvestigation">
+      <button (click)="increasePage()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8m-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5"/>
+        </svg>
+      </button>
     </div>
   </div>
 </div>
+

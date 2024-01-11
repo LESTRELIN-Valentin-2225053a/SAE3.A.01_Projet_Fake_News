@@ -1,24 +1,80 @@
-.Book{
-  background-color: #D3D3D3;
-  width: 70%;  /* Taille du livre en pourcentage de la largeur de l'écran */
-  max-width: 500px; /* Largeur maximale du livre */
-  padding: 5%;
-  border: 2px solid #333;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 15%;
-}
 .MainPage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  justify-content: center;
+  background-image: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.MainPage::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/FondTestLivre.png");
+  filter: blur(4px);
+  z-index: -1;
+}
+
+.Book{
+  display: flex;
+}
+
+.LeftPart, .RightPart {
   display: flex;
   justify-content: center;
-  background-color: brown;
+  align-items: center;
+}
+
+.LeftPage{
+  width:50%;
+  background-image: url("../../assets/LivrePixelRightPage.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.description{
+  font-size: 130%;
+}
+
+.NumPageLeft{
+  text-align: left;
+}
+
+.RightPage{
+  width:50%;
+  background-image: url("../../assets/LivrePixelLeftPage.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 img.verif {
-  width: 50px;
-  height: 50px;
+  background-color: gray;
+  border: black;
+  width: 100px;
+  height: 100px;
 }
 
-.footer{
+.NumPageRight{
   text-align: right;
 }
+
+
+
+
+
+
+
+
+
+
+
 
