@@ -18,7 +18,7 @@ import {NgIf, NgOptimizedImage} from "@angular/common";
   templateUrl: './book-selection-investigation.component.html',
   styleUrl: './book-selection-investigation.component.css'
 })
-export class BookSelectionInvestigationComponent implements OnInit {
+export class BookSelectionInvestigationComponent {
 
 // ============================================
 //                Variables
@@ -28,12 +28,6 @@ export class BookSelectionInvestigationComponent implements OnInit {
    * Test investigation list for the book
    */
   investigationList: Investigation[] = [
-    {
-      id: 0,
-      title: "Ne fais pas d'enquetes",
-      description: "aucune enquetes selectionner",
-      success: false
-    },
     {
       id: 1,
       title: "Une semaine chez macron",
@@ -60,33 +54,14 @@ export class BookSelectionInvestigationComponent implements OnInit {
   page: number = 1;
 
   /**
-   * Maximum investigation number of the book = length of the Investigation list
+   * The current investigation show on the book
    */
-  maxInvestigation: number = this.investigationList.length;
-// directement utilisé investigationList.length
-
-  /**
-   * Investigation title retrieved based on the current page
-   */
-  title: string = "";
-  // remplacé par un attribut investigation directement
-
-  /**
-   * Investigation description retrieved based on the current page
-   */
-  description: string = "";
-  // remplacé par un attribut investigation directement
+  currentInvestigationOnPage: Investigation = this.investigationList[0];
 
   /**
    * Boolean to determine if an investigation is ongoing to adjust the display in the book
    */
   isConductingInvestigation: boolean = false;
-
-  /**
-   * Current investigation number for communication to other components for file retrieval
-   */
-  currentInvestigation: number = 0;
-  // remplacé par un attribut investigation directement
 
 
   /**
@@ -99,12 +74,6 @@ export class BookSelectionInvestigationComponent implements OnInit {
    */
   correctionMessage: string = "";
 
-  /**
-   *
-   */
-  idInvestigationShow: number = 1;
-  // remplacé par un attribut investigation directement pour stocker l'enquete affiché sur la page
-
   // ============================================
   //                Methods
   // ============================================
@@ -116,14 +85,10 @@ export class BookSelectionInvestigationComponent implements OnInit {
    * @returns {void}
    */
   increasePage(): void {
-    // if (this.currentInvestigationOnPage != this.investigationList[this.investigationList.length-1]){
-    //   this.currentInvestigationOnPage = this.investigationList[this.currentInvestigationOnPage.id+1]; PAS BON ZIZI KAKA
-    // }
-    if (this.idInvestigationShow < this.maxInvestigation) {
-      this.idInvestigationShow += 1
-      this.page += 2;
-      this.updateInvestigation();
-    }
+     if (this.currentInvestigationOnPage != this.investigationList[this.investigationList.length-1]){
+       this.currentInvestigationOnPage = this.investigationList[this.currentInvestigationOnPage.id];
+       this.page += 2;
+     }
   }
 
   /**
@@ -132,31 +97,10 @@ export class BookSelectionInvestigationComponent implements OnInit {
    * @returns {void}
    */
   decreasePage(): void {
-    if (this.idInvestigationShow > 1) {
-      this.idInvestigationShow -= 1
+    if (this.currentInvestigationOnPage != this.investigationList[0]) {
+      this.currentInvestigationOnPage = this.investigationList[this.currentInvestigationOnPage.id - 2];
       this.page -= 2;
-      this.updateInvestigation();
     }
-  }
-
-  /**
-   * Angular lifecycle method called after the components have been initialized.
-   * Updates the investigation upon initialization.
-   * @function ngOnInit
-   * @returns {void}
-   */
-  ngOnInit(): void {
-    this.updateInvestigation();
-  }
-
-  /**
-   * Updates the details of the current investigation based on the current page.
-   * @function updateInvestigation
-   * @returns {void}
-   */
-  updateInvestigation(): void {
-    this.title = this.investigationList[this.idInvestigationShow].title;
-    this.description = this.investigationList[this.idInvestigationShow].description;
   }
 
   /**
@@ -165,8 +109,8 @@ export class BookSelectionInvestigationComponent implements OnInit {
    * @returns {void}
    */
   selectInvestigation(): void {
-    this.currentInvestigation = this.idInvestigationShow;
     this.isConductingInvestigation = true;
+    console.log(this.currentInvestigationOnPage.id)
   }
 
   /**
@@ -176,10 +120,9 @@ export class BookSelectionInvestigationComponent implements OnInit {
    */
   validateResponse(): void {
     if (this.isCorrect) {
-      this.investigationList[this.idInvestigationShow].success = true;
+      this.currentInvestigationOnPage.success = true;
       this.correctionMessage = "Bravo vous avez réussi l'enquete!";
       this.isConductingInvestigation = false;
-      this.currentInvestigation = 0;
     } else {
       this.correctionMessage = "Recommence!";
     }
@@ -192,6 +135,5 @@ export class BookSelectionInvestigationComponent implements OnInit {
    */
   abandonInvestigation(): void {
     this.isConductingInvestigation = false;
-    this.currentInvestigation = 0;
   }
 }

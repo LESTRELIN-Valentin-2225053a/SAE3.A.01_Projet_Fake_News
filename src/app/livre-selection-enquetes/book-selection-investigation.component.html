@@ -48,7 +48,7 @@
 
 <div class="Book">
   <div class="LeftPart">
-    <button (click)="decreasePage()">
+    <button (click)="decreasePage()" class="SwitchPage" *ngIf="!isConductingInvestigation">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left"
            viewBox="0 0 16 16">
         <path fill-rule="evenodd"
@@ -57,12 +57,12 @@
     </button>
   </div>
   <div class="Page">
-    <img [src]="'/assets/LivrePixelRightPage.png'">
+    <img class="BookPage"[src]="'/assets/LivrePixelRightPage.png'" alt="Page droite du livre">
     <div class="leftPageText">
-      <h2 style="text-align: center">{{ title }}</h2>  <br>
+      <h2 style="text-align: center">{{ currentInvestigationOnPage.title }}</h2>  <br>
 
       <div class="description">
-        {{ description }}
+        {{ currentInvestigationOnPage.description }}
       </div>
       <br>
       {{ correctionMessage }}
@@ -70,13 +70,28 @@
     </div>
   </div>
   <div class="Page">
-    <img [src]="'/assets/LivrePixelLeftPage.png'">
+    <img class="BookPage" [src]="'/assets/LivrePixelLeftPage.png'" alt="Page gauche du livre">
     <div class="rightPageText">
+
+      <div style="margin-top: 15%">
+        <div *ngIf="currentInvestigationOnPage.success">
+          <img [src]="'/assets/CeckVert.png'" alt="Check vert" class="verif">
+        </div>
+        <div *ngIf="!currentInvestigationOnPage.success">
+          <img [src]="'/assets/checkEmptyBisBis.png'" alt="Croix rouge" class="verif">
+        </div>
+      </div>
+
+      <button class="ButtonInvestigation" id="BoutonSelection" *ngIf="!isConductingInvestigation" (click)="selectInvestigation()">Sélectionner</button> <br>
+      <button class="ButtonInvestigation" *ngIf="isConductingInvestigation" (click)="validateResponse()">Valider mes réponses</button> <br>
+      <button class="ButtonInvestigation" *ngIf="isConductingInvestigation" (click)="abandonInvestigation()">Abandonner</button> <br>
+
+
       <div class="NumPageRight"> Page: {{ page + 1 }} </div>
     </div>
   </div>
-  <div class="RightPart" *ngIf="!isConductingInvestigation">
-    <button (click)="increasePage()">
+  <div class="RightPart">
+    <button (click)="increasePage()" class="SwitchPage" *ngIf="!isConductingInvestigation">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-right"
            viewBox="0 0 16 16">
         <path fill-rule="evenodd"
