@@ -1,32 +1,151 @@
-.MainPage {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  justify-content: center;
-  background-image: none;
-  z-index: -1;
-  overflow: hidden;
-}
+/*.MainPage {*/
+/*  position: fixed;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  display: grid;*/
+/*  place-items: center;*/
+/*  justify-content: center;*/
+/*  background-image: none;*/
+/*  z-index: -1;*/
+/*  overflow: hidden;*/
+/*}*/
 
-.MainPage::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("../../assets/FondTestLivre.png");
-  filter: blur(4px);
-  z-index: -1;
-}
+/*.MainPage::before {*/
+/*  content: "";*/
+/*  position: absolute;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  background-image: url("../../assets/FondTestLivre.png");*/
+/*  filter: blur(4px);*/
+/*  z-index: -1;*/
+/*}*/
+
+/*.Book{*/
+/*  display: flex;*/
+/*  height: 55%;*/
+/*}*/
+
+/*.LeftPart, .RightPart {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*}*/
+
+/*.LeftPage{*/
+/*  width:100%;*/
+/*  background-image: url("../../assets/LivrePixelRightPage.png");*/
+/*  background-size: contain;*/
+/*  background-repeat: no-repeat;*/
+/*}*/
+
+/*.LeftPage h2{*/
+/*  margin-top: 30px;*/
+/*}*/
+
+/*.LeftPage .description{*/
+/*  font-size: 135%;*/
+/*  margin-left: 50px;*/
+/*  margin-right: 40px;*/
+/*}*/
+
+/*.LeftPage .correctionMessage{*/
+/*  margin-left: 50px;*/
+/*  margin-right: 40px;*/
+/*}*/
+
+/*.description{*/
+/*  font-size: 130%;*/
+/*}*/
+
+/*.NumPageLeft{*/
+/*  margin-left: 50px;*/
+/*  margin-top: 280px;*/
+/*}*/
+
+/*.RightPage{*/
+/*  width:100%;*/
+/*  background-image: url("../../assets/LivrePixelLeftPage.png");*/
+/*  background-size: contain;*/
+/*  background-repeat: no-repeat;*/
+/*}*/
+
+/*.RightPage .NumPageRight{*/
+/*  margin-right: 50px;*/
+/*  margin-top: 200px;*/
+/*  text-align: right;*/
+/*}*/
+
+/*img.verif {*/
+/*  background-color: gray;*/
+/*  border: black;*/
+/*  width: 100px;*/
+/*  height: 100px;*/
+/*}*/
+
+/*.selectButton {*/
+/*  cursor: pointer;*/
+/*  margin-left: auto;*/
+/*  margin-right: auto;*/
+/*  margin-top: 20px;*/
+/*  display: flex;*/
+/*}*/
+
+/*#redCross{*/
+/*  margin-left: auto;*/
+/*  margin-right: auto;*/
+/*  margin-top: auto;*/
+/*  display: flex;*/
+/*}*/
 
 .Book{
+  width: 50%;
   display: flex;
-  height: 55%;
+  image-rendering: pixelated;
+}
+
+.Page{
+  position: relative;
+  flex: 1;
+}
+
+.Page img{
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.leftPageText{
+  position: absolute;
+  left: 15%;
+  top: 5%;
+  height: 80%;
+  width: 80%;
+  z-index: 2;
+}
+
+.NumPageLeft{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.NumPageRight{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.rightPageText{
+  position: absolute;
+  right: 15%;
+  top: 5%;
+  height: 80%;
+  width: 80%;
+  z-index: 2;
 }
 
 .LeftPart, .RightPart {
@@ -34,71 +153,3 @@
   justify-content: center;
   align-items: center;
 }
-
-.LeftPage{
-  width:100%;
-  background-image: url("../../assets/LivrePixelRightPage.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.LeftPage h2{
-  margin-top: 30px;
-}
-
-.LeftPage .description{
-  font-size: 135%;
-  margin-left: 50px;
-  margin-right: 40px;
-}
-
-.LeftPage .correctionMessage{
-  margin-left: 50px;
-  margin-right: 40px;
-}
-
-.description{
-  font-size: 130%;
-}
-
-.NumPageLeft{
-  margin-left: 50px;
-  margin-top: 280px;
-}
-
-.RightPage{
-  width:100%;
-  background-image: url("../../assets/LivrePixelLeftPage.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.RightPage .NumPageRight{
-  margin-right: 50px;
-  margin-top: 200px;
-  text-align: right;
-}
-
-img.verif {
-  background-color: gray;
-  border: black;
-  width: 100px;
-  height: 100px;
-}
-
-.selectButton {
-  cursor: pointer;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  display: flex;
-}
-
-#redCross{
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: auto;
-  display: flex;
-}
-
-

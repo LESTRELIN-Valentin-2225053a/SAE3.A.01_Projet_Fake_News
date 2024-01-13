@@ -63,16 +63,19 @@ export class BookSelectionInvestigationComponent implements OnInit {
    * Maximum investigation number of the book = length of the Investigation list
    */
   maxInvestigation: number = this.investigationList.length;
+// directement utilisé investigationList.length
 
   /**
    * Investigation title retrieved based on the current page
    */
   title: string = "";
+  // remplacé par un attribut investigation directement
 
   /**
    * Investigation description retrieved based on the current page
    */
   description: string = "";
+  // remplacé par un attribut investigation directement
 
   /**
    * Boolean to determine if an investigation is ongoing to adjust the display in the book
@@ -83,6 +86,8 @@ export class BookSelectionInvestigationComponent implements OnInit {
    * Current investigation number for communication to other components for file retrieval
    */
   currentInvestigation: number = 0;
+  // remplacé par un attribut investigation directement
+
 
   /**
    * Boolean that becomes true if the given answers are true or false
@@ -98,6 +103,7 @@ export class BookSelectionInvestigationComponent implements OnInit {
    *
    */
   idInvestigationShow: number = 1;
+  // remplacé par un attribut investigation directement pour stocker l'enquete affiché sur la page
 
   // ============================================
   //                Methods
@@ -110,6 +116,9 @@ export class BookSelectionInvestigationComponent implements OnInit {
    * @returns {void}
    */
   increasePage(): void {
+    // if (this.currentInvestigationOnPage != this.investigationList[this.investigationList.length-1]){
+    //   this.currentInvestigationOnPage = this.investigationList[this.currentInvestigationOnPage.id+1]; PAS BON ZIZI KAKA
+    // }
     if (this.idInvestigationShow < this.maxInvestigation) {
       this.idInvestigationShow += 1
       this.page += 2;
