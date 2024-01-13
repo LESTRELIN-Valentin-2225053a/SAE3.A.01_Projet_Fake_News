@@ -27,6 +27,10 @@ export class MenuLateralComponent {
    */
   menuOpen: boolean = false;
 
+// ============================================
+//                Methode
+// ============================================
+
   /**
    * Toggles the menu open/close state and updates the body class accordingly.
    * @function toggleMenu

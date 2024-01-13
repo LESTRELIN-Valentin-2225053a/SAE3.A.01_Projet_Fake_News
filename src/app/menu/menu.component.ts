@@ -31,8 +31,14 @@ export class Menu {
    */
   isContentVisible: boolean = false;
 
+// ============================================
+//                Methode
+// ============================================
+
   /**
    * Toggles the visibility of the content.
+   * @function toggleContent
+   * @returns {void}
    */
   toggleContent(): void {
     this.isContentVisible = !this.isContentVisible;
@@ -40,6 +46,8 @@ export class Menu {
 
   /**
    * Handler for content toggle events.
+   * @function onContentToggled
+   * @returns {void}
    */
   onContentToggled(): void {
     this.isContentVisible = !this.isContentVisible;
