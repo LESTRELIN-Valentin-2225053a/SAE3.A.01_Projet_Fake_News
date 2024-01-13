@@ -21,16 +21,16 @@
     </div>
     <div class="RightPage">
       <div>
-        Enquetes deja faite :
+        <h2 style="text-align: center">Enquetes deja faite :</h2> <br>
         <div *ngIf="investigationList[page].success">
           <img ngSrc="../../assets/CeckVert.png" alt="" class="verif" height="225" width="225">
         </div>
         <div *ngIf="!investigationList[page].success">
-          <img ngSrc="../../assets/CroixRouge.png" alt="" class="verif" height="512" width="512">
+          <img ngSrc="../../assets/CroixRouge.png" alt="" id="redCross" class="verif" height="512" width="512">
         </div>
       </div>
 
-      <button *ngIf="!isConductingInvestigation" (click)="selectInvestigation()">Selectioner  </button> <br>
+      <button id="selectButton" class="selectButton" *ngIf="!isConductingInvestigation" (click)="selectInvestigation()">Selectioner  </button> <br>
       <button *ngIf="isConductingInvestigation" (click)="validateResponse()">Valider mes réponses</button> <br>
       <button *ngIf="isConductingInvestigation" (click)="abandonInvestigation()">Abandonner</button> <br>
 

@@ -26,6 +26,7 @@
 
 .Book{
   display: flex;
+  height: 55%;
 }
 
 .LeftPart, .RightPart {
@@ -35,10 +36,25 @@
 }
 
 .LeftPage{
-  width:50%;
+  width:100%;
   background-image: url("../../assets/LivrePixelRightPage.png");
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.LeftPage h2{
+  margin-top: 30px;
+}
+
+.LeftPage .description{
+  font-size: 135%;
+  margin-left: 50px;
+  margin-right: 40px;
+}
+
+.LeftPage .correctionMessage{
+  margin-left: 50px;
+  margin-right: 40px;
 }
 
 .description{
@@ -46,14 +62,21 @@
 }
 
 .NumPageLeft{
-  text-align: left;
+  margin-left: 50px;
+  margin-top: 280px;
 }
 
 .RightPage{
-  width:50%;
+  width:100%;
   background-image: url("../../assets/LivrePixelLeftPage.png");
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.RightPage .NumPageRight{
+  margin-right: 50px;
+  margin-top: 200px;
+  text-align: right;
 }
 
 img.verif {
@@ -63,18 +86,19 @@ img.verif {
   height: 100px;
 }
 
-.NumPageRight{
-  text-align: right;
+.selectButton {
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  display: flex;
 }
 
-
-
-
-
-
-
-
-
-
+#redCross{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  display: flex;
+}
 
 
