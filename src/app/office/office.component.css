@@ -33,3 +33,106 @@
   width: 100%;
   height: 100%;
 }
+.computer img:hover{
+  -webkit-filter: drop-shadow(0 0 0.5vw grey);
+}
+
+.book{
+  position: absolute;
+  background-color: transparent;
+  image-rendering: pixelated;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  width: 30%;
+  left: 45%;
+  top: 23%;
+}
+
+.book img {
+  width: 42%;
+  height: 42%;
+}
+
+.book img:hover{
+  -webkit-filter: drop-shadow(0 0 0.5vw grey);
+}
+
+.book p {
+  position: absolute;
+  top: 30%;
+  left: 46%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-size: 16px;
+}
+
+.board{
+  position: absolute;
+  background-color: transparent;
+  image-rendering: pixelated;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  width: 40%;
+  left: 50%;
+  top: -80%;
+}
+
+.board img {
+  width: 100%;
+  height: 100%;
+}
+
+.board img:hover{
+  -webkit-filter: drop-shadow(0 0 0.5vw white);
+}
+
+.bonsai
+{
+  position: absolute;
+  background-color: transparent;
+  image-rendering: pixelated;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  width: 40%;
+  left: 75%;
+  top: -20%;
+}
+
+.bonsai img {
+  width: 30%;
+  height: 30%;
+}
+
+.bonsai img {
+  transition: filter 0.5s ease;
+}
+
+@keyframes shakeBonsai {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+}
+
+.bonsai.clicked img {
+  animation: shakeBonsai 0.5s ease-out;
+}
+
+.desk.zoomed {
+  transform: scale(4);
+  transform-origin: 28% 20%;
+  width: 83%;
+  height: 55%;
+  transition: transform 0.5s ease;
+}

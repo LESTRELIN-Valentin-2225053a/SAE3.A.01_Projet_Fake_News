@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, inject, Input} from '@angular/core';
+import {AfterContentChecked, Component, inject} from '@angular/core';
 import {BoardComponent} from "../board/board.component";
 import {Media} from "../interfaces/media";
 import {MediaService} from "../services/media.service";
@@ -10,8 +10,8 @@ import {MediaService} from "../services/media.service";
   templateUrl: './board-with-medias.component.html',
   styleUrl: './board-with-medias.component.css'
 })
-export class BoardWithMediasComponent extends BoardComponent implements AfterViewInit{
-  @Input() mediaWidthRatio! : number;
+export class BoardWithMediasComponent extends BoardComponent implements AfterContentChecked{
+  mediaWidthRatio : number = 0.1;
   mediaHeightRatio! : number;
   medias: Media[] = [];
   mediaService: MediaService = inject(MediaService);
@@ -21,7 +21,7 @@ export class BoardWithMediasComponent extends BoardComponent implements AfterVie
     this.medias = this.mediaService.getInitialMedias();
   }
 
-  ngAfterViewInit(): void {
+  ngAfterContentChecked(): void {
     this.mediaHeightRatio = (this.width/this.height)*this.mediaWidthRatio;
   }
 }
