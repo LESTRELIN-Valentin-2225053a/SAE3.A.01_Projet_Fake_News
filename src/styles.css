@@ -1,5 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/cdk/overlay-prebuilt.css';
+
+@font-face {
+  font-family: Minecraft;
+  src: url("/assets/fonts/Minecraftia-Regular.ttf") format("truetype");
+  font-style: normal;
+}
+
 body {
   background-image: url("/assets/background-image.png");
   background-size: 10%;

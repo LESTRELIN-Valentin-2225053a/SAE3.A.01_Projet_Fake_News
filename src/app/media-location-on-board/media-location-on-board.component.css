@@ -1,3 +1,9 @@
+@font-face {
+  font-family: Minecraft;
+  src: url("/assets/fonts/Minecraftia-Regular.ttf") format("truetype");
+  font-style: normal;
+}
+
 .mediaLocation{
   position: absolute;
   aspect-ratio : 1 / 1;
@@ -7,9 +13,12 @@
 
 .post-it{
   position: absolute;
+  background-image: url("/assets/post-it.png");
+  image-rendering: pixelated;
+  background-size: contain;
+  background-repeat: no-repeat;
   aspect-ratio : 1 / 1;
   width: 35%;
-  background-color: yellow;
   right: -15%;
   bottom: -15%;
   z-index: 2;
@@ -22,5 +31,6 @@
 .openedPost-It{
   aspect-ratio: 1/1;
   height: 25vw;
+  font-family: Minecraft;
   background-color: yellow;
 }
