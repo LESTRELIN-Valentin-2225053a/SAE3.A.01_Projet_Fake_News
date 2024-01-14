@@ -11,25 +11,36 @@ export class MediaLocationService {
       x : 0.02,
       y : 0.55,
       media : {id : -1} as Media,
+      expectedMediaId : 1,
       description : 'Mai 2017 : Photo d\'Emmanuel Macron rencontrant pour la première fois un dirigeant étranger. '
     },
     {
       x : 0.25,
       y : 0.65,
       media : {id : -1} as Media,
+      expectedMediaId : 1,
       description : '2'
     },
     {
       x : 0.45,
       y : 0.74,
       media : {id : -1} as Media,
+      expectedMediaId : 1,
       description : '3'
     },
     {
-      x : 0.75,
+      x : 0.65,
       y : 0.6,
       media : {id : -1} as Media,
+      expectedMediaId : 1,
       description : '4'
+    },
+    {
+      x : 0.85,
+      y : 0.74,
+      media : {id : -1} as Media,
+      expectedMediaId : 1,
+      description : '5'
     }
   ];
 
