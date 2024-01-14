@@ -1,7 +1,8 @@
 .mediaLocation{
   position: absolute;
   aspect-ratio : 1 / 1;
-  background-color: green;
+  background-color: #281F18;
+  outline: 0.3vw dashed #170B04;
 }
 
 .post-it{
