@@ -117,3 +117,8 @@
 .bonsai.clicked img {
   animation: shakeBonsai 0.5s ease-out;
 }
+
+.desk.zoomed {
+  transform: scale(2); /* Vous pouvez ajuster la valeur de l'échelle selon votre préférence */
+  transition: transform 0.5s ease;
+}
