@@ -119,6 +119,9 @@
 }
 
 .desk.zoomed {
-  transform: scale(2); /* Vous pouvez ajuster la valeur de l'échelle selon votre préférence */
+  transform: scale(4);
+  transform-origin: 28% 20%;
+  width: 83%;
+  height: 55%;
   transition: transform 0.5s ease;
 }
