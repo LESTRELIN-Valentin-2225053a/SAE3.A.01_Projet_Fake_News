@@ -1,4 +1,4 @@
 <div [style.width.%]="mediaRatio*100" [style.left.%]="data.x*100" [style.top.%]="data.y*100" class="mediaLocation">
   <div (click)="openDialog()" class="post-it"></div>
 </div>
-<ng-template><div class="openedPost-It">{{data.description}}</div></ng-template>
+<ng-template><div class="openedPost-It"><div class="text-box">{{data.description}}</div></div></ng-template>
