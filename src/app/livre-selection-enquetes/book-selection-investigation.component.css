@@ -187,10 +187,7 @@
 
 .ButtonInvestigation {
 
-  margin-top: 5%;
-  margin-bottom: -5%;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 5% auto -5%;
   display: flex;
   background-color: #3498db;
   color: #fff;
@@ -200,7 +197,6 @@
   border-radius: 8px;
   transition: background-color 0.3s ease, transform 0.2s ease;
 
-  box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
 }
 
 .ButtonInvestigation:hover {
