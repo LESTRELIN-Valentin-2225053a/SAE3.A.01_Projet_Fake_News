@@ -1,8 +1,14 @@
+// ============================================
+//                    Import
+// ============================================
 import {Component} from '@angular/core';
 import {MediaOnBoardComponent} from "../media-on-board/media-on-board.component";
 import {CdkDrag} from "@angular/cdk/drag-drop";
 import {NgIf} from "@angular/common";
 
+// ============================================
+//                Component
+// ============================================
 @Component({
   selector: 'app-validable-media-on-board',
   standalone: true,
@@ -15,11 +21,21 @@ import {NgIf} from "@angular/common";
 })
 export class ValidableMediaOnBoardComponent extends MediaOnBoardComponent{
 
+// ============================================
+//                Methode
+// ============================================
+
+  /**
+   *
+   */
   mediaIsTruthworthy() : void {
     this.media.userTrustWorthy = true;
     this.dialog.closeAll();
   }
 
+  /**
+   *
+   */
   mediaIsNotTruthworthy() : void {
     this.media.userTrustWorthy = false;
     this.dialog.closeAll();

@@ -1,7 +1,7 @@
 // ============================================
 //                    Import
 // ============================================
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { Investigation } from "../investigation";
 import {NgIf, NgOptimizedImage} from "@angular/common";
 
@@ -74,9 +74,9 @@ export class BookSelectionInvestigationComponent {
    */
   correctionMessage: string = "";
 
-  // ============================================
-  //                Methods
-  // ============================================
+// ============================================
+//                Methods
+// ============================================
 
   /**
    * Increases the current page number and updates the investigation if possible.

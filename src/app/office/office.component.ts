@@ -1,6 +1,12 @@
+// ============================================
+//                    Import
+// ============================================
 import { Component } from '@angular/core';
 import {RouterLink} from "@angular/router";
 
+// ============================================
+//                Component
+// ============================================
 @Component({
   selector: 'app-office',
   templateUrl : './office.component.html',
@@ -12,10 +18,29 @@ import {RouterLink} from "@angular/router";
 })
 export class OfficeComponent {
 
+// ============================================
+//                Variables
+// ============================================
+
+  /**
+   *
+   */
   isComputerZoomed = false;
+
+// ============================================
+//                Methode
+// ============================================
+
+  /**
+   *
+   */
   zoomComputer() {
     this.isComputerZoomed = true;
   }
+
+  /**
+   *
+   */
   shakeBonsai() {
     const bonsai = document.querySelector('.bonsai');
     bonsai?.classList.add('clicked');

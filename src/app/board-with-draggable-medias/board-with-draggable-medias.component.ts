@@ -1,3 +1,6 @@
+// ============================================
+//                    Import
+// ============================================
 import {Component, inject} from '@angular/core';
 import {BoardComponent} from "../board/board.component";
 import {Media} from "../interfaces/media";
@@ -9,6 +12,9 @@ import {DraggableMediaOnBoardComponent} from "../draggable-media-on-board/dragga
 import {NgForOf, NgIf} from "@angular/common";
 import {BoardWithMediasComponent} from "../board-with-medias/board-with-medias.component";
 
+// ============================================
+//                Component
+// ============================================
 @Component({
   selector: 'app-board-with-draggable-medias',
   standalone: true,
@@ -23,14 +29,37 @@ import {BoardWithMediasComponent} from "../board-with-medias/board-with-medias.c
   styleUrl: './board-with-draggable-medias.component.css'
 })
 export class BoardWithDraggableMediasComponent extends BoardWithMediasComponent{
+
+// ============================================
+//                Variables
+// ============================================
+
+  /**
+   *
+   */
   mediaLocations: MediaLocation[] = [];
+
+  /**
+   *
+   */
   mediaLocationService : MediaLocationService = inject(MediaLocationService);
 
+// ============================================
+//                Methods
+// ============================================
+
+  /**
+   *
+   */
   constructor() {
     super();
     this.mediaLocations = this.mediaLocationService.getInitialMediaLocations();
   }
 
+  /**
+   *
+   * @param $event
+   */
   checkIfDraggedOnMediaLocation($event : CdkDragEnd<Media>) {
     var media: Media = $event.source.data;
     this.mediaLocations.forEach(mediaLocation => {
