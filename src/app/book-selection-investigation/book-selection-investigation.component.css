@@ -1,9 +1,10 @@
 .main{
   display: flex;
+  width: 75%;
+  margin: auto;
 }
 
 .Book{
-  width: 50%;
   display: flex;
   image-rendering: pixelated;
 }

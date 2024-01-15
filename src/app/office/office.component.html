@@ -3,8 +3,7 @@
     <button class="computer" (click)="zoomComputer()">
       <img src="/assets/computer.png" alt="Ordinateur"/>
     </button>
-    <button class="book"><img src="/assets/book.png" alt="Livre d'enquêtes"/>
-      <p><strong>Enquête<br>en cours</strong></p></button>
+    <button class="book" (click)="openDialog()"><img src="/assets/book.png" alt="Livre d'enquêtes"/></button>
     <button [routerLink]="'/board'" class="board"><img src="/assets/board.png" alt="Tableau"/></button>
     <div class="bonsai" (click)="shakeBonsai()"><img src="/assets/bonsai.png" alt="Arbre qui secoue lorsque l'on clique avec la souris et qui est pas mal"/></div>
   </div>

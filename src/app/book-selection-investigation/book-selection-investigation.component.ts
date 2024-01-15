@@ -9,7 +9,7 @@ import {NgIf, NgOptimizedImage} from "@angular/common";
 //                Component
 // ============================================
 @Component({
-  selector: 'app-livre-selection-enquetes',
+  selector: 'app-book-selection-investigation',
   standalone: true,
   imports: [
     NgIf,

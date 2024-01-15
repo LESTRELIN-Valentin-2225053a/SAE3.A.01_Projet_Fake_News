@@ -1,8 +1,12 @@
 // ============================================
 //                    Import
 // ============================================
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {RouterLink} from "@angular/router";
+import {
+  BookSelectionInvestigationComponent
+} from "../book-selection-investigation/book-selection-investigation.component";
+import {Dialog} from "@angular/cdk/dialog";
 
 // ============================================
 //                Component
@@ -12,7 +16,8 @@ import {RouterLink} from "@angular/router";
   templateUrl : './office.component.html',
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink,
+    BookSelectionInvestigationComponent
   ],
   styleUrls: ['./office.component.css']
 })
@@ -28,8 +33,14 @@ export class OfficeComponent {
   isComputerZoomed = false;
 
 // ============================================
-//                Methode
+//                Methods
 // ============================================
+
+  /**
+   *
+   * @param dialog
+   */
+  constructor(public dialog: Dialog) {}
 
   /**
    *
@@ -47,5 +58,14 @@ export class OfficeComponent {
     setTimeout(() => {
       bonsai?.classList.remove('clicked');
     }, 500);
+  }
+
+  /**
+   *
+   */
+  openDialog(): void {
+    this.dialog.open(BookSelectionInvestigationComponent, {
+      autoFocus: 'false',
+    });
   }
 }
