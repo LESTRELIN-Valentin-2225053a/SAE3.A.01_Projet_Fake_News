@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Media} from "../interfaces/media";
+import {Investigation} from "../investigation";
 
 @Injectable({
   providedIn: 'root'
@@ -73,5 +74,30 @@ export class MediaService {
 
   getInitialMedias(): Media[] {
     return this.initialMedias;
+  }
+
+  // A FAIRE
+  getAllMedias(): Media[] {
+    return [];
+  }
+
+  // A FAIRE
+  getMediasByInvestigation(investigation : Investigation): Media[] {
+    return [];
+  }
+
+  // A FAIRE
+  getMediasByInvestigationId(investigationId : number): Media[] {
+    return [];
+  }
+
+  // A FAIRE
+  getMediasByInvestigationAndUserId(investigation : Investigation,userId : number): Media[] {
+    return [];
+  }
+
+  // A FAIRE
+  getMediasByInvestigationIdAndUserId(investigationId : number,userId : number): Media[] {
+    return [];
   }
 }

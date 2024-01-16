@@ -30,50 +30,23 @@ export class ComputerComponent {
 //                Variables
 // ============================================
 
-  /**
-   *
-   */
   sanitizer = inject(DomSanitizer);
-
-  /**
-   *
-   */
   websites : Website[] = [];
-
-  /**
-   *
-   */
   actualWebsite : Website;
-
-  /**
-   *
-   */
   websiteService : WebsiteService = inject(WebsiteService);
 
 // ============================================
 //                Methods
 // ============================================
 
-  /**
-   *
-   */
   constructor() {
     this.websites = this.websiteService.getInitialWebsites();
-    this.actualWebsite = this.websites[0];
+    this.actualWebsite = this.websites[1];
   }
 
-  /**
-   *
-   * @param event
-   */
   drop(event: CdkDragDrop<Website[]>) {
     moveItemInArray(this.websites, event.previousIndex, event.currentIndex);
   }
-
-  /**
-   *
-   * @param $event
-   */
   changeTab($event : Website) {
     this.actualWebsite = $event;
   }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {MediaLocation} from "../interfaces/media-location";
 import {Media} from "../interfaces/media";
+import {Investigation} from "../investigation";
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +47,19 @@ export class MediaLocationService {
 
   getInitialMediaLocations(): MediaLocation[] {
     return this.initialMediaLocations;
+  }
+
+  // A FAIRE
+  getAllMediaLocations(): MediaLocation[] {
+    return [];
+  }
+
+  getMediaLocationsByInvestigation(investigation : Investigation): MediaLocation[] {
+    return [];
+  }
+
+  // A FAIRE
+  getMediaLocationsByInvestigationId(investigationId : number): MediaLocation[] {
+    return [];
   }
 }
