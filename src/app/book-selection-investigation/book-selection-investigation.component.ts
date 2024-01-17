@@ -1,9 +1,15 @@
 // ============================================
 //                    Import
 // ============================================
-import { Component} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { Investigation } from "../interfaces/investigation";
 import {NgIf, NgOptimizedImage} from "@angular/common";
+import {MediaService} from "../services/media.service";
+import {InvestigationService} from "../services/investigation.service";
+import {SessionService} from "../services/session.service";
+import {RightAnswerComponent} from "../right-answer/right-answer.component";
+import {Dialog} from "@angular/cdk/dialog";
+import {WrongAnswerComponent} from "../wrong-answer/wrong-answer.component";
 
 // ============================================
 //                Component
@@ -18,65 +24,20 @@ import {NgIf, NgOptimizedImage} from "@angular/common";
   templateUrl: './book-selection-investigation.component.html',
   styleUrl: './book-selection-investigation.component.css'
 })
-export class BookSelectionInvestigationComponent {
+export class BookSelectionInvestigationComponent{
 
 // ============================================
 //                Variables
 // ============================================
 
-  /**
-   * Test investigation list for the book
-   */
-  investigationList: Investigation[] = [
-    {
-      id: 1,
-      title: "Une semaine chez macron",
-      description: "Refaite une semaine de macron grace au image du tableau",
-      success: false
-    },
-    {
-      id: 2,
-      title: "tweeter et trump",
-      description: "les fakes news de trump sur tweeter",
-      success: false
-    },
-    {
-      id: 3,
-      title: "valentin est italien",
-      description: "les pizza c'est bon",
-      success: false
-    }
-  ];
-
-  /**
-   * Current page number of the book
-   */
-  page: number = 1;
-
-  /**
-   * The current investigation show on the book
-   */
-  currentInvestigationOnPage: Investigation = this.investigationList[0];
-
-  /**
-   * Boolean to determine if an investigation is ongoing to adjust the display in the book
-   */
-  isConductingInvestigation: boolean = false;
-
-
-  /**
-   * Boolean that becomes true if the given answers are true or false
-   */
-  isCorrect: boolean = true;
-
-  /**
-   * Message displaying whether the investigation is passed or failed
-   */
-  correctionMessage: string = "";
+  sessionService: SessionService = inject(SessionService);
 
 // ============================================
 //                Methods
 // ============================================
+
+  constructor(public dialog: Dialog) {
+  }
 
   /**
    * Increases the current page number and updates the investigation if possible.
@@ -85,9 +46,9 @@ export class BookSelectionInvestigationComponent {
    * @returns {void}
    */
   increasePage(): void {
-     if (this.currentInvestigationOnPage != this.investigationList[this.investigationList.length-1]){
-       this.currentInvestigationOnPage = this.investigationList[this.currentInvestigationOnPage.id];
-       this.page += 2;
+     if (this.sessionService.currentInvestigationOnPage != this.sessionService.investigations[this.sessionService.investigations.length-1]){
+       this.sessionService.currentInvestigationOnPage = this.sessionService.investigations[this.sessionService.currentInvestigationOnPage.investigation_id];
+       this.sessionService.page += 2;
      }
   }
 
@@ -97,9 +58,9 @@ export class BookSelectionInvestigationComponent {
    * @returns {void}
    */
   decreasePage(): void {
-    if (this.currentInvestigationOnPage != this.investigationList[0]) {
-      this.currentInvestigationOnPage = this.investigationList[this.currentInvestigationOnPage.id - 2];
-      this.page -= 2;
+    if (this.sessionService.currentInvestigationOnPage != this.sessionService.investigations[0]) {
+      this.sessionService.currentInvestigationOnPage = this.sessionService.investigations[this.sessionService.currentInvestigationOnPage.investigation_id - 2];
+      this.sessionService.page -= 2;
     }
   }
 
@@ -109,8 +70,10 @@ export class BookSelectionInvestigationComponent {
    * @returns {void}
    */
   selectInvestigation(): void {
-    this.isConductingInvestigation = true;
-    console.log(this.currentInvestigationOnPage.id)
+    this.sessionService.isConductingInvestigation = true;
+    // sessionStorage.setItem('currentInvestigation',this.sessionService.currentInvestigationOnPage.investigation_id.toString())
+    // console.log(this.sessionService.currentInvestigationOnPage.investigation_id);
+    this.sessionService.changeInvestigation(this.sessionService.currentInvestigationOnPage);
   }
 
   /**
@@ -119,12 +82,13 @@ export class BookSelectionInvestigationComponent {
    * @returns {void}
    */
   validateResponse(): void {
-    if (this.isCorrect) {
-      this.currentInvestigationOnPage.success = true;
-      this.correctionMessage = "Bravo vous avez réussi l'enquete!";
-      this.isConductingInvestigation = false;
+    if (this.sessionService.validateInvestigation()) {
+      this.sessionService.currentInvestigationOnPage.completion = true;
+      // this.sessionService.correctionMessage = "Bravo vous avez réussi l'enquete!";
+      this.openDialogRightAnswer();
+      this.sessionService.isConductingInvestigation = false;
     } else {
-      this.correctionMessage = "Recommence!";
+      this.openDialogWrongAnswer();
     }
   }
 
@@ -134,6 +98,24 @@ export class BookSelectionInvestigationComponent {
    * @returns
    */
   abandonInvestigation(): void {
-    this.isConductingInvestigation = false;
+    this.sessionService.isConductingInvestigation = false;
+  }
+
+  /**
+   *
+   */
+  openDialogRightAnswer(): void {
+    this.dialog.open(RightAnswerComponent, {
+      autoFocus: 'false',
+    });
+  }
+
+  /**
+   *
+   */
+  openDialogWrongAnswer(): void {
+    this.dialog.open(WrongAnswerComponent, {
+      autoFocus: 'false',
+    });
   }
 }

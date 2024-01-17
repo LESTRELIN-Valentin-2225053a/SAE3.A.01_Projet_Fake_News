@@ -1,6 +1,7 @@
 export interface Investigation {
-  id: number;
+  investigation_id: number;
   title: string;
   description: string;
-  success: boolean;
+  board_type : string;
+  completion: boolean;
 }

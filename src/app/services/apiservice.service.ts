@@ -6,7 +6,7 @@ import {FormGroup} from "@angular/forms";
   providedIn: 'root'
 })
 export class APIService {
-  private apiBaseUrl = 'http://localhost:8000';
+  private apiBaseUrl = 'http://sae3-a-01-api.alwaysdata.net';
   constructor() {
     axios.defaults.withCredentials = true;
   }

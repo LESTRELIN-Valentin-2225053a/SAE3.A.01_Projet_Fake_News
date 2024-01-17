@@ -7,10 +7,14 @@
   <img class="picture" alt="Media picture" [src]="media.picture">
 </div>
 <ng-template #dialog>
+  <div class="dialog">
   <img *ngIf="media.type == 'img'" class="media" alt="Media" [src]="media.link">
   <video *ngIf="media.type == 'video'" class="media" controls>
     <source [src]="media.link" type="video/mp4">
   </video>
-  <button (click)="mediaIsTruthworthy()">V</button>
-  <button (click)="mediaIsNotTruthworthy()">X</button>
+  <div class="vbox">
+    <button  class="button V" (click)="mediaIsTruthworthy()"><img src="assets/pixel_checkmark.png"></button>
+    <button class="button X" (click)="mediaIsNotTruthworthy()"><img src="assets/pixel_crossmark.png"></button>
+  </div>
+  </div>
 </ng-template>

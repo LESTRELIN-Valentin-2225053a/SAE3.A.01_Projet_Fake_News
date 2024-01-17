@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {LeftCornerButtonComponent} from "./left-corner-button/left-corner-button.component";
 import {RightCornerButtonComponent} from "./right-corner-button/right-corner-button.component";
 import {FormConnexionComponent} from "./form-connexion/form-connexion.component";
+import {SessionService} from "./services/session.service";
 
 @Component({
   selector: 'app-root',
@@ -14,4 +15,5 @@ import {FormConnexionComponent} from "./form-connexion/form-connexion.component"
 })
 export class AppComponent {
   title = 'SAE3.A.01_Projet_Fake_News';
+  sessionService: SessionService = inject(SessionService);
 }

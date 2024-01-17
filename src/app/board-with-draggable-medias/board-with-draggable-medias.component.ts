@@ -42,7 +42,6 @@ export class BoardWithDraggableMediasComponent extends BoardWithMediasComponent{
   /**
    *
    */
-  mediaLocationService : MediaLocationService = inject(MediaLocationService);
 
 // ============================================
 //                Methods
@@ -53,7 +52,7 @@ export class BoardWithDraggableMediasComponent extends BoardWithMediasComponent{
    */
   constructor() {
     super();
-    this.mediaLocations = this.mediaLocationService.getInitialMediaLocations();
+    this.mediaLocations = this.sessionService.mediaLocations;
   }
 
   /**

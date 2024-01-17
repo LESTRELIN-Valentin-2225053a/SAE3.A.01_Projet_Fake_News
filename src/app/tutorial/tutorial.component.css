@@ -1,0 +1,31 @@
+.instructions-dialog {
+  max-width: 400px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.instruction-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.element-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.element-description {
+  flex-grow: 1;
+}
+
+.element-description h3 {
+  margin-bottom: 5px;
+}
+
+.element-description p {
+  margin: 0;
+  color: #555;
+}

@@ -1,12 +1,14 @@
 // ============================================
 //                    Import
 // ============================================
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {Router, RouterLink} from "@angular/router";
 import {
   BookSelectionInvestigationComponent
 } from "../book-selection-investigation/book-selection-investigation.component";
 import {Dialog} from "@angular/cdk/dialog";
+import {SessionService} from "../services/session.service";
+import {Investigation} from "../interfaces/investigation";
 
 // ============================================
 //                Component
@@ -31,6 +33,7 @@ export class OfficeComponent {
    *
    */
   isComputerZoomed = false;
+  sessionService : SessionService = inject(SessionService);
 
 // ============================================
 //                Methods
@@ -41,7 +44,8 @@ export class OfficeComponent {
    * @param dialog
    * @param router
    */
-  constructor(public dialog: Dialog, private router: Router) {}
+  constructor(public dialog: Dialog, private router: Router) {
+  }
 
   /**
    *
@@ -51,6 +55,10 @@ export class OfficeComponent {
     setTimeout(() => {
       this.router.navigate(['/computer']);
     },1000);
+  }
+
+  noInvestigationChosen() : boolean {
+    return this.sessionService.actualInvestigation == {} as Investigation;
   }
 
   /**

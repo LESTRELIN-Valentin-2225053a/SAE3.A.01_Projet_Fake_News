@@ -1,4 +1,5 @@
 <div class="table">
+  <img src="../../assets/pctower.png" class="pctower">
   <div class="computer">
     <div class="border-content">
           <span class="icon-left">
@@ -10,7 +11,7 @@
     </div>
     <div class="screen">
       <div cdkDropList cdkDropListOrientation="horizontal" class="tabs" (cdkDropListDropped)="drop($event)">
-        <app-tab *ngFor="let website of websites" cdkDrag [cdkDragLockAxis]="'x'" [website]="website" (tabClicked)="changeTab($event)" class="app-tab"></app-tab>
+        <app-tab *ngFor="let website of sessionService.websites" cdkDrag [cdkDragLockAxis]="'x'" [website]="website" (tabClicked)="changeTab($event)" class="app-tab"></app-tab>
       </div>
       <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(actualWebsite.link)" class="website"></iframe>
     </div>

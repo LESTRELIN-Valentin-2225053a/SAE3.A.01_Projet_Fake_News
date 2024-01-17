@@ -11,5 +11,6 @@ body {
   background-image: url("/assets/background-image.png");
   background-size: 10%;
   background-repeat: repeat;
+  font-family: Minecraft;
 }
 

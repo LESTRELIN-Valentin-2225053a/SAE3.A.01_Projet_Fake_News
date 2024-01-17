@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import {Website} from "../interfaces/website";
+import axios from 'axios';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebsiteService {
-  initialWebsites : Website[] = [
-    {title : 'Onglet 1', icon : '', link : '/assets/onglet1.html'},
-    {title : 'Onglet 2', icon : '', link : '/assets/onglet2.html'}
-  ];
+  initialWebsites : Website[] = [];
 
   getInitialWebsites(): Website[] {
     return this.initialWebsites;
+  }
+
+  getWebsitesByInvestigationId(investigationID : number){
+    return axios.get('http://sae3-a-01-api.alwaysdata.net/api/website/'+investigationID);
   }
 }

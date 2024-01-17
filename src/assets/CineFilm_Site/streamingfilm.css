@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #e3e3e3;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.banner {
+    background-color: #d9d9d9;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.warning, .fake-alert {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+}
+
+footer {
+    background-color: #e3e3e3;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+

@@ -47,7 +47,7 @@ describe('LivreSelectionEnquetesComponent', () => {
   it('should validate a correct response and update the investigation state', () => {
     component.isCorrect = true;
     component.validateResponse();
-    expect(component.currentInvestigationOnPage.success).toBeTruthy();
+    expect(component.currentInvestigationOnPage.completion).toBeTruthy();
     expect(component.correctionMessage).toEqual("Bravo vous avez réussi l'enquete!");
     expect(component.isConductingInvestigation).toBeFalsy();
   });

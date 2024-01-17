@@ -17,7 +17,7 @@
       <br>
       <br>
       <button class="ContinuInvite">
-        Continué en tant qu'invité
+        Continuez en tant qu'invité
       </button>
     </div>
   </div>
@@ -27,11 +27,11 @@
     <h2>Inscription</h2>
     <form [formGroup]="registerForm" (submit)="sendRegisterForm()">
       <mat-form-field>
-        <input formControlName="registerName" placeholder="Email" type="email" id="mailInscription" name="email" required>
+        <input formControlName="registerEmail" placeholder="Email" type="email" id="mailInscription" name="email" required>
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input formControlName="registerEmail" placeholder="Nom" type="text" id="nomInscription" name="nom" required >
+        <input formControlName="registerName" placeholder="Nom" type="text" id="nomInscription" name="nom" required >
       </mat-form-field>
       <br>
       <mat-form-field>
@@ -48,7 +48,7 @@
       Deja un compte ?
       <button class="ButtonInscription" (click)="showInscriptionToggled()">se connecter</button>
       <button class="ContinuInvite">
-        Continué en tant qu'invité
+        Continuez en tant qu'invité
       </button>
     </div>
   </div>

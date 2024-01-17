@@ -1,5 +1,5 @@
 <app-board>
-  <app-validable-media-on-board *ngFor="let media of medias"
+  <app-validable-media-on-board *ngFor="let media of sessionService.medias"
                                 [media]="media"
                                 [style.width.%]="mediaWidthRatio*100"/>
 </app-board>

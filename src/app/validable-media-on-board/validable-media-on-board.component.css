@@ -1,3 +1,8 @@
+.dialog{
+  display: flex;
+  flex-direction: row;
+}
+
 .media_on_board {
   aspect-ratio: 1/1;
   display: grid;
@@ -28,3 +33,28 @@
   height: 25vw;
 }
 
+.vbox{
+  display: flex;
+  flex-direction: column;
+}
+
+.button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    image-rendering: pixelated;
+    width: 4vw;
+}
+
+.button img{
+  width: 100%;
+  height: 100%;
+}
+
+.button.V img:hover{
+  -webkit-filter: drop-shadow(0 0 0.5vw green);
+}
+
+.button.X img:hover{
+  -webkit-filter: drop-shadow(0 0 0.5vw red);
+}

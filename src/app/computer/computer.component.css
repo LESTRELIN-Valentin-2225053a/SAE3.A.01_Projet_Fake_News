@@ -79,7 +79,7 @@ html, body {
 .table {
   width: 100vw;
   height: 100vh;
-  background-image: url('../../assets/table_coupe.png');
+  background-image: url('../../assets/realdesk.png');
   background-size: cover;
   background-position: bottom;
   position: absolute;
@@ -87,6 +87,13 @@ html, body {
   left: 0;
 }
 
+.pctower {
+  position: absolute;
+  right: 0;
+  bottom: 5%;
+  width: 7vw;
+  height: 94vh;
+}
 
 
 .monitor-stand {

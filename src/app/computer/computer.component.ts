@@ -8,6 +8,7 @@ import {CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray} from "@angular/cdk/d
 import {TabComponent} from "../tab/tab.component";
 import {NgForOf} from "@angular/common";
 import {WebsiteService} from "../services/website.service";
+import {SessionService} from "../services/session.service";
 
 // ============================================
 //                Component
@@ -31,21 +32,19 @@ export class ComputerComponent {
 // ============================================
 
   sanitizer = inject(DomSanitizer);
-  websites : Website[] = [];
   actualWebsite : Website;
-  websiteService : WebsiteService = inject(WebsiteService);
+  sessionService : SessionService = inject(SessionService);
 
 // ============================================
 //                Methods
 // ============================================
 
   constructor() {
-    this.websites = this.websiteService.getInitialWebsites();
-    this.actualWebsite = this.websites[1];
+    this.actualWebsite = this.sessionService.websites[0];
   }
 
   drop(event: CdkDragDrop<Website[]>) {
-    moveItemInArray(this.websites, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.sessionService.websites, event.previousIndex, event.currentIndex);
   }
   changeTab($event : Website) {
     this.actualWebsite = $event;

@@ -5,6 +5,7 @@ import {AfterContentChecked, Component, inject} from '@angular/core';
 import {BoardComponent} from "../board/board.component";
 import {Media} from "../interfaces/media";
 import {MediaService} from "../services/media.service";
+import {SessionService} from "../services/session.service";
 
 // ============================================
 //                Component
@@ -35,12 +36,11 @@ export class BoardWithMediasComponent extends BoardComponent implements AfterCon
   /**
    *
    */
-  medias: Media[] = [];
 
   /**
    *
    */
-  mediaService: MediaService = inject(MediaService);
+  sessionService: SessionService = inject(SessionService);
 
 // ============================================
 //                Methods
@@ -51,11 +51,6 @@ export class BoardWithMediasComponent extends BoardComponent implements AfterCon
    */
   constructor() {
     super();
-    this.mediaService.getMediasByInvestigationId(1).then(
-      response => {
-        this.medias = response.data;
-      }
-    )
   }
 
   /**

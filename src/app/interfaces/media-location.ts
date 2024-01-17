@@ -4,6 +4,6 @@ export interface MediaLocation {
   x : number,
   y : number,
   media : Media,
-  expectedMediaId : number,
+  expected_media_id : number,
   description : string
 }
