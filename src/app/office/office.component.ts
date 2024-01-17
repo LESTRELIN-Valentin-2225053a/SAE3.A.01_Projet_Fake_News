@@ -2,7 +2,7 @@
 //                    Import
 // ============================================
 import {Component} from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {
   BookSelectionInvestigationComponent
 } from "../book-selection-investigation/book-selection-investigation.component";
@@ -39,14 +39,18 @@ export class OfficeComponent {
   /**
    *
    * @param dialog
+   * @param router
    */
-  constructor(public dialog: Dialog) {}
+  constructor(public dialog: Dialog, private router: Router) {}
 
   /**
    *
    */
-  zoomComputer() {
+  zoomComputerAndChangePage() {
     this.isComputerZoomed = true;
+    setTimeout(() => {
+      this.router.navigate(['/computer']);
+    },1000);
   }
 
   /**
