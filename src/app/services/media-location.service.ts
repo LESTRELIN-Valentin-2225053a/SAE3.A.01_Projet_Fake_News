@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {MediaLocation} from "../interfaces/media-location";
 import {Media} from "../interfaces/media";
-import {Investigation} from "../investigation";
+import {Investigation} from "../interfaces/investigation";
+import axios from 'axios';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,7 @@ export class MediaLocationService {
       description : '5'
     }
   ];
+  apiURL : string = 'http://sae3-a-01-api.alwaysdata.net';
 
   getInitialMediaLocations(): MediaLocation[] {
     return this.initialMediaLocations;

@@ -1,5 +1,5 @@
-<div [style.left.%]="media.pos.x*100"
-     [style.top.%]="media.pos.y*100"
+<div [style.left.%]="media.posX*100"
+     [style.top.%]="media.posY*100"
      (click)="openDialog()"
      class="media_on_board">
   <img class="stamp" *ngIf="media.userTrustWorthy != null && media.userTrustWorthy" alt="checkmark" src="/assets/checkmark.png">

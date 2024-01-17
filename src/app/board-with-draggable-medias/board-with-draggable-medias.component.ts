@@ -63,12 +63,13 @@ export class BoardWithDraggableMediasComponent extends BoardWithMediasComponent{
   checkIfDraggedOnMediaLocation($event : CdkDragEnd<Media>) {
     var media: Media = $event.source.data;
     this.mediaLocations.forEach(mediaLocation => {
-      const hasMediaEnteredMediaLocation: boolean = media.pos.x > mediaLocation.x - this.mediaWidthRatio && media.pos.x < mediaLocation.x + this.mediaWidthRatio
-        && media.pos.y > mediaLocation.y - this.mediaHeightRatio && media.pos.y < mediaLocation.y + this.mediaHeightRatio;
+      const hasMediaEnteredMediaLocation: boolean = media.posX > mediaLocation.x - this.mediaWidthRatio && media.posX < mediaLocation.x + this.mediaWidthRatio
+        && media.posY > mediaLocation.y - this.mediaHeightRatio && media.posY < mediaLocation.y + this.mediaHeightRatio;
       if (hasMediaEnteredMediaLocation && (mediaLocation.media.id == -1 || mediaLocation.media.id == media.id)){
-        media.pos = {x : mediaLocation.x, y : mediaLocation.y};
+        media.posX = mediaLocation.x;
+        media.posY = mediaLocation.y;
         mediaLocation.media = media;
-        $event.source.setFreeDragPosition({x : media.pos.x*this.width, y : media.pos.y*this.height});
+        $event.source.setFreeDragPosition({x : media.posX*this.width, y : media.posY*this.height});
       } else if (mediaLocation.media.id == media.id)
         mediaLocation.media = {id : -1} as Media;
     });

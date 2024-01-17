@@ -54,7 +54,9 @@ export class DraggableMediaOnBoardComponent extends MediaOnBoardComponent{
    */
   onDragEnd($event: CdkDragEnd){
     var newMediaPosition: Readonly<Point> = $event.source.getFreeDragPosition();
-    this.media.pos = {x : newMediaPosition.x/this.board.width, y : newMediaPosition.y/this.board.height };
+    this.media.posX = newMediaPosition.x/this.board.width;
+    this.media.posY = newMediaPosition.y/this.board.height;
+    console.log(this.media.posX,this.media.posY);
     this.dragEndedEvent.emit($event);
   }
 }

@@ -51,7 +51,11 @@ export class BoardWithMediasComponent extends BoardComponent implements AfterCon
    */
   constructor() {
     super();
-    this.medias = this.mediaService.getInitialMedias();
+    this.mediaService.getMediasByInvestigationId(1).then(
+      response => {
+        this.medias = response.data;
+      }
+    )
   }
 
   /**

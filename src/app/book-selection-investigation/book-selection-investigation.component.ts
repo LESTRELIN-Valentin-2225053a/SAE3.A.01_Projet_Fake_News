@@ -2,7 +2,7 @@
 //                    Import
 // ============================================
 import { Component} from '@angular/core';
-import { Investigation } from "../investigation";
+import { Investigation } from "../interfaces/investigation";
 import {NgIf, NgOptimizedImage} from "@angular/common";
 
 // ============================================

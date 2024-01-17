@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Media} from "../interfaces/media";
-import {Investigation} from "../investigation";
+import {Investigation} from "../interfaces/investigation";
+import axios from 'axios';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class MediaService {
       type: 'img',
       link: 'https://i.imgur.com/c3GO3QL.jpg',
       picture: 'https://i.imgur.com/NfQgT5R.png',
-      pos: {x: 0.005, y : 0.01}
+      posX : 0.005,
+      posY : 0.01
     },
     {
       id: 1,
@@ -23,7 +25,8 @@ export class MediaService {
       type: 'img',
       link: 'https://imgur.com/yW6Y3Ku.png',
       picture: 'https://imgur.com/yW6Y3Ku.png',
-      pos: {x: 0.13, y : 0.06}
+      posX : 0.13,
+      posY : 0.06
     },
     {
       id: 2,
@@ -32,7 +35,8 @@ export class MediaService {
       type: 'img',
       link: 'https://i.imgur.com/jXd0AQS.png',
       picture: 'https://i.imgur.com/jXd0AQS.png',
-      pos: {x: 0.256, y : 0.03}
+      posX : 0.256,
+      posY : 0.003
     },
     {
       id: 3,
@@ -41,7 +45,8 @@ export class MediaService {
       type: 'img',
       link: 'https://i.imgur.com/Ij8ySMS.png',
       picture: 'https://i.imgur.com/Ij8ySMS.png',
-      pos: {x: 0.5, y : 0.3}
+      posX : 0.5,
+      posY : 0.3
     },
     {
       id: 4,
@@ -50,7 +55,8 @@ export class MediaService {
       type: 'img',
       link: 'https://i.imgur.com/DRwWPS1.png',
       picture: 'https://i.imgur.com/DRwWPS1.png',
-      pos: {x: 0.8, y : 0.12}
+      posX : 0.8,
+      posY : 0.12
     },
     {
       id: 5,
@@ -59,7 +65,8 @@ export class MediaService {
       type: 'img',
       link: 'https://i.imgur.com/vlyqcrC.png',
       picture: 'https://i.imgur.com/vlyqcrC.png',
-      pos: {x: 0.64, y : 0.1}
+      posX : 0.64,
+      posY : 0.1
     },
     {
       id: 6,
@@ -68,7 +75,8 @@ export class MediaService {
       type: 'img',
       link: 'https://i.imgur.com/VYRltBR.png',
       picture: 'https://i.imgur.com/VYRltBR.png',
-      pos: {x: 0.52, y : 0.05}
+      posX : 0.52,
+      posY : 0.05
     }
   ];
 
@@ -82,13 +90,13 @@ export class MediaService {
   }
 
   // A FAIRE
-  getMediasByInvestigation(investigation : Investigation): Media[] {
-    return [];
+  async getMediasByInvestigation(investigation : Investigation) {
+    return axios.get('http://sae3-a-01-api.alwaysdata.net/api/media/'+investigation.id);
   }
 
   // A FAIRE
-  getMediasByInvestigationId(investigationId : number): Media[] {
-    return [];
+  async getMediasByInvestigationId(investigationId: number) {
+    return axios.get('http://sae3-a-01-api.alwaysdata.net/api/media/'+investigationId);
   }
 
   // A FAIRE
