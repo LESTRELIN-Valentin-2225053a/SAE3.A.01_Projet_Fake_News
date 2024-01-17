@@ -1,0 +1,63 @@
+.MainPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.mainContentinscription {
+  padding: 2%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+input {
+  padding: 10%;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.ButtonConnection {
+  background-color: #000;
+  color: #fff;
+  padding: 5%;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.ButtonConnection:hover {
+  background-color: #333;
+}
+
+.BoutonSupp{
+  margin-top: 5%;
+}
+
+.ButtonInscription{
+  padding: 2% 3%;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.ButtonInscription:hover{
+  background-color: azure;
+}
+
+.ContinuInvite{
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.ContinuInvite:hover{
+  color: #dc964c;
+}
