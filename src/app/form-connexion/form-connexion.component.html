@@ -1,13 +1,13 @@
 <div class="MainPage">
   <div class="mainContentinscription" *ngIf="showInsciption">
     <h2>Connexion</h2>
-    <form>
+    <form [formGroup]="loginForm" (submit)="sendLoginForm()">
       <mat-form-field>
-          <input  placeholder="Email" type="email" id="email" name="email" required>
+          <input formControlName="loginEmail" placeholder="Email" type="email" id="email" name="email" required>
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input placeholder="Mot de passe" type="password" id="password" name="password"  required>
+        <input formControlName="loginPassword" placeholder="Mot de passe" type="password" id="password" name="password"  required>
       </mat-form-field>
       <br>
       <button class="ButtonConnection" type="submit">Se connecter</button>
@@ -25,21 +25,21 @@
 
   <div class="mainContentinscription" *ngIf="!showInsciption">
     <h2>Inscription</h2>
-    <form>
+    <form [formGroup]="registerForm" (submit)="sendRegisterForm()">
       <mat-form-field>
-        <input  placeholder="Email" type="email" id="mailInscription" name="email" required>
+        <input formControlName="registerName" placeholder="Email" type="email" id="mailInscription" name="email" required>
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input placeholder="Nom" type="nom" id="nomInscription" name="nom" required>
+        <input formControlName="registerEmail" placeholder="Nom" type="text" id="nomInscription" name="nom" required >
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input placeholder="Mot de passe" type="password" id="mailPassword" name="password"  required>
+        <input formControlName="registerPassword" placeholder="Mot de passe" type="password" id="mailPassword" name="password"  required>
       </mat-form-field>
       <br>
       <mat-form-field>
-        <input placeholder="Confirmer mot de passe" type="password" id="mailPasswordVerif" name="password"  required>
+        <input formControlName="registerPasswordVerif" placeholder="Confirmer mot de passe" type="password" id="mailPasswordVerif" name="password"  required>
       </mat-form-field>
       <br>
       <button class="ButtonConnection" type="submit">S'inscrire</button>
