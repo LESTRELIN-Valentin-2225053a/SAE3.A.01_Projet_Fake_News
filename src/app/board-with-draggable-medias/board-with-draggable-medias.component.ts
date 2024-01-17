@@ -1,11 +1,10 @@
 // ============================================
 //                    Import
 // ============================================
-import {Component, inject} from '@angular/core';
+import {Component} from '@angular/core';
 import {BoardComponent} from "../board/board.component";
 import {Media} from "../interfaces/media";
 import {MediaLocation} from "../interfaces/media-location";
-import {MediaLocationService} from "../services/media-location.service";
 import {CdkDragEnd} from "@angular/cdk/drag-drop";
 import {MediaLocationOnBoardComponent} from "../media-location-on-board/media-location-on-board.component";
 import {DraggableMediaOnBoardComponent} from "../draggable-media-on-board/draggable-media-on-board.component";

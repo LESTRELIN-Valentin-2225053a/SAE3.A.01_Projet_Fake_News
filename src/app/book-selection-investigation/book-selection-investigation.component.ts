@@ -1,11 +1,8 @@
 // ============================================
 //                    Import
 // ============================================
-import {Component, inject, OnInit} from '@angular/core';
-import { Investigation } from "../interfaces/investigation";
+import {Component, inject} from '@angular/core';
 import {NgIf, NgOptimizedImage} from "@angular/common";
-import {MediaService} from "../services/media.service";
-import {InvestigationService} from "../services/investigation.service";
 import {SessionService} from "../services/session.service";
 import {RightAnswerComponent} from "../right-answer/right-answer.component";
 import {Dialog} from "@angular/cdk/dialog";

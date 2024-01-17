@@ -3,7 +3,6 @@
 // ============================================
 import { Component } from '@angular/core';
 import {Dialog} from "@angular/cdk/dialog";
-import {RightAnswerComponent} from "../right-answer/right-answer.component";
 import {TutorialComponent} from "../tutorial/tutorial.component";
 
 // ============================================

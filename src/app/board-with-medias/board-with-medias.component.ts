@@ -3,8 +3,6 @@
 // ============================================
 import {AfterContentChecked, Component, inject} from '@angular/core';
 import {BoardComponent} from "../board/board.component";
-import {Media} from "../interfaces/media";
-import {MediaService} from "../services/media.service";
 import {SessionService} from "../services/session.service";
 
 // ============================================

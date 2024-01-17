@@ -1,7 +1,7 @@
 <div class="main">
   <div class="LeftPart">
     <button (click)="decreasePage()" class="SwitchPage" *ngIf="!sessionService.isConductingInvestigation && sessionService.page > 1">
-          <img [src]="'/assets/return_icon.png'">
+          <img alt="page icon" [src]="'/assets/return_icon.png'">
     </button>
   </div>
   <div class="Book">
@@ -39,7 +39,7 @@
   </div>
   <div class="RightPart">
     <button (click)="increasePage()" class="SwitchPage" *ngIf="!sessionService.isConductingInvestigation  && sessionService.page < sessionService.investigations.length*2-1">
-      <img [src]="'/assets/inversed_return_icon.png'">
+      <img alt="page icon" [src]="'/assets/inversed_return_icon.png'">
     </button>
   </div>
 </div>

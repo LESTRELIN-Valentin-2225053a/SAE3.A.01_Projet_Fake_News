@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {MediaLocation} from "../interfaces/media-location";
-import {Media} from "../interfaces/media";
 import {Investigation} from "../interfaces/investigation";
 import axios from 'axios';
 
