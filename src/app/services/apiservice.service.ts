@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
+import {FormGroup} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -11,27 +12,36 @@ export class APIService {
   }
 
   getCsrfToken(){
-    return axios.get(`${this.apiBaseUrl}/api/csrf-cookie`);
+    return axios.get(`${this.apiBaseUrl}/sanctum/csrf-cookie`);
   }
 
-  async register(model: any){
+  async register(registerForm: FormGroup) {
+    const credentials = {
+      name: registerForm.get('registerName')?.value,
+      email: registerForm.get('registerEmail')?.value,
+      password: registerForm.get('registerPassword')?.value,
+      passwordVerif: registerForm.get('registerPasswordVerif')?.value,
+    };
+
     await this.getCsrfToken();
-    return axios.post(`${this.apiBaseUrl}/api/register`,model);
+    return axios.post(`${this.apiBaseUrl}/api/register`, credentials);
   }
 
-  async login(model: any) {
+  async login(loginForm: FormGroup) {
+    const credentials = {
+      email: loginForm.get('loginEmail')?.value,
+      password: loginForm.get('loginPassword')?.value,
+    };
     await this.getCsrfToken();
-    return axios.post(`${this.apiBaseUrl}/api/login`, model);
+    return axios.post(`${this.apiBaseUrl}/api/login`, credentials);
   }
 
-  async logout(){
+    async logout(){
     await this.getCsrfToken();
     return axios.post(`${this.apiBaseUrl}/api/logout`);
   }
 
   async User(){
-    await this.getCsrfToken();
     return axios.get(`${this.apiBaseUrl}/api/user`);
   }
-
 }

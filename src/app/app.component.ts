@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {LeftCornerButtonComponent} from "./left-corner-button/left-corner-button.component";
 import {RightCornerButtonComponent} from "./right-corner-button/right-corner-button.component";
+import {FormConnexionComponent} from "./form-connexion/form-connexion.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, LeftCornerButtonComponent, RightCornerButtonComponent],
+  imports: [CommonModule, RouterOutlet, LeftCornerButtonComponent, RightCornerButtonComponent, FormConnexionComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
