@@ -1,3 +1,12 @@
 .tab{
   background-color: white;
+  font-family: Roboto;
+}
+.tab:hover{
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+.active-tab {
+  border-top-color: #4285F4; /* Exemple : couleur pour l'onglet actif */
+  /* autres styles pour l'onglet actif... */
 }
