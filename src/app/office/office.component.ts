@@ -2,7 +2,7 @@
 //                    Import
 // ============================================
 import {Component, inject} from '@angular/core';
-import {Router, RouterLink} from "@angular/router";
+import {Router, RouterLink, RouterOutlet} from "@angular/router";
 import {
   BookSelectionInvestigationComponent
 } from "../book-selection-investigation/book-selection-investigation.component";
@@ -19,7 +19,8 @@ import {Investigation} from "../interfaces/investigation";
   standalone: true,
   imports: [
     RouterLink,
-    BookSelectionInvestigationComponent
+    BookSelectionInvestigationComponent,
+    RouterOutlet
   ],
   styleUrls: ['./office.component.css']
 })
@@ -53,8 +54,8 @@ export class OfficeComponent {
   zoomComputerAndChangePage() {
     this.isComputerZoomed = true;
     setTimeout(() => {
-      this.router.navigate(['/computer']);
-    },1000);
+      this.router.navigate(['computer']);
+    }, 1000);
   }
 
   noInvestigationChosen() : boolean {

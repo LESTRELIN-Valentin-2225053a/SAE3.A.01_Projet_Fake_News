@@ -4,7 +4,7 @@
 import { Component} from '@angular/core';
 import { BoardComponent } from "../board/board.component";
 import {NgIf} from "@angular/common";
-import {MenuLateralComponent} from "../menu-lateral/MenuLateralComponent.component";
+import {Router, RouterLink, RouterOutlet} from "@angular/router";
 
 // ============================================
 //                Component
@@ -15,7 +15,8 @@ import {MenuLateralComponent} from "../menu-lateral/MenuLateralComponent.compone
   imports: [
     BoardComponent,
     NgIf,
-    MenuLateralComponent
+    RouterLink,
+    RouterOutlet,
   ],
   standalone: true,
   styleUrls: ['./menu.component.css']
@@ -34,6 +35,34 @@ export class Menu {
 // ============================================
 //                Methode
 // ============================================
+
+  /**
+   *   Constructor
+   * @param router
+   */
+  constructor(private router: Router) {
+  }
+
+  /**
+   *   Go to the office
+   */
+  GoToOffice(){
+    this.router.navigate(['/office']);
+  }
+
+  /**
+   *   Go to the tutorial
+   */
+  GoToTuto(){
+    this.router.navigate(['/Tutoriel']);
+  }
+
+  /**
+   *   Go to the connexion
+   */
+  GoToConnexion(){
+    this.router.navigate(['/connexion']);
+  }
 
   /**
    * Toggles the visibility of the content.
