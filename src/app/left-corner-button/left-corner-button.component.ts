@@ -21,7 +21,7 @@ export class LeftCornerButtonComponent {
    * Switch between the office and the menu
    */
   Switch() {
-    if (this.router.url == "/office" || this.router.url == "/connexion") {
+    if (this.router.url == "/office" || this.router.url == "/connexion" || this.router.url == "/context") {
       this.router.navigate(["../"]);
     } else if (this.router.url == "/") {
 

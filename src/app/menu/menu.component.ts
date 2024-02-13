@@ -65,6 +65,13 @@ export class Menu {
   }
 
   /**
+   *   Go to the context
+   */
+  GoToContext(){
+    this.router.navigate(['/context']);
+  }
+
+  /**
    * Toggles the visibility of the content.
    * @function toggleContent
    * @returns {void}
