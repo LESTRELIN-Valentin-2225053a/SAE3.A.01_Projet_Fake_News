@@ -54,7 +54,7 @@ export class OfficeComponent {
   zoomComputerAndChangePage() {
     this.isComputerZoomed = true;
     setTimeout(() => {
-      this.router.navigate(['computer']);
+      this.router.navigate(['office/computer']);
     }, 1000);
   }
 

@@ -1,32 +1,28 @@
 // Import
 import { Component } from '@angular/core';
-import { Router } from "@angular/router";
+import {RouterLink, RouterLinkActive} from "@angular/router";
+import {Location} from "@angular/common";
 
 // Component
 @Component({
   selector: 'left-corner-button',
   templateUrl: './left-corner-button.component.html',
   standalone: true,
+  imports: [
+    RouterLink,
+    RouterLinkActive
+  ],
   styleUrls: ['./left-corner-button.component.css']
 })
 export class LeftCornerButtonComponent {
 
   /**
    * Constructor
-   * @param router
+   * @param location
    */
-  constructor(private router: Router) {}
+  constructor(private location: Location) {}
 
-  /**
-   * Switch between the office and the menu
-   */
-  Switch() {
-    if (this.router.url == "/office" || this.router.url == "/connexion") {
-      this.router.navigate(["../"]);
-    } else if (this.router.url == "/") {
-
-    } else {
-      this.router.navigate(["office"]);
-    }
+  goBack(){
+    this.location.back();
   }
 }

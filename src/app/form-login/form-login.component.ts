@@ -6,7 +6,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {APIService} from "../services/apiservice.service";
 
 @Component({
-  selector: 'app-form-connexion',
+  selector: 'app-form-login',
   standalone: true,
   imports: [
     MatFormFieldModule,
@@ -15,10 +15,10 @@ import {APIService} from "../services/apiservice.service";
     ReactiveFormsModule,
     CommonModule
   ],
-  templateUrl: './form-connexion.component.html',
-  styleUrl: './form-connexion.component.css'
+  templateUrl: './form-login.component.html',
+  styleUrl: './form-login.component.css'
 })
-export class FormConnexionComponent {
+export class FormLoginComponent {
   registerForm = new FormGroup({
     registerName: new FormControl(''),
     registerEmail: new FormControl(''),

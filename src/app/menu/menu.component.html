@@ -1,8 +1,8 @@
 <div *ngIf="!isContentVisible" class="mainMenuContainer">
   <div class="mainContent">
     <h1 class="menuTitle">Menu</h1>
-    <button class="menuButton" (click)="GoToOffice()">Commencer</button><br>
-    <button class="menuButton" (click)="GoToTuto()">Tutoriel</button><br>
-    <button class="menuButton" (click)="GoToConnexion()">Connexion</button><br>
+    <button class="menuButton" routerLink="office">Commencer</button><br>
+    <button class="menuButton" routerLink="tutorial">Tutoriel</button><br>
+    <button class="menuButton" routerLink="login">Connexion</button><br>
   </div>
 </div>
