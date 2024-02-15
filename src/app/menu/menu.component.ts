@@ -5,6 +5,8 @@ import { Component} from '@angular/core';
 import { BoardComponent } from "../board/board.component";
 import {NgIf} from "@angular/common";
 import {Router, RouterLink, RouterOutlet} from "@angular/router";
+import {FormConnexionComponent} from "../form-connexion/form-connexion.component";
+import {MatDialog} from "@angular/material/dialog";
 
 // ============================================
 //                Component
@@ -38,9 +40,10 @@ export class Menu {
 
   /**
    *   Constructor
+   * @param dialog
    * @param router
    */
-  constructor(private router: Router) {
+  constructor(public dialog: MatDialog, private router: Router) {
   }
 
   /**
@@ -88,4 +91,13 @@ export class Menu {
   onContentToggled(): void {
     this.isContentVisible = !this.isContentVisible;
   }
+
+
+  /**
+   *
+   */
+  openDialog(): void {
+    const dialogRef = this.dialog.open(FormConnexionComponent, {});
+  }
+
 }

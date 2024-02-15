@@ -1,3 +1,4 @@
+/*
 .MainPage {
   display: flex;
   justify-content: center;
@@ -60,4 +61,8 @@ input {
 }
 .ContinuInvite:hover{
   color: #dc964c;
+}
+*/
+.mainContentinscription {
+  background-color: white;
 }

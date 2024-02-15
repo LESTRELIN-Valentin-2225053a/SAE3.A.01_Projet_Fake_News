@@ -1,24 +1,13 @@
-<div class="MainPage">
   <div class="mainContentinscription" *ngIf="showInsciption">
     <h2>Connexion</h2>
     <form [formGroup]="loginForm" (submit)="sendLoginForm()">
-      <mat-form-field>
+      <div id="errorLoginArea" *ngIf="errorMessages">{{ errorMessages }}</div>
           <input formControlName="loginEmail" placeholder="Email" type="email" id="email" name="email" required>
-      </mat-form-field>
-      <br>
-      <mat-form-field>
         <input formControlName="loginPassword" placeholder="Mot de passe" type="password" id="password" name="password"  required>
-      </mat-form-field>
-      <br>
       <button class="ButtonConnection" type="submit">Se connecter</button>
     </form>
     <div class="BoutonSupp">
       Pas de compte ? <button class="ButtonInscription" (click)="showInscriptionToggled()">s'inscrire</button>
-      <br>
-      <br>
-      <button class="ContinuInvite">
-        Continuez en tant qu'invité
-      </button>
     </div>
   </div>
 
@@ -26,30 +15,15 @@
   <div class="mainContentinscription" *ngIf="!showInsciption">
     <h2>Inscription</h2>
     <form [formGroup]="registerForm" (submit)="sendRegisterForm()">
-      <mat-form-field>
         <input formControlName="registerEmail" placeholder="Email" type="email" id="mailInscription" name="email" required>
-      </mat-form-field>
-      <br>
-      <mat-form-field>
         <input formControlName="registerName" placeholder="Nom" type="text" id="nomInscription" name="nom" required >
-      </mat-form-field>
-      <br>
-      <mat-form-field>
         <input formControlName="registerPassword" placeholder="Mot de passe" type="password" id="mailPassword" name="password"  required>
-      </mat-form-field>
-      <br>
-      <mat-form-field>
         <input formControlName="registerPasswordVerif" placeholder="Confirmer mot de passe" type="password" id="mailPasswordVerif" name="password"  required>
-      </mat-form-field>
-      <br>
       <button class="ButtonConnection" type="submit">S'inscrire</button>
     </form>
     <div class="BoutonSupp">
       Deja un compte ?
       <button class="ButtonInscription" (click)="showInscriptionToggled()">se connecter</button>
-      <button class="ContinuInvite">
-        Continuez en tant qu'invité
-      </button>
     </div>
   </div>
-</div>
+
