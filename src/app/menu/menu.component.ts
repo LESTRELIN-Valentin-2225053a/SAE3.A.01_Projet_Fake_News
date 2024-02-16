@@ -53,7 +53,7 @@ export class Menu implements OnInit{
   constructor(public dialog: MatDialog, private router: Router) {}
 
   ngOnInit(): void {
-    if (localStorage.getItem('login') != 'undefined') {
+    if (localStorage.getItem('login') != 'undefined' && localStorage.getItem('login') != null) {
       // @ts-ignore
       this.loginStorage = "Conecté en tant que : " + localStorage.getItem('login');
       this.ChangeConnect();
