@@ -1,9 +1,9 @@
 // ============================================
 //                    Import
 // ============================================
-import { Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { BoardComponent } from "../board/board.component";
-import {NgIf} from "@angular/common";
+import {NgClass, NgIf} from "@angular/common";
 import {Router, RouterLink, RouterOutlet} from "@angular/router";
 import {FormConnexionComponent} from "../form-connexion/form-connexion.component";
 import {MatDialog} from "@angular/material/dialog";
@@ -19,11 +19,13 @@ import {MatDialog} from "@angular/material/dialog";
     NgIf,
     RouterLink,
     RouterOutlet,
+    NgClass,
   ],
   standalone: true,
   styleUrls: ['./menu.component.css']
 })
-export class Menu {
+export class Menu implements OnInit{
+
 
 // ============================================
 //                Variables
@@ -34,6 +36,11 @@ export class Menu {
    */
   isContentVisible: boolean = false;
 
+  loginStorage = '';
+
+  isConnect = false;
+
+
 // ============================================
 //                Methode
 // ============================================
@@ -43,7 +50,22 @@ export class Menu {
    * @param dialog
    * @param router
    */
-  constructor(public dialog: MatDialog, private router: Router) {
+  constructor(public dialog: MatDialog, private router: Router) {}
+
+  ngOnInit(): void {
+    if (localStorage.getItem('login') != 'undefined') {
+      // @ts-ignore
+      this.loginStorage = "Conecté en tant que : " + localStorage.getItem('login');
+      this.ChangeConnect();
+    } else {
+      this.loginStorage = 'non connecté';
+      }
+  }
+
+  Deconnection(){
+    localStorage.setItem('login', 'undefined');
+    this.loginStorage = 'non connecté';
+    this.ChangeConnect();
   }
 
   /**
@@ -75,29 +97,22 @@ export class Menu {
   }
 
   /**
-   * Toggles the visibility of the content.
-   * @function toggleContent
-   * @returns {void}
-   */
-  toggleContent(): void {
-    this.isContentVisible = !this.isContentVisible;
-  }
-
-  /**
-   * Handler for content toggle events.
-   * @function onContentToggled
-   * @returns {void}
-   */
-  onContentToggled(): void {
-    this.isContentVisible = !this.isContentVisible;
-  }
-
-
-  /**
    *
    */
   openDialog(): void {
     const dialogRef = this.dialog.open(FormConnexionComponent, {});
+    dialogRef.afterClosed().subscribe(result => {
+      if (localStorage.getItem('login') != 'undefined') {
+        this.loginStorage = "Conecté en tant que : " + localStorage.getItem('login');
+        this.ChangeConnect();
+      }
+    });
   }
 
+  /**
+   *  Change the connexion state
+   */
+  ChangeConnect(){
+    this.isConnect = !this.isConnect;
+  }
 }

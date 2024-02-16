@@ -2,8 +2,10 @@
   <div class="mainContent">
     <h1 class="menuTitle">Enquetes a MarsActu</h1>
     <button class="menuButton" (click)="GoToOffice()">Commencer</button><br>
-    <button class="menuButton" (click)="GoToTuto()">Tutoriel</button><br>
-    <button class="menuButton" (click)="openDialog()">Connexion</button><br>
+    <div id="ZoneConnexion" [ngClass]="{'ConnexionZoneVerte': loginStorage !== 'non connecté', 'ConnexionZoneRouge': loginStorage === 'non connecté'}" *ngIf="loginStorage">{{ loginStorage }}</div>
+    <button *ngIf="!isConnect" class="menuButton" (click)="openDialog()">Connexion</button><br *ngIf="!isConnect">
+    <button *ngIf="isConnect" class="menuButton" (click)="Deconnection()">Deconnexion</button><br *ngIf="isConnect">
+    <button class="menuButton" (click)="GoToTuto()">Sauvegarder</button><br>
     <button class="menuButton" (click)="GoToContext()">Contexte</button><br>
   </div>
 </div>

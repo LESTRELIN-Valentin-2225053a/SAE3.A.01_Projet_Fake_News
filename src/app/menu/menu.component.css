@@ -54,6 +54,11 @@ button {
   background-color: transparent;
   color: white;
 }
-
+.ConnexionZoneRouge{
+  color: red;
+}
+.ConnexionZoneVerte{
+  color: green;
+}
 
 
