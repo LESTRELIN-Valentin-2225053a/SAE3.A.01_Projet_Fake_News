@@ -33,13 +33,16 @@ export class ComputerComponent {
   sanitizer = inject(DomSanitizer);
   actualWebsite : Website;
   sessionService : SessionService = inject(SessionService);
+  activeTabIndex: number;
 
 // ============================================
 //                Methods
 // ============================================
 
+
   constructor() {
     this.actualWebsite = this.sessionService.websites[0];
+    this.activeTabIndex = 0;
   }
 
   drop(event: CdkDragDrop<Website[]>) {
@@ -47,5 +50,6 @@ export class ComputerComponent {
   }
   changeTab($event : Website) {
     this.actualWebsite = $event;
+    this.activeTabIndex = this.sessionService.websites.indexOf($event);
   }
 }

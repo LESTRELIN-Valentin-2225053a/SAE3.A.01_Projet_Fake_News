@@ -1,1 +1,3 @@
-<div (click)="click()" class="tab"><img src="favicon.ico">{{website.title}}</div>
+<div (click)="click()" [class.tab-active]="isActive" class="tab">
+  <img src="favicon.ico" alt="Icône du site">{{ website.title }}
+</div>

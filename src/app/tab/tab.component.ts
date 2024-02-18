@@ -33,6 +33,11 @@ export class TabComponent {
    */
   @Output() tabClicked : EventEmitter<Website> = new EventEmitter<Website>();
 
+  /**
+   *
+   */
+  @Input() isActive: boolean = false;
+
 
 // ============================================
 //                Methode
