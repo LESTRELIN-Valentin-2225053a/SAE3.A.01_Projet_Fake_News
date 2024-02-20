@@ -1,73 +1,88 @@
-/*
-.MainPage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-}
-
 .mainContentinscription {
-  padding: 2%;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
-  text-align: center;
+  background-color: #f0f0f0;
+  color: #333;
+  border: 3px solid #000000;
+  padding: 10px 20px;
 }
 
-input {
-  padding: 10%;
-  box-sizing: border-box;
-  width: 100%;
+input, button {
+  border: 2px solid #000;
+  background-color: #FFF;
+  color: #000;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+input[type="email"], input[type="password"] {
+  font-size: 16px;
 }
 
 .ButtonConnection {
-  background-color: #000;
-  color: #fff;
-  padding: 5%;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 16px;
+  background-color: #3A3A3A;
+  color: #FFFFFF;
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0 #000000;
+  text-shadow: 1px 1px #000000;
+  padding: 10px 20px;
+  transition: filter 0.3s;
 }
 
 .ButtonConnection:hover {
-  background-color: #333;
-}
-
-.BoutonSupp{
-  margin-top: 5%;
-}
-
-.ButtonInscription{
-  padding: 2% 3%;
-  border-radius: 25px;
+  filter: brightness(1.2);
   cursor: pointer;
-  font-size: 16px;
 }
 
-.ButtonInscription:hover{
-  background-color: azure;
+.ButtonInscription {
+  background-color: #3A3A3A;
+  color: #FFFFFF;
+  border: 2px solid #000000;
+  text-shadow: none;
+  padding: 5px 10px;
 }
 
-.ContinuInvite{
-  background: none;
+.ButtonInscription:hover {
+  background-color: #525252;
+  cursor: pointer;
+}
+
+.ButtonClose {
+  background-color: transparent;
+  color: #000000;
   border: none;
-  padding: 0;
-  margin: 0;
-  font-size: inherit;
-  color: inherit;
-  cursor: pointer;
-  text-decoration: underline;
+  font-size: 16px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
-.ContinuInvite:hover{
-  color: #dc964c;
+
+.BoutonSupp {
+  color: #000;
+  font-size: 14px;
 }
-*/
-.mainContentinscription {
-  background-color: white;
+
+.errorArea {
+  font-size: 14px;
+  color: #FF0000;
+  margin: 10px 0;
 }
-.errorArea{
-  color: red;
-  font-size: 12px;
-  margin-top: 5px;
+.formRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.formRow input {
+  flex-basis: 48%;
+  max-width: 48%;
+}
+
+@media (max-width: 768px) {
+  .formRow {
+    flex-direction: column;
+  }
+  .formRow input {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
 }

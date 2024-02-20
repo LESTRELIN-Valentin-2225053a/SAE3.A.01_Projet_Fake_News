@@ -18,10 +18,14 @@
     <h2>Inscription</h2>
     <form [formGroup]="registerForm" (submit)="sendRegisterForm()">
       <div class="errorArea" *ngIf="errorMessages">{{ errorMessages }}</div>
-      <input formControlName="registerEmail" placeholder="Email" type="email" id="mailInscription" name="email" required>
-        <input formControlName="registerName" placeholder="Nom" type="text" id="nomInscription" name="nom" required >
-        <input formControlName="registerPassword" placeholder="Mot de passe" type="password" id="mailPassword" name="password"  required>
-        <input formControlName="registerPasswordVerif" placeholder="Confirmer mot de passe" type="password" id="mailPasswordVerif" name="password"  required>
+      <div class="formRow">
+        <input formControlName="registerEmail" placeholder="Email" type="email" id="mailInscription" name="email" required>
+        <input formControlName="registerPassword" placeholder="Mot de passe" type="password" id="mailPassword" name="password" required>
+      </div>
+      <div class="formRow">
+        <input formControlName="registerName" placeholder="Nom" type="text" id="nomInscription" name="nom" required>
+        <input formControlName="registerPasswordVerif" placeholder="Confirmer mot de passe" type="password" id="mailPasswordVerif" name="password" required>
+      </div>
       <button class="ButtonConnection" type="submit">S'inscrire</button>
     </form>
     <div class="BoutonSupp">
