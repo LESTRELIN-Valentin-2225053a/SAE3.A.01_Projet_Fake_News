@@ -7,4 +7,12 @@
     <button [routerLink]="'./board'" class="board"><img src="/assets/board.png" alt="Tableau"/></button>
     <div class="bonsai" (click)="shakeBonsai()"><img src="/assets/bonsai.png" alt="Arbre qui secoue lorsque l'on clique avec la souris et qui est pas mal"/></div>
   </div>
+  <div class="score-chrono-box" (click)="openScoreWindow()">
+    <div class="score">
+      <p id="score">Score : {{ getScore() }}</p>
+    </div>
+    <div class="chrono">
+      <p id="chrono">Temps : {{ getElapsedTime() }}</p>
+    </div>
+  </div>
 </div>
