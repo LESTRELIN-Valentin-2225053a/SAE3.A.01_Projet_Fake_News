@@ -1,0 +1,25 @@
+.score-chrono-window {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    left: 30%;
+    top: 30%;
+    width: 40%;
+    height: 40%;
+    background-color: rgba(255,255,255,0.5);
+    overflow-y: scroll;
+}
+
+.list-element {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 30%;
+    font-size: 4vh; 
+}
+
+.list-element:hover {
+    background-color: rgba(68, 204, 238, 0.75);
+}
