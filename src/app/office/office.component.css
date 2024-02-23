@@ -139,3 +139,35 @@
   height: 55%;
   transition: transform 0.5s ease;
 }
+
+.score-chrono-box {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  left: 10%;
+  top: 0%;
+  width: 20%;
+  height: 20%;
+  background-color: white;
+}
+
+.score-chrono-box:hover {
+  -webkit-filter: drop-shadow(0 0 0.5vw white);
+}
+
+.score, 
+.chrono {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+}
+
+p#score,
+p#chrono {
+  color: black;
+  font-size: 3vh;
+}
