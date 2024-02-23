@@ -3,12 +3,11 @@
 // ============================================
 import {Component, inject} from '@angular/core';
 import {Router, RouterLink, RouterOutlet} from "@angular/router";
-import {
-  BookSelectionInvestigationComponent
-} from "../book-selection-investigation/book-selection-investigation.component";
+import { BookSelectionInvestigationComponent } from "../book-selection-investigation/book-selection-investigation.component";
 import {Dialog} from "@angular/cdk/dialog";
 import {SessionService} from "../services/session.service";
 import {Investigation} from "../interfaces/investigation";
+import { ScoreChronoComponent } from '../score-chrono/score-chrono.component';
 
 // ============================================
 //                Component
@@ -35,6 +34,7 @@ export class OfficeComponent {
    */
   isComputerZoomed = false;
   sessionService : SessionService = inject(SessionService);
+  scoreChronoComponent: ScoreChronoComponent = new ScoreChronoComponent;
 
 // ============================================
 //                Methods
@@ -46,6 +46,10 @@ export class OfficeComponent {
    * @param router
    */
   constructor(public dialog: Dialog, private router: Router) {
+  }
+
+  ngOnInit() {
+    this.scoreChronoComponent.startTimer();
   }
 
   /**
@@ -80,5 +84,19 @@ export class OfficeComponent {
     this.dialog.open(BookSelectionInvestigationComponent, {
       autoFocus: 'false',
     });
+  }
+
+  openScoreWindow(): void {
+    this.dialog.open(ScoreChronoComponent, {
+      autoFocus: 'false',
+    });
+  }
+
+  getScore(): number {
+    return this.scoreChronoComponent.getScore();
+  }
+
+  getElapsedTime(): string {
+    return this.scoreChronoComponent.getElapsedTime();
   }
 }
