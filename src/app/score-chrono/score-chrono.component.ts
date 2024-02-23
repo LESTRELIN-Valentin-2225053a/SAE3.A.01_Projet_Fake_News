@@ -43,8 +43,8 @@ export class ScoreChronoComponent {
   }
 
   getElapsedTime() {
-    return Math.floor(this.elapsedTime / 3600) + ":" + 
-           Math.floor((this.elapsedTime % 3600) / 60) + ":" +
-           this.elapsedTime % 60;
+    return Math.floor(this.elapsedTime / 3600) + "h " + 
+           Math.floor((this.elapsedTime % 3600) / 60) + "m " +
+           this.elapsedTime % 60 + "s";
   }
 }
