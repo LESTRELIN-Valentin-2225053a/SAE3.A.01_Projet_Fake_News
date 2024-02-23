@@ -1,11 +1,11 @@
 // app.routes.ts
 import {Routes} from '@angular/router';
-import { OfficeComponent } from './office/office.component';
-import { ComputerComponent } from './computer/computer.component';
-import { BoardRouterComponent } from './board-router/board-router.component';
-import { Menu } from './menu/menu.component';
-import {FormLoginComponent} from "./form-login/form-login.component";
-import {GameComponent} from "./game/game.component";
+import { OfficeComponent } from './presentation/office/office.component';
+import { ComputerComponent } from './presentation/computer/computer.component';
+import { BoardRouterComponent } from './presentation/board-router/board-router.component';
+import { Menu } from './presentation/menu/menu.component';
+import {FormLoginComponent} from "./presentation/form-login/form-login.component";
+import {GameComponent} from "./presentation/game/game.component";
 
 export const routes: Routes = [
   { path: '', component: Menu },

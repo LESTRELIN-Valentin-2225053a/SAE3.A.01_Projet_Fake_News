@@ -1,0 +1,19 @@
+<app-board #board>
+  <app-media-location-on-board *ngFor="let mediaLocation of mediaLocations" [data]="mediaLocation"
+                               [mediaRatio]="mediaWidthRatio"/>
+  <app-draggable-media-on-board (cdkDragEnded)="checkIfDraggedOnMediaLocation($event)" *ngFor="let media of medias"
+                      [media]="media"
+                      [style.width.%]="mediaWidthRatio*100"
+                      [board]="board"
+                      cdkDragBoundary=".board"/>
+  <svg class="svgBoard">
+    <ng-container *ngFor="let mediaLocation of mediaLocations ; let i = index ; let isLast = last">
+      <line *ngIf="!isLast"
+            [attr.x1]="(mediaLocation.x+(mediaWidthRatio/2)).toLocaleString('en-GB', { style: 'percent' })"
+            [attr.y1]="(mediaLocation.y+(mediaHeightRatio/2)).toLocaleString('en-GB', { style: 'percent' })"
+            [attr.x2]="(mediaLocations[i+1].x+(mediaWidthRatio/2)).toLocaleString('en-GB', { style: 'percent' })"
+            [attr.y2]="(mediaLocations[i+1].y+(mediaHeightRatio/2)).toLocaleString('en-GB', { style: 'percent' })"
+            stroke="red" stroke-width="0.5%"/>
+    </ng-container>
+  </svg>
+</app-board>

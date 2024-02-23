@@ -1,10 +1,11 @@
 import {Component, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import {LeftCornerButtonComponent} from "./left-corner-button/left-corner-button.component";
-import {RightCornerButtonComponent} from "./right-corner-button/right-corner-button.component";
-import {FormLoginComponent} from "./form-login/form-login.component";
-import {SessionService} from "./services/session.service";
+import {LeftCornerButtonComponent} from "./presentation/left-corner-button/left-corner-button.component";
+import {RightCornerButtonComponent} from "./presentation/right-corner-button/right-corner-button.component";
+import {FormLoginComponent} from "./presentation/form-login/form-login.component";
+import {SessionService} from "./presentation/services/session.service";
+import {InvestigationModel} from "./core/domain/investigation.model";
 
 @Component({
   selector: 'app-root',
@@ -15,5 +16,4 @@ import {SessionService} from "./services/session.service";
 })
 export class AppComponent {
   title = 'SAE3.A.01_Projet_Fake_News';
-  sessionService: SessionService = inject(SessionService);
 }

@@ -22,7 +22,7 @@ export class MediaLocationService {
     return this.mediaLocationRepository.getMediaLocationsByInvestigationId(id);
   }
 
-  getMediaLocationsByInvestigationIdAndUserId(investigationId : number, userId : number): Observable<MediaLocationModel[]> {
-    return this.mediaLocationRepository.getMediaLocationsByInvestigationIdAndUserId(investigationId,userId);
+  getMediaLocationsByInvestigationIdWithSessionId(investigationId : number, sessionId : string): Observable<MediaLocationModel[]> {
+    return this.mediaLocationRepository.getMediaLocationsByInvestigationIdWithSessionId(investigationId,sessionId);
   }
 }

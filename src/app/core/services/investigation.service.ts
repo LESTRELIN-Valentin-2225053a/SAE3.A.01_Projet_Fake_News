@@ -14,7 +14,15 @@ export class InvestigationService{
     return this.investigationRepository.getInvestigationById(id);
   }
 
-  getAllInvestigations(): Observable<InvestigationModel[]>{
-      return this.investigationRepository.getAllInvestigations();
+  getAllInvestigations(): Observable<InvestigationModel[]> {
+    return this.investigationRepository.getAllInvestigations();
+  }
+
+  getInvestigationByIdWithSessionId(id : number,sessionId : string): Observable<InvestigationModel>{
+    return this.investigationRepository.getInvestigationByIdWithSessionId(id,sessionId);
+  }
+
+  getAllInvestigationsWithSessionId(sessionId : string): Observable<InvestigationModel[]> {
+    return this.investigationRepository.getAllInvestigationsWithSessionId(sessionId);
   }
 }

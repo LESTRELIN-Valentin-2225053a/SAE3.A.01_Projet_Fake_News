@@ -1,0 +1,115 @@
+html, body {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+.computer {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 80vw;
+  height: 80vh;
+  background-color: dimgrey;
+  border-top: 10px solid dimgrey;
+  border-bottom: 20px solid dimgrey;
+  margin: auto;
+  padding: 0;
+}
+
+
+.text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+.border-content {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.icon-left svg {
+  width: 3.4vw;
+  height: 3.4vh;
+}
+
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  height: 95%;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  z-index: 2;
+}
+
+.website {
+  flex: 1;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+
+.app-tab {
+  border: 5px solid #ccc;
+  margin-right: 10px;
+  padding: 8px;
+  flex-shrink: 0;
+}
+
+
+
+
+.table {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../../../assets/realdesk.png');
+  background-size: cover;
+  background-position: bottom;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.pctower {
+  position: absolute;
+  right: 0;
+  bottom: 5%;
+  width: 7vw;
+  height: 94vh;
+}
+
+
+.monitor-stand {
+  width: 17.5vw;
+  height: 16.8vh;
+  background-color: darkgray;
+  margin: 0 auto;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
