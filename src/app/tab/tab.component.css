@@ -1,20 +1,3 @@
-/*.tab {*/
-/*  background-color: #e0e0e0;*/
-/*  font-family: Roboto, serif;*/
-/*  border-bottom: 2px solid transparent;*/
-/*  transition: background-color 0.3s, border-bottom-color 0.3s;*/
-/*}*/
-
-/*.tab:hover {*/
-/*  background-color: #d6d6d6;*/
-/*  cursor: pointer;*/
-/*}*/
-
-/*.tab-active {*/
-/*  background-color: white;*/
-/*  border-bottom: 2px solid blue;*/
-/*}*/
-
 .tab {
   display: inline-block;
   padding: 6px 12px;
