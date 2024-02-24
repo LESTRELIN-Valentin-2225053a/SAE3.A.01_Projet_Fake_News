@@ -47,6 +47,14 @@ export class ComputerComponent {
 
   drop(event: CdkDragDrop<Website[]>) {
     moveItemInArray(this.sessionService.websites, event.previousIndex, event.currentIndex);
+    if (event.previousIndex === this.activeTabIndex) {
+      this.activeTabIndex = event.currentIndex;
+    } else if (event.previousIndex < this.activeTabIndex && event.currentIndex >= this.activeTabIndex) {
+      this.activeTabIndex--;
+    } else if (event.previousIndex > this.activeTabIndex && event.currentIndex <= this.activeTabIndex) {
+      this.activeTabIndex++;
+    }
+    this.actualWebsite = this.sessionService.websites[this.activeTabIndex];
   }
   changeTab($event : Website) {
     this.actualWebsite = $event;
