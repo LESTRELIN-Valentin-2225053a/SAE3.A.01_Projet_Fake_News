@@ -1,10 +1,12 @@
 // ============================================
 //                    Import
 // ============================================
-import { Component} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BoardComponent } from "../board/board.component";
 import {NgIf} from "@angular/common";
 import {RouterLink, RouterOutlet} from "@angular/router";
+import { ScoreChronoComponent } from '../score-chrono/score-chrono.component';
+import { ScoreChronoService } from '../services/score-chrono.service';
 
 // ============================================
 //                Component
@@ -31,11 +33,13 @@ export class Menu {
    *   Flag to control the visibility of the content.
    */
   isContentVisible: boolean = false;
+  scoreChronoService : ScoreChronoService = inject(ScoreChronoService);
 
 // ============================================
 //                Methode
 // ============================================
 
+  
   /**
    * Toggles the visibility of the content.
    * @function toggleContent
@@ -52,5 +56,10 @@ export class Menu {
    */
   onContentToggled(): void {
     this.isContentVisible = !this.isContentVisible;
+  }
+
+  startTimer(): void {
+    this.scoreChronoService.resetTimer();
+    this.scoreChronoService.startTimer();
   }
 }
