@@ -8,6 +8,7 @@ import {Dialog} from "@angular/cdk/dialog";
 import {SessionService} from "../services/session.service";
 import {Investigation} from "../interfaces/investigation";
 import { ScoreChronoComponent } from '../score-chrono/score-chrono.component';
+import { ScoreChronoService } from '../services/score-chrono.service';
 
 // ============================================
 //                Component
@@ -34,7 +35,7 @@ export class OfficeComponent {
    */
   isComputerZoomed = false;
   sessionService : SessionService = inject(SessionService);
-  scoreChronoComponent: ScoreChronoComponent = new ScoreChronoComponent;
+  scoreChronoService : ScoreChronoService = inject(ScoreChronoService);
 
 // ============================================
 //                Methods
@@ -44,14 +45,11 @@ export class OfficeComponent {
    *
    * @param dialog
    * @param router
+   * 
    */
   constructor(public dialog: Dialog, private router: Router) {
   }
-
-  ngOnInit() {
-    this.scoreChronoComponent.startTimer();
-  }
-
+  
   /**
    *
    */
@@ -93,10 +91,10 @@ export class OfficeComponent {
   }
 
   getScore(): number {
-    return this.scoreChronoComponent.getScore();
+    return this.scoreChronoService.getScore();
   }
 
   getElapsedTime(): string {
-    return this.scoreChronoComponent.getElapsedTime();
+    return this.scoreChronoService.getElapsedTime();
   }
 }
