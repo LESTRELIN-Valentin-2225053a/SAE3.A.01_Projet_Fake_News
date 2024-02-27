@@ -3,10 +3,8 @@ import {InvestigationRepository} from "../repositories/investigation.repository"
 import {Observable} from "rxjs";
 import {InvestigationModel} from "../domain/investigation.model";
 
-@Injectable({
-  providedIn: 'root'
-})
-export class InvestigationService{
+@Injectable({ providedIn: 'root' })
+export class InvestigationService {
 
   constructor(private investigationRepository: InvestigationRepository) {}
 

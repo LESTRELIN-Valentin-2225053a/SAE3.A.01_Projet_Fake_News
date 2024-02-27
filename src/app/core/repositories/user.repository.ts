@@ -1,10 +1,10 @@
 import {Observable} from "rxjs";
 import {UserModel} from "../domain/user.model";
 
-export interface UserRepository {
-  login() : Observable<UserModel> | false;
-  register() : Observable<UserModel> | false;
-  logout() : boolean;
-  getAllUsers() : Observable<UserModel[]>;
-  getUserById(id : number): Observable<UserModel>;
+export abstract class UserRepository {
+  abstract login() : Observable<UserModel> | false;
+  abstract register() : Observable<UserModel> | false;
+  abstract logout() : boolean;
+  abstract getAllUsers() : Observable<UserModel[]>;
+  abstract getUserById(id : number): Observable<UserModel>;
 }

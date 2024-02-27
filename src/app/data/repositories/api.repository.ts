@@ -1,5 +1,9 @@
 import {HttpClient} from "@angular/common/http";
+import {Injectable} from "@angular/core";
 
+@Injectable({
+  providedIn: 'root'
+})
 export abstract class ApiRepository {
   private _apiUrl = 'http://sae3-a-01-api.alwaysdata.net';
 

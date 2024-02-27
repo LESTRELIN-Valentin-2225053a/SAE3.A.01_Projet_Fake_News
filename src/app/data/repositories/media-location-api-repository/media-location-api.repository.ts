@@ -4,7 +4,11 @@ import {map, Observable, of} from "rxjs";
 import {MediaLocationModel} from "../../../core/domain/media-location.model";
 import {MediaLocationApiEntity} from "./media-location-entity";
 import {MediaLocationApiRepositoryMapper} from "./media-location-api-repository.mapper";
+import {Injectable} from "@angular/core";
 
+@Injectable({
+  providedIn: 'root'
+})
 export class MediaLocationApiRepository extends ApiRepository implements MediaLocationRepository{
   mapper = new  MediaLocationApiRepositoryMapper();
 

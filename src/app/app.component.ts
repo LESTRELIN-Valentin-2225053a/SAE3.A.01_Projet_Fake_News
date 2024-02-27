@@ -1,19 +1,51 @@
-import {Component, inject} from '@angular/core';
+import {Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import {LeftCornerButtonComponent} from "./presentation/left-corner-button/left-corner-button.component";
-import {RightCornerButtonComponent} from "./presentation/right-corner-button/right-corner-button.component";
-import {FormLoginComponent} from "./presentation/form-login/form-login.component";
-import {SessionService} from "./presentation/services/session.service";
-import {InvestigationModel} from "./core/domain/investigation.model";
+import {CoreModule} from "./core/core.module";
+import {DataModule} from "./data/data.module";
+import {InvestigationApiRepository} from "./data/repositories/investigation-api-repository/investigation-api.repository";
+import {InvestigationRepository} from "./core/repositories/investigation.repository";
+import {InvestigationService} from "./core/services/investigation.service";
+import {MediaRepository} from "./core/repositories/media.repository";
+import {MediaApiRepository} from "./data/repositories/media-api-repository/media-api.repository";
+import {MediaLocationApiRepository} from "./data/repositories/media-location-api-repository/media-location-api.repository";
+import {MediaLocationRepository} from "./core/repositories/media-location.repository";
+import {WebsiteRepository} from "./core/repositories/website.repository";
+import {WebsiteApiRepository} from "./data/repositories/website-api-repository/website-api.repository";
+import {MediaService} from "./core/services/media.service";
+import {MediaLocationService} from "./core/services/media-location.service";
+import {WebsiteService} from "./core/services/website.service";
+import {SessionService} from "./core/services/session.service";
+import {PresentationModule} from "./presentation/presentation.module";
+
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, LeftCornerButtonComponent, RightCornerButtonComponent, FormLoginComponent],
+  imports: [CommonModule,
+            CoreModule,
+            DataModule,
+            PresentationModule,
+            RouterOutlet],
+  providers: [
+    {provide: InvestigationRepository, useClass: InvestigationApiRepository},
+    InvestigationService,
+    {provide: MediaRepository, useClass: MediaApiRepository},
+    MediaService,
+    {provide: MediaLocationRepository, useClass: MediaLocationApiRepository},
+    MediaLocationService,
+    {provide: WebsiteRepository, useClass: WebsiteApiRepository},
+    WebsiteService,
+    SessionService
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent{
   title = 'SAE3.A.01_Projet_Fake_News';
+
+  constructor(private sessionService: SessionService) {
+    sessionService.setInvestigationsWhenGuest();
+  }
 }

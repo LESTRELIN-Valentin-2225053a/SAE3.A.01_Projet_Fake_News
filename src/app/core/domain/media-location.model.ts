@@ -1,5 +1,4 @@
 import {MediaModel} from "./media.model";
-import {Media} from "../../presentation/interfaces/media";
 
 export interface MediaLocationModel {
   id : number;

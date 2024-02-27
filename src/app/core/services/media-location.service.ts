@@ -25,4 +25,12 @@ export class MediaLocationService {
   getMediaLocationsByInvestigationIdWithSessionId(investigationId : number, sessionId : string): Observable<MediaLocationModel[]> {
     return this.mediaLocationRepository.getMediaLocationsByInvestigationIdWithSessionId(investigationId,sessionId);
   }
+
+  checkIfValuesAreCorrect(mediaLocations : MediaLocationModel[]){
+    let result: boolean = true;
+    mediaLocations.every(mediaLocation => {
+      return result = mediaLocation.media?.id == mediaLocation.expected_media_id;
+    });
+    return result;
+  }
 }

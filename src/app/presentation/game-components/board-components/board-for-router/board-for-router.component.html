@@ -1,0 +1,5 @@
+<ng-container *ngIf="boardType != undefined;else noInvestigation">
+    <board-with-draggable-medias *ngIf="boardType == 'DRAGGABLE'"></board-with-draggable-medias>
+    <board-with-validatable-medias *ngIf="boardType == 'VALIDABLE'"></board-with-validatable-medias>
+</ng-container>
+<ng-template #noInvestigation><board></board></ng-template>

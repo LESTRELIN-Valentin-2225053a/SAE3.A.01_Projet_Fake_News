@@ -25,4 +25,12 @@ export class MediaService {
   getAllMedias(): Observable<MediaModel[]> {
     return this.mediaRepository.getAllMedias();
   }
+
+  checkIfValuesAreCorrect(medias : MediaModel[]){
+    let result = true;
+    medias.every(media => {
+      return result = media.trustWorthy == media.userTrustWorthy;
+    });
+    return result;
+  }
 }

@@ -5,7 +5,7 @@ import {InvestigationModel} from "../../../core/domain/investigation.model";
 export class InvestigationApiRepositoryMapper extends Mapper<InvestigationApiEntity, InvestigationModel>{
   mapFrom(param: InvestigationApiEntity): InvestigationModel {
     return {
-      id: param.id,
+      id: param.investigation_id,
       title: param.title,
       description: param.description,
       board_type : param.board_type,
@@ -15,7 +15,7 @@ export class InvestigationApiRepositoryMapper extends Mapper<InvestigationApiEnt
 
   mapTo(param: InvestigationModel): InvestigationApiEntity {
     return {
-      id: param.id,
+      investigation_id: param.id,
       title: param.title,
       description: param.description,
       board_type : param.board_type,
@@ -29,7 +29,7 @@ export class InvestigationApiRepositoryMapper extends Mapper<InvestigationApiEnt
     param.forEach(investigationApiEntity => {
       investigationModels.push(
         {
-          id: investigationApiEntity.id,
+          id: investigationApiEntity.investigation_id,
           title: investigationApiEntity.title,
           description: investigationApiEntity.description,
           board_type : investigationApiEntity.board_type,
@@ -47,7 +47,7 @@ export class InvestigationApiRepositoryMapper extends Mapper<InvestigationApiEnt
     param.forEach(investigationModel => {
       investigationApiEntities.push(
         {
-          id: investigationModel.id,
+          investigation_id: investigationModel.id,
           title: investigationModel.title,
           description: investigationModel.description,
           board_type : investigationModel.board_type,

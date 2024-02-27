@@ -4,7 +4,11 @@ import {map, Observable, of} from "rxjs";
 import {MediaModel} from "../../../core/domain/media.model";
 import {MediaApiRepositoryMapper} from "./media-api-repository.mapper";
 import {MediaApiEntity} from "./media-api-entity";
+import {Injectable} from "@angular/core";
 
+@Injectable({
+  providedIn: 'root'
+})
 export class MediaApiRepository extends ApiRepository implements MediaRepository{
   mapper = new MediaApiRepositoryMapper();
 

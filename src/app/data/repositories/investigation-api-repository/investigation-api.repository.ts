@@ -4,7 +4,11 @@ import {InvestigationModel} from "../../../core/domain/investigation.model";
 import {ApiRepository} from "../api.repository";
 import {InvestigationApiRepositoryMapper} from "./investigation-api-repository.mapper";
 import {InvestigationApiEntity} from "./investigation-api-entity";
+import {Injectable} from "@angular/core";
 
+@Injectable({
+  providedIn: 'root'
+})
 export class InvestigationApiRepository extends ApiRepository implements InvestigationRepository{
   mapper = new InvestigationApiRepositoryMapper();
 
