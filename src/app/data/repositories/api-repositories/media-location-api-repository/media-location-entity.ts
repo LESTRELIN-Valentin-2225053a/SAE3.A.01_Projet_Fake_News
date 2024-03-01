@@ -1,4 +1,4 @@
-import {MediaModel} from "../../../core/domain/media.model";
+import {MediaModel} from "../../../../core/domain/media.model";
 
 export interface MediaLocationApiEntity {
   id : number;

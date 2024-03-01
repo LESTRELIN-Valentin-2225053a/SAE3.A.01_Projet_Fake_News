@@ -1,7 +1,7 @@
 import {ApiRepository} from "../api.repository";
-import {WebsiteRepository} from "../../../core/repositories/website.repository";
+import {WebsiteRepository} from "../../../../core/repositories/website.repository";
 import {map, Observable, of} from "rxjs";
-import {WebsiteModel} from "../../../core/domain/website.model";
+import {WebsiteModel} from "../../../../core/domain/website.model";
 import {WebsiteApiEntity} from "./website-api-entity";
 import {WebsiteApiRepositoryMapper} from "./website-api-repository.mapper";
 import {Injectable} from "@angular/core";

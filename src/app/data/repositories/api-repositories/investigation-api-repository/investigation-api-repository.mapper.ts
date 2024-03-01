@@ -1,6 +1,6 @@
-import {Mapper} from "../../../core/base/mapper";
+import {Mapper} from "../../../../core/base/mapper";
 import {InvestigationApiEntity} from "./investigation-api-entity";
-import {InvestigationModel} from "../../../core/domain/investigation.model";
+import {InvestigationModel} from "../../../../core/domain/investigation.model";
 
 export class InvestigationApiRepositoryMapper extends Mapper<InvestigationApiEntity, InvestigationModel>{
   mapFrom(param: InvestigationApiEntity): InvestigationModel {

@@ -1,7 +1,7 @@
 // ============================================
 //                    Import
 // ============================================
-import {Component, OnDestroy} from '@angular/core';
+import {Component} from '@angular/core';
 import {Dialog} from "@angular/cdk/dialog";
 import {SessionService} from "../../../../core/services/session.service";
 import {InvestigationModel} from "../../../../core/domain/investigation.model";
@@ -17,7 +17,7 @@ import {RightAnswerComponent} from "../right-answer/right-answer.component";
   templateUrl: './book-selection-investigation.component.html',
   styleUrl: './book-selection-investigation.component.css'
 })
-export class BookSelectionInvestigationComponent implements OnDestroy{
+export class BookSelectionInvestigationComponent{
 
 // ============================================
 //                Variables
@@ -36,11 +36,6 @@ export class BookSelectionInvestigationComponent implements OnDestroy{
     // @ts-ignore
     this.currentInvestigationOnPage = this.isConductingInvestigation ? sessionService.currentInvestigation.getValue() : this.investigations[0];
   }
-
-  ngOnDestroy(): void {
-    this.sessionService.investigations.next(this.investigations);
-  }
-
 
   getPage(){
     return 2*this.investigations.indexOf(this.currentInvestigationOnPage)+1;

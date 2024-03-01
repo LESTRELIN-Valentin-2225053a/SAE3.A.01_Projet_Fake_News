@@ -16,11 +16,11 @@ export class InvestigationService {
     return this.investigationRepository.getAllInvestigations();
   }
 
-  getInvestigationByIdWithSessionId(id : number,sessionId : string): Observable<InvestigationModel>{
-    return this.investigationRepository.getInvestigationByIdWithSessionId(id,sessionId);
+  getInvestigationByIdWithUserId(id : number,userId : number): Observable<InvestigationModel>{
+    return this.investigationRepository.getInvestigationByIdWithUserId(id, userId);
   }
 
-  getAllInvestigationsWithSessionId(sessionId : string): Observable<InvestigationModel[]> {
-    return this.investigationRepository.getAllInvestigationsWithSessionId(sessionId);
+  getAllInvestigationsWithUserId(userId : number): Observable<InvestigationModel[]> {
+    return this.investigationRepository.getAllInvestigationsWithUserId(userId);
   }
 }

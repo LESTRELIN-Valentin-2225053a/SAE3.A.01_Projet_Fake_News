@@ -1,6 +1,6 @@
-import {Mapper} from "../../../core/base/mapper";
+import {Mapper} from "../../../../core/base/mapper";
 import {MediaApiEntity} from "./media-api-entity";
-import {MediaModel} from "../../../core/domain/media.model";
+import {MediaModel} from "../../../../core/domain/media.model";
 
 export class MediaApiRepositoryMapper extends Mapper<MediaApiEntity, MediaModel>{
   mapFrom(param: MediaApiEntity): MediaModel {

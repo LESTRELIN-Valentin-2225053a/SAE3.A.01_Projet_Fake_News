@@ -1,7 +1,7 @@
 import {ApiRepository} from "../api.repository";
-import {MediaRepository} from "../../../core/repositories/media.repository";
+import {MediaRepository} from "../../../../core/repositories/media.repository";
 import {map, Observable, of} from "rxjs";
-import {MediaModel} from "../../../core/domain/media.model";
+import {MediaModel} from "../../../../core/domain/media.model";
 import {MediaApiRepositoryMapper} from "./media-api-repository.mapper";
 import {MediaApiEntity} from "./media-api-entity";
 import {Injectable} from "@angular/core";
@@ -24,7 +24,7 @@ export class MediaApiRepository extends ApiRepository implements MediaRepository
 
   getMediasByInvestigationId(id: number): Observable<MediaModel[]> {
     return this.http
-      .get<MediaApiEntity[]>(`${this.apiUrl}/api/media/${id}`)
+      .get<MediaApiEntity[]>(`${this.apiUrl}/api/guest/investigation/${id}/medias`)
       .pipe(map(this.mapper.mapFromList));
   }
 

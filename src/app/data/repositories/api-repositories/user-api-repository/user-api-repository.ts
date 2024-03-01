@@ -24,7 +24,7 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
     return of();
   }
 
-  private handleError() {
+  private handleRegisterAndLoginError() {
     return of(undefined);
   }
 
@@ -35,19 +35,38 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
     };
     return this.getCsrfToken().pipe(
       switchMap(() =>
-        this.http.post<UserApiEntity>(`http://localhost:8000/api/login`, credentials).pipe(
+        this.http.post<UserApiEntity>(`${this.apiUrl}/api/login`, credentials).pipe(
           map(this.mapper.mapFrom),
-          catchError(this.handleError)
+          catchError(this.handleRegisterAndLoginError)
         )
       )
     );
   }
 
-  logout(): boolean {
-    return false;
+  logout(): Observable<boolean> {
+    return this.getCsrfToken().pipe(
+      switchMap(() =>
+        this.http.post(`${this.apiUrl}/api/logout`, {}).pipe(
+          map(() => true),
+          catchError(() => { return of(false);})
+        )
+      )
+    );
   }
 
-  register(name: string, mail: string, password: string): Observable<UserModel> | false {
-    return of();
+  register(name: string, email: string, password: string): Observable<UserModel | undefined> {
+    const credentials = {
+      name: name,
+      email: email,
+      password: password,
+    };
+    return this.getCsrfToken().pipe(
+      switchMap(() =>
+        this.http.post<UserApiEntity>(`${this.apiUrl}/api/register`, credentials).pipe(
+          map(this.mapper.mapFrom),
+          catchError(this.handleRegisterAndLoginError)
+        )
+      )
+    );
   }
 }

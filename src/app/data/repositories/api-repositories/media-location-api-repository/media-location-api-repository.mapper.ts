@@ -1,7 +1,6 @@
-import {Mapper} from "../../../core/base/mapper";
+import {Mapper} from "../../../../core/base/mapper";
 import {MediaLocationApiEntity} from "./media-location-entity";
-import {MediaLocationModel} from "../../../core/domain/media-location.model";
-import {MediaModel} from "../../../core/domain/media.model";
+import {MediaLocationModel} from "../../../../core/domain/media-location.model";
 
 export class MediaLocationApiRepositoryMapper extends Mapper<MediaLocationApiEntity, MediaLocationModel>{
   mapFrom(param: MediaLocationApiEntity): MediaLocationModel {

@@ -1,7 +1,6 @@
-import {Mapper} from "../../../core/base/mapper";
+import {Mapper} from "../../../../core/base/mapper";
 import {WebsiteApiEntity} from "./website-api-entity";
-import {WebsiteModel} from "../../../core/domain/website.model";
-import {InvestigationModel} from "../../../core/domain/investigation.model";
+import {WebsiteModel} from "../../../../core/domain/website.model";
 
 export class WebsiteApiRepositoryMapper extends Mapper<WebsiteApiEntity, WebsiteModel>{
   mapFrom(param: WebsiteApiEntity): WebsiteModel {
