@@ -29,8 +29,6 @@
   bottom: 0;
   text-align: center;
   background-color: rgba(139, 69, 19, 0.8);
-  left: 5%;
-  right: 65%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -55,5 +53,32 @@ button {
   color: white;
 }
 
+@media screen and (orientation: landscape) {
+  .mainContent {
+    left: 5%;
+    right: 65%;
+  }
+  @media screen and (max-width: 700px) {
+    .menuTitle {
+      font-size: 12vh;
+    }
+    .menuButton {
+      font-size: 7vh;
+    }
+  }
+}
 
-
+@media screen and (orientation: portrait) {
+  .mainContent {
+    left: 0;
+    right: 50%;
+  }
+  @media screen and (max-width: 400px) {
+    .menuTitle {
+      font-size: 7vh;
+    }
+    .menuButton {
+      font-size: 5vh;
+    }
+  }
+}
