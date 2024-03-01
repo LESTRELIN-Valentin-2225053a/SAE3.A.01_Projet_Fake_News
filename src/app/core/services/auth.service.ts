@@ -10,7 +10,7 @@ export class AuthService {
 
   constructor(private userRepository : UserRepository) {}
 
-  register(name: string, mail: string, password: string) : Observable<UserModel> | false {
+  register(name: string, mail: string, password: string) : Observable<UserModel | undefined> {
     return this.userRepository.register(name, mail, password);
   }
 
