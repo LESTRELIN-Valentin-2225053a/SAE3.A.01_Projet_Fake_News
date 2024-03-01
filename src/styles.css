@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 @import '@angular/cdk/overlay-prebuilt.css';
 
 @font-face {
@@ -9,9 +8,18 @@
 
 body {
   background-image: url("/assets/background-image.png");
-  background-size: 10%;
   background-repeat: repeat;
   font-family: Minecraft;
 }
 
+@media screen and (orientation: landscape) {
+  body {
+    background-size: 10%;
+  }
+}
 
+@media screen and (orientation: portrait) {
+  body {
+    background-size: 20%;
+  }
+}
