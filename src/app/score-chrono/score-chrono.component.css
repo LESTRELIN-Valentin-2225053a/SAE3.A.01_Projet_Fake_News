@@ -4,10 +4,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    left: 30%;
-    top: 30%;
-    width: 40%;
-    height: 40%;
     background-color: rgba(255,255,255,0.5);
     overflow-y: auto;
     padding: 10px; 
@@ -19,8 +15,7 @@
     position: relative;
     text-align: center;
     width: 100%;
-    height: auto;
-    font-size: 4vh; 
+    height: auto; 
     margin-bottom: 10px; 
     background-color: rgba(255, 255, 255, 0.8);  
     padding: 5px;
@@ -29,4 +24,30 @@
 
 .list-element:hover {
     background-color: rgba(68, 204, 238, 0.75);
+}
+
+@media screen and (orientation: landscape) {
+    .score-chrono-window {
+        left: 30%;
+        top: 30%;
+        width: 40%;
+        height: 40%;
+    }
+
+    .list-element {
+        font-size: 4vh;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    .score-chrono-window {
+        left: 10%;
+        top: 40%;
+        width: 80%;
+        height: 20%;
+    }
+
+    .list-element {
+        font-size: 2vh;
+    }
 }
