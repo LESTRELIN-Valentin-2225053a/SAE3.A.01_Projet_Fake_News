@@ -14,25 +14,25 @@ export class InvestigationApiRepository extends ApiRepository implements Investi
 
   getAllInvestigations(): Observable<InvestigationModel[]> {
     return this.http
-      .get<InvestigationApiEntity[]>(`${this.apiUrl}/api/guest/investigation/all`)
+      .get<InvestigationApiEntity[]>(`${this.apiUrl}/guest/investigation/all`)
       .pipe(map(this.mapper.mapFromList));
   }
 
   getInvestigationById(id: number): Observable<InvestigationModel> {
     return this.http
-      .get<InvestigationApiEntity>(`${this.apiUrl}/api/guest/investigation/${id}`)
+      .get<InvestigationApiEntity>(`${this.apiUrl}/guest/investigation/${id}`)
       .pipe(map(this.mapper.mapFrom));
   }
 
   getAllInvestigationsWithUserId(userId: number): Observable<InvestigationModel[]> {
     return this.http
-      .get<InvestigationApiEntity[]>(`${this.apiUrl}/api/${userId}/investigation/all`)
+      .get<InvestigationApiEntity[]>(`${this.apiUrl}/${userId}/investigation/all`)
       .pipe(map(this.mapper.mapFromList));
   }
 
   getInvestigationByIdWithUserId(id: number, userId: number): Observable<InvestigationModel> {
     return this.http
-      .get<InvestigationApiEntity>(`${this.apiUrl}/api/${userId}/investigation/${id}`)
+      .get<InvestigationApiEntity>(`${this.apiUrl}/${userId}/investigation/${id}`)
       .pipe(map(this.mapper.mapFrom));
   }
 

@@ -22,7 +22,7 @@ export class MediaLocationApiRepository extends ApiRepository implements MediaLo
 
   getMediaLocationsByInvestigationId(id: number): Observable<MediaLocationModel[]> {
     return this.http
-      .get<MediaLocationApiEntity[]>(`${this.apiUrl}/api/guest/investigation/${id}/mediaLocations`)
+      .get<MediaLocationApiEntity[]>(`${this.apiUrl}/guest/investigation/${id}/mediaLocations`)
       .pipe(map(this.mapper.mapFromList));
   }
 

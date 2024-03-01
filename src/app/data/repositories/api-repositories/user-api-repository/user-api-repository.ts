@@ -35,7 +35,7 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
     };
     return this.getCsrfToken().pipe(
       switchMap(() =>
-        this.http.post<UserApiEntity>(`${this.apiUrl}/api/login`, credentials).pipe(
+        this.http.post<UserApiEntity>(`${this.apiUrl}/login`, credentials).pipe(
           map(this.mapper.mapFrom),
           catchError(this.handleRegisterAndLoginError)
         )
@@ -46,7 +46,7 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
   logout(): Observable<boolean> {
     return this.getCsrfToken().pipe(
       switchMap(() =>
-        this.http.post(`${this.apiUrl}/api/logout`, {}).pipe(
+        this.http.post(`${this.apiUrl}/logout`, {}).pipe(
           map(() => true),
           catchError(() => { return of(false);})
         )
@@ -62,7 +62,7 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
     };
     return this.getCsrfToken().pipe(
       switchMap(() =>
-        this.http.post<UserApiEntity>(`${this.apiUrl}/api/register`, credentials).pipe(
+        this.http.post<UserApiEntity>(`${this.apiUrl}/register`, credentials).pipe(
           map(this.mapper.mapFrom),
           catchError(this.handleRegisterAndLoginError)
         )
