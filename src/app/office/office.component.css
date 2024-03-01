@@ -196,6 +196,12 @@ p#chrono {
   p#chrono {
     font-size: 3vh;
   }
+
+  @media screen and (max-width: 600px) {
+    .desk {
+      width: 90%;
+    } 
+  }
 }
 
 @media screen and (orientation: portrait) {
@@ -230,4 +236,3 @@ p#chrono {
     font-size: 1.5vh;
   }
 }
-
