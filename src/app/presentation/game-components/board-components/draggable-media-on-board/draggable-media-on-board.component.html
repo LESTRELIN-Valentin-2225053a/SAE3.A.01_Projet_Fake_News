@@ -1,0 +1,15 @@
+<div cdkDrag
+     [cdkDragData]="media"
+     [cdkDragBoundary]="boundaryElement"
+     [cdkDragFreeDragPosition]="{x : media.pos.x*board.width, y : media.pos.y*board.height}"
+     (cdkDragEnded)="onDragEnd($event)"
+     (dblclick)="openDialog()"
+     class="media_on_board">
+  <img class="picture" alt="Media picture" [src]="media.picture">
+</div>
+<ng-template #dialog>
+  <img *ngIf="media.type == 'img'" class="media" alt="Media" [src]="media.link">
+  <video *ngIf="media.type == 'video'" class="media" controls>
+    <source [src]="media.link" type="video/mp4">
+  </video>
+</ng-template>

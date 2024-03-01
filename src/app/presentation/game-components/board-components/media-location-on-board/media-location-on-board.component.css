@@ -1,0 +1,37 @@
+.mediaLocation{
+  position: absolute;
+  aspect-ratio : 1 / 1;
+  background-color: #281F18;
+  outline: 0.3vw dashed white;
+}
+
+.post-it{
+  position: absolute;
+  background-image: url("/assets/post-it.png");
+  image-rendering: pixelated;
+  background-size: contain;
+  background-repeat: no-repeat;
+  aspect-ratio : 1 / 1;
+  width: 35%;
+  right: -15%;
+  bottom: -15%;
+  z-index: 2;
+}
+
+.post-it:hover{
+  box-shadow: 0 0 0.5vw white;
+}
+
+.openedPost-It{
+  aspect-ratio: 1/1;
+  height: 25vw;
+  font-family: Minecraft;
+  display: grid;
+  place-items: center;
+  background-color: yellow;
+}
+
+.text-box{
+  aspect-ratio: 1/1;
+  height: 90%;
+}
