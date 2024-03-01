@@ -1,53 +1,51 @@
-.main{
+.main {
   display: flex;
-  width: 75%;
   margin: auto;
 }
 
-.Book{
+.Book {
   display: flex;
   image-rendering: pixelated;
 }
 
-.Page{
+.Page {
   position: relative;
   flex: 1;
 }
 
-.BookPage{
+.BookPage {
   width: 100%;
   height: 100%;
   z-index: 0;
 }
 
-.leftPageText{
+.leftPageText, .rightPageText {
   position: absolute;
-  left: 15%;
   top: 5%;
   height: 80%;
   width: 80%;
   z-index: 2;
 }
 
-.NumPageLeft{
-  position: absolute;
-  left: 0;
-  bottom: 0;
-}
-
-.NumPageRight{
-  position: absolute;
-  right: 0;
-  bottom: 0;
+.leftPageText {
+  left: 15%;
 }
 
 .rightPageText{
-  position: absolute;
   right: 15%;
-  top: 5%;
-  height: 80%;
-  width: 80%;
-  z-index: 2;
+}
+
+.NumPageLeft, .NumPageRight {
+  position: absolute;
+  bottom: 0;
+}
+
+.NumPageLeft {
+  left: 0;
+}
+
+.NumPageRight {
+  right: 0;
 }
 
 .LeftPart, .RightPart {
@@ -56,7 +54,7 @@
   align-items: center;
 }
 
-.verif{
+.verif {
   margin-left: auto;
   margin-right: auto;
   margin-top: auto;
@@ -73,15 +71,14 @@
   width: 4vw;
 }
 
-.SwitchPage img{
+.SwitchPage img {
   width: 100%;
   height: 100%;
 }
 
-.SwitchPage img:hover{
+.SwitchPage img:hover {
   -webkit-filter: drop-shadow(0 0 0.5vw lightgrey);
 }
-
 
 .ButtonInvestigation {
 
@@ -100,4 +97,16 @@
 .ButtonInvestigation:hover {
   background-color: #dc964c;
   transform: scale(1.05);
+}
+
+@media screen and (orientation: landscape) {
+  .main {
+    width: 75%;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .main {
+    width: 100%;
+  }
 }
