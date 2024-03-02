@@ -24,7 +24,7 @@ export class MediaApiRepository extends ApiRepository implements MediaRepository
 
   getMediasByInvestigationId(id: number): Observable<MediaModel[]> {
     return this.http
-      .get<MediaApiEntity[]>(`${this.apiUrl}/api/media/${id}`)
+      .get<MediaApiEntity[]>(`${this.apiUrl}/media/${id}`)
       .pipe(map(this.mapper.mapFromList));
   }
 

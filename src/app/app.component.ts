@@ -17,6 +17,10 @@ import {MediaLocationService} from "./core/services/media-location.service";
 import {WebsiteService} from "./core/services/website.service";
 import {SessionService} from "./core/services/session.service";
 import {PresentationModule} from "./presentation/presentation.module";
+import {UserRepository} from "./core/repositories/user.repository";
+import {UserApiRepository} from "./data/repositories/user-api-repository/user-api-repository";
+import {UserService} from "./core/services/user.service";
+import {AdminService} from "./core/services/admin.service";
 
 
 
@@ -37,7 +41,10 @@ import {PresentationModule} from "./presentation/presentation.module";
     MediaLocationService,
     {provide: WebsiteRepository, useClass: WebsiteApiRepository},
     WebsiteService,
-    SessionService
+    {provide: UserRepository, useClass: UserApiRepository},
+    UserService,
+    SessionService,
+    AdminService
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -45,7 +52,7 @@ import {PresentationModule} from "./presentation/presentation.module";
 export class AppComponent{
   title = 'SAE3.A.01_Projet_Fake_News';
 
-  constructor(private sessionService: SessionService) {
+  constructor(private sessionService: SessionService, ) {
     sessionService.setInvestigationsWhenGuest();
   }
 }

@@ -1,0 +1,115 @@
+<div class="folder" [style.width.px]="width" [style.height.px]="height">
+  <div class="folder-header">
+    <button class="tabs" (click)="showInvestigation()">Enquêtes</button>
+    <button class="tabs" (click)="showUsers()">Utilisateurs</button>
+    <button class="tabs" (click)="showMedia()">Médias</button>
+    <button class="tabs" (click)="showWebsite()">Sites Internet</button>
+  </div>
+  <div class="folder-content">
+
+
+    <!--Partie Enquêtes-->
+    <div *ngIf="investigationVisible" style="display: flex">
+      <div class="investigation-list" [style.width.px]="width*0.30">
+        <div class="header-block"><h3>Liste des Enquêtes</h3></div>
+        <div class="button-list">
+          <ng-container *ngIf="(investigations | async) as investigations">
+            <button *ngFor="let investigation of investigations" class="button-investigation">{{ investigation.title }}</button>
+          </ng-container>
+        </div>
+        <div class="add-investigation">
+          <button class="add-button">Ajouter une enquête</button>
+        </div>
+      </div>
+      <div class="investigation-details">
+        Michael est raciste ?
+      </div>
+    </div>
+
+
+    <!--Partie Utilisateurs-->
+    <div *ngIf="usersVisible" style="display: flex">
+      <div class="investigation-list" [style.width.px]="width*0.30">
+        <div class="header-block"><h3>Liste des Utilisateurs</h3></div>
+        <div class="button-list">
+          <ng-container *ngIf="(users | async) as users">
+            <button *ngFor="let user of users" class="button-investigation" (click)="clickUser(user)">{{ user.name }}</button>
+          </ng-container>
+        </div>
+      </div>
+      <div class="investigation-details">
+        <div *ngIf="currentUser.getValue() === null">
+          <h3>Selectionnez un utilisateur</h3>
+        </div>
+        <div *ngIf="currentUser.getValue() !== null && !showUserDetails">
+          <h3>{{ currentUser.getValue()?.name }}</h3>
+          <div class="actions">
+            <button class="action" (click)="openUserDetails()">Voir les informations</button>
+            <button *ngIf="currentUser.getValue()?.isBlocked" class="action"
+              (click)="unblockCurrentUser()">Débloquer l'utilisateur</button>
+            <button *ngIf="!currentUser.getValue()?.isBlocked" class="action"
+              (click)="blockCurrentUser()">Bloquer l'utilisateur</button>
+            <button *ngIf="!currentUser.getValue()?.isAdmin" class="action"
+              (click)="promoteCurrentUser()">Promouvoir en administrateur</button>
+            <button class="action" (click)="deleteCurrentUser()">Supprimer l'utilisateur</button>
+          </div>
+        </div>
+        <!--Afficahge des informations de l'utilisateur-->
+        <div *ngIf="currentUser.getValue() !== null && showUserDetails">
+          <div class="user-details">
+            <div class="user-details-header">
+              <h3>{{ currentUser.getValue()?.name }}</h3>
+              <button class="close-button" (click)="closeUserDetails()">Retour</button>
+            </div>
+            <div class="user-details-content">
+              <div class="user-details-block">
+                <h4>Informations</h4>
+                <p><strong>Email : </strong>{{ currentUser.getValue()?.email }}</p>
+                <p><strong>Role : </strong>{{ currentUser.getValue()?.isAdmin ? 'Administrateur' : 'Utilisateur' }}</p>
+                <p><strong>Statut : </strong>{{ currentUser.getValue()?.isBlocked ? 'Bloqué' : 'Actif' }}</p>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--Partie Médias-->
+    <div *ngIf="mediaVisible" style="display: flex">
+      <div class="investigation-list" [style.width.px]="width*0.30">
+        <div class="header-block"><h3>Liste des médias</h3></div>
+        <div class="button-list">
+          <ng-container *ngIf="(medias | async) as medias">
+            <button *ngFor="let medias of medias" class="button-investigation">{{ medias.description }}</button>
+          </ng-container>
+        </div>
+        <div class="add-investigation">
+          <button class="add-button">Ajouter une média</button>
+        </div>
+      </div>
+      <div class="investigation-details">
+        caca
+      </div>
+    </div>
+
+
+    <!--Partie Sites Internet-->
+    <div *ngIf="websiteVisible" style="display: flex">
+      <div class="investigation-list" [style.width.px]="width*0.30">
+        <div class="header-block"><h3>Liste des sites</h3></div>
+        <div class="button-list">
+          <ng-container *ngIf="(websites | async) as websites">
+            <button *ngFor="let website of websites" class="button-investigation">{{ website.title }}</button>
+          </ng-container>
+        </div>
+        <div class="add-investigation">
+          <button class="add-button">Ajouter une site</button>
+        </div>
+      </div>
+      <div class="investigation-details">
+        kiki
+      </div>
+    </div>
+
+  </div>
+</div>

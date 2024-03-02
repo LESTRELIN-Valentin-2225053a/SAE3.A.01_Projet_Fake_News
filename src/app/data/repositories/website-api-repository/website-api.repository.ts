@@ -22,7 +22,7 @@ export class WebsiteApiRepository extends ApiRepository implements WebsiteReposi
 
   getWebsitesByInvestigationId(id: number): Observable<WebsiteModel[]> {
     return this.http
-      .get<WebsiteApiEntity[]>(`${this.apiUrl}/api/website/${id}`)
+      .get<WebsiteApiEntity[]>(`${this.apiUrl}/website/${id}`)
       .pipe(map(this.mapper.mapFromList));
   }
 

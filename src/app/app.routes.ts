@@ -1,7 +1,8 @@
 import {Routes} from '@angular/router';
 import {GameComponent} from "./presentation/game-components/game/game.component";
 import {MenuComponent} from "./presentation/menu-components/menu/menu.component";
-import {FormLoginComponent} from "./old-presentation/form-login/form-login.component";
+import {FormLoginComponent} from "./presentation/menu-components/form-login/form-login.component";
+import {AdminPageComponent} from "./presentation/menu-components/admin-page/admin-page.component";
 
 
 export const routes: Routes = [
@@ -24,7 +25,8 @@ export const routes: Routes = [
       }
     ]
   },
-  { path: 'login', component: FormLoginComponent }
+  { path: 'login', component: FormLoginComponent },
+  { path: 'admin', component: AdminPageComponent}
 ];
 
 // import('./game-components/game-components.module').then(m => m.GameComponentsModule)
