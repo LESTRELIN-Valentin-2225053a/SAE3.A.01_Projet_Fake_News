@@ -7,6 +7,9 @@ import {SessionService} from "../services/session.service";
 import {RightAnswerComponent} from "../right-answer/right-answer.component";
 import {Dialog} from "@angular/cdk/dialog";
 import {WrongAnswerComponent} from "../wrong-answer/wrong-answer.component";
+import {BookDetailInvestigationComponent} from "../book-detail-investigation/book-detail-investigation.component";
+import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
 
 // ============================================
 //                Component
@@ -16,7 +19,9 @@ import {WrongAnswerComponent} from "../wrong-answer/wrong-answer.component";
   standalone: true,
   imports: [
     NgIf,
-    NgOptimizedImage
+    NgOptimizedImage,
+    MatDialogModule,
+    BookDetailInvestigationComponent
   ],
   templateUrl: './book-selection-investigation.component.html',
   styleUrl: './book-selection-investigation.component.css'
@@ -113,6 +118,11 @@ export class BookSelectionInvestigationComponent{
   openDialogWrongAnswer(): void {
     this.dialog.open(WrongAnswerComponent, {
       autoFocus: 'false',
+    });
+  }
+
+  OpenDialogueDetailInvestigation(): void  {
+    this.dialog.open(BookDetailInvestigationComponent, {
     });
   }
 }

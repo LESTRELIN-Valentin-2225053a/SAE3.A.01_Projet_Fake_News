@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-context',
@@ -8,5 +10,10 @@ import { Component } from '@angular/core';
   styleUrl: './context.component.css'
 })
 export class ContextComponent {
+  constructor(private dialogRef: MatDialogRef<ContextComponent>) {}
 
+
+  CloseDialog(): void {
+    this.dialogRef.close();
+  }
 }

@@ -51,14 +51,15 @@ export class SessionService {
         this.mediaLocationService.getMediaLocationsByInvestigationId(this.actualInvestigation.investigation_id).then(
             response => {
                 const responseData = response.data;
-                responseData.forEach((value: { x: number; y: number; expected_media_id: number; description: string; }) => {
+                responseData.forEach((value: { x: number; y: number; expected_media_id: number; description: string; explication: string}) => {
                     this.mediaLocations.push(
                         {
                             x: value.x,
                             y: value.y,
                             media: {id: -1} as Media,
                             expected_media_id: value.expected_media_id,
-                            description: value.description
+                            description: value.description,
+                            explication: value.explication
                         });
                 })
             }

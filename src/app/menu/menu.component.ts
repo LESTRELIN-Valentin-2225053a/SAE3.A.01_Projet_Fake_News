@@ -7,6 +7,7 @@ import {NgClass, NgIf} from "@angular/common";
 import {Router, RouterLink, RouterOutlet} from "@angular/router";
 import {FormConnexionComponent} from "../form-connexion/form-connexion.component";
 import {MatDialog} from "@angular/material/dialog";
+import {ContextComponent} from "../context/context.component";
 
 // ============================================
 //                Component
@@ -40,7 +41,6 @@ export class Menu implements OnInit{
 
   isConnect = false;
 
-
 // ============================================
 //                Methode
 // ============================================
@@ -53,13 +53,18 @@ export class Menu implements OnInit{
   constructor(public dialog: MatDialog, private router: Router) {}
 
   ngOnInit(): void {
-    if (localStorage.getItem('login') != 'undefined') {
+    const isFirstVisit = localStorage.getItem('isFirstVisit');
+    if (localStorage.getItem('login') != 'undefined' && (localStorage.getItem('login') != null)){
       // @ts-ignore
       this.loginStorage = "Conecté en tant que : " + localStorage.getItem('login');
       this.ChangeConnect();
     } else {
       this.loginStorage = 'non connecté';
       }
+    if (!isFirstVisit) {
+      const dialogContext = this.dialog.open(ContextComponent, {});
+      localStorage.setItem('isFirstVisit', 'true');
+    }
   }
 
   Deconnection(){
@@ -100,8 +105,8 @@ export class Menu implements OnInit{
    *
    */
   openDialog(): void {
-    const dialogRef = this.dialog.open(FormConnexionComponent, {});
-    dialogRef.afterClosed().subscribe(result => {
+    const dialogConnexion = this.dialog.open(FormConnexionComponent, {});
+    dialogConnexion.afterClosed().subscribe(result => {
       if (localStorage.getItem('login') != 'undefined') {
         this.loginStorage = "Conecté en tant que : " + localStorage.getItem('login');
         this.ChangeConnect();

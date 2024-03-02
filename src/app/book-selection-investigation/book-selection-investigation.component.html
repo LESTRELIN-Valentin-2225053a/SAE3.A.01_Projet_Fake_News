@@ -12,6 +12,9 @@
 
         <div class="description">
           {{ sessionService.currentInvestigationOnPage.description }}
+          <button class="button"   (click)="OpenDialogueDetailInvestigation()">
+            <img alt="question icon" [src]="'/assets/question_icon.png'">
+          </button>
         </div>
         <br>
         {{ sessionService.correctionMessage }}
