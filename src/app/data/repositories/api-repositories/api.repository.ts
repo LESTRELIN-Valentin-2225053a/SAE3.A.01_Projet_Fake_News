@@ -5,7 +5,7 @@ import {Injectable} from "@angular/core";
   providedIn: 'root'
 })
 export abstract class ApiRepository {
-  private _apiUrl = 'https://sae3-a-01.alwaysdata.net/api';
+  private _apiUrl = 'http://localhost:8000';
 
   constructor(private _http: HttpClient) {}
   get apiUrl(): string {

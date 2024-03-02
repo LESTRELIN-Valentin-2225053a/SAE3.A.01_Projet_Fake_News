@@ -7,7 +7,6 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class AuthService {
-
   constructor(private userRepository : UserRepository) {}
 
   register(name: string, mail: string, password: string) : Observable<UserModel | undefined> {

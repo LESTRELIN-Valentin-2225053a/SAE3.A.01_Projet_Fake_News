@@ -48,8 +48,6 @@ import {UserApiRepository} from "./data/repositories/api-repositories/user-api-r
 export class AppComponent{
   title = 'SAE3.A.01_Projet_Fake_News';
 
-  constructor(private sessionService: SessionService, private userRepository : UserRepository) {
-    userRepository.login("ayoub.essalhia@gmail.com","madameZOUZOUA!").subscribe(i => console.log(i));
-    sessionService.setInvestigationsWhenGuest();
+  constructor() {
   }
 }

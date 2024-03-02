@@ -24,16 +24,15 @@ export class InvestigationApiRepository extends ApiRepository implements Investi
       .pipe(map(this.mapper.mapFrom));
   }
 
-  getAllInvestigationsWithUserId(userId: number): Observable<InvestigationModel[]> {
+  getAllInvestigationsForUser(): Observable<InvestigationModel[]> {
     return this.http
-      .get<InvestigationApiEntity[]>(`${this.apiUrl}/${userId}/investigation/all`)
+      .get<InvestigationApiEntity[]>(`${this.apiUrl}/user/investigation/all`,{withCredentials: true})
       .pipe(map(this.mapper.mapFromList));
   }
 
-  getInvestigationByIdWithUserId(id: number, userId: number): Observable<InvestigationModel> {
+  getInvestigationByIdForUser(id: number): Observable<InvestigationModel> {
     return this.http
-      .get<InvestigationApiEntity>(`${this.apiUrl}/${userId}/investigation/${id}`)
+      .get<InvestigationApiEntity>(`${this.apiUrl}/user/investigation/${id}`,{withCredentials: true})
       .pipe(map(this.mapper.mapFrom));
   }
-
 }

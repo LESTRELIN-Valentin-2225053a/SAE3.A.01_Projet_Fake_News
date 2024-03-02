@@ -18,8 +18,8 @@ export class MediaService {
     return this.mediaRepository.getMediasByInvestigationId(id);
   }
 
-  getMediasByInvestigationIdWithSessionId(investigationId: number, sessionId: string): Observable<MediaModel[]>{
-    return this.mediaRepository.getMediasByInvestigationIdWithSessionId(investigationId,sessionId);
+  getMediasByInvestigationIdForUser(id: number): Observable<MediaModel[]>{
+    return this.mediaRepository.getMediasByInvestigationIdForUser(id);
   }
 
   getAllMedias(): Observable<MediaModel[]> {

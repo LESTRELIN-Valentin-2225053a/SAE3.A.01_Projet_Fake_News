@@ -13,15 +13,7 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
   mapper = new UserApiRepositoryMapper();
 
   getCsrfToken(){
-    return this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`);
-  }
-
-  getAllUsers(): Observable<UserModel[]> {
-    return of();
-  }
-
-  getUserById(id: number): Observable<UserModel> {
-    return of();
+    return this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`,{withCredentials: true});
   }
 
   private handleRegisterAndLoginError() {
@@ -35,7 +27,7 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
     };
     return this.getCsrfToken().pipe(
       switchMap(() =>
-        this.http.post<UserApiEntity>(`${this.apiUrl}/login`, credentials).pipe(
+        this.http.post<UserApiEntity>(`${this.apiUrl}/login`, credentials,{withCredentials: true}).pipe(
           map(this.mapper.mapFrom),
           catchError(this.handleRegisterAndLoginError)
         )
@@ -46,7 +38,7 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
   logout(): Observable<boolean> {
     return this.getCsrfToken().pipe(
       switchMap(() =>
-        this.http.post(`${this.apiUrl}/logout`, {}).pipe(
+        this.http.post(`${this.apiUrl}/logout`, {},{withCredentials: true}).pipe(
           map(() => true),
           catchError(() => { return of(false);})
         )
@@ -62,11 +54,27 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
     };
     return this.getCsrfToken().pipe(
       switchMap(() =>
-        this.http.post<UserApiEntity>(`${this.apiUrl}/register`, credentials).pipe(
+        this.http.post<UserApiEntity>(`${this.apiUrl}/register`, credentials,{withCredentials: true}).pipe(
           map(this.mapper.mapFrom),
           catchError(this.handleRegisterAndLoginError)
         )
       )
     );
+  }
+
+  getLoggedUser(): Observable<UserModel | undefined> {
+    return this.http.get<UserApiEntity>(`${this.apiUrl}/user`,{withCredentials: true}).pipe(
+      map(this.mapper.mapFrom),
+      catchError(this.handleRegisterAndLoginError)
+    );
+  }
+
+  getAllUsers(): Observable<UserModel[]> {
+    return this.http.get<UserApiEntity[]>(`${this.apiUrl}/user/all`)
+      .pipe(map(this.mapper.mapFromList));
+  }
+
+  getUserById(id: number): Observable<UserModel> {
+    return this.http.get<UserApiEntity>(`${this.apiUrl}/user/${id}`).pipe(map(this.mapper.mapFrom));
   }
 }

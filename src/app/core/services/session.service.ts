@@ -8,6 +8,7 @@ import {BehaviorSubject} from "rxjs";
 import {InvestigationModel} from "../domain/investigation.model";
 import {MediaLocationModel} from "../domain/media-location.model";
 import {WebsiteModel} from "../domain/website.model";
+import {UserModel} from "../domain/user.model";
 
 
 @Injectable({
@@ -18,6 +19,8 @@ export class SessionService {
   private mediaLocationService: MediaLocationService = inject(MediaLocationService);
   private websiteService: WebsiteService = inject(WebsiteService);
   private investigationService: InvestigationService = inject(InvestigationService);
+
+  currentUser: BehaviorSubject<UserModel | undefined> = new BehaviorSubject<UserModel | undefined>(undefined);
 
   currentInvestigation: BehaviorSubject<InvestigationModel | null> = new BehaviorSubject<InvestigationModel | null>(null);
 
@@ -30,12 +33,24 @@ export class SessionService {
   websites: BehaviorSubject<WebsiteModel[]> = new BehaviorSubject<WebsiteModel[]>([]);
 
 
+  constructor() {
+    const user = localStorage.getItem("user");
+    if (user) this.currentUser = new BehaviorSubject<UserModel | undefined>(JSON.parse(user));
+    this.currentUser.subscribe(user => {
+      if (!user) this.setInvestigationsWhenGuest();
+    })
+  }
+
   public isConductingInvestigation() {
     return this.currentInvestigation.value !== null;
   }
 
   public setInvestigationsWhenGuest() {
     this.investigationService.getAllInvestigations().subscribe(this.investigations);
+  }
+
+  public setInvestigationsWhenConnected() {
+    this.investigationService.getAllInvestigationsForUser().subscribe(this.investigations);
   }
 
   public changeInvestigation(investigation: InvestigationModel) {

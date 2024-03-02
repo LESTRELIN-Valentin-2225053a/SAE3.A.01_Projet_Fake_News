@@ -1,6 +1,6 @@
 import {ApiRepository} from "../api.repository";
 import {MediaLocationRepository} from "../../../../core/repositories/media-location.repository";
-import {map, Observable, of} from "rxjs";
+import {map, Observable} from "rxjs";
 import {MediaLocationModel} from "../../../../core/domain/media-location.model";
 import {MediaLocationApiEntity} from "./media-location-entity";
 import {MediaLocationApiRepositoryMapper} from "./media-location-api-repository.mapper";
@@ -13,11 +13,15 @@ export class MediaLocationApiRepository extends ApiRepository implements MediaLo
   mapper = new  MediaLocationApiRepositoryMapper();
 
   getAllMediaLocations(): Observable<MediaLocationModel[]> {
-    return of([]);
+    return this.http
+      .get<MediaLocationApiEntity[]>(`${this.apiUrl}/mediaLocation/all`)
+      .pipe(map(this.mapper.mapFromList));
   }
 
   getMediaLocationById(id: number): Observable<MediaLocationModel> {
-    return of();
+    return this.http
+      .get<MediaLocationApiEntity>(`${this.apiUrl}/mediaLocation/${id}`)
+      .pipe(map(this.mapper.mapFrom));
   }
 
   getMediaLocationsByInvestigationId(id: number): Observable<MediaLocationModel[]> {
@@ -26,8 +30,9 @@ export class MediaLocationApiRepository extends ApiRepository implements MediaLo
       .pipe(map(this.mapper.mapFromList));
   }
 
-  getMediaLocationsByInvestigationIdWithSessionId(investigationId: number, sessionId: string): Observable<MediaLocationModel[]> {
-    return of([]);
+  getMediaLocationsByInvestigationIdForUser(id: number): Observable<MediaLocationModel[]> {
+    return this.http
+        .get<MediaLocationApiEntity[]>(`${this.apiUrl}/user/investigation/${id}/mediaLocations`,{withCredentials: true})
+        .pipe(map(this.mapper.mapFromList));
   }
-
 }

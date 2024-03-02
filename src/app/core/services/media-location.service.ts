@@ -22,8 +22,8 @@ export class MediaLocationService {
     return this.mediaLocationRepository.getMediaLocationsByInvestigationId(id);
   }
 
-  getMediaLocationsByInvestigationIdWithSessionId(investigationId : number, sessionId : string): Observable<MediaLocationModel[]> {
-    return this.mediaLocationRepository.getMediaLocationsByInvestigationIdWithSessionId(investigationId,sessionId);
+  getMediaLocationsByInvestigationIdForUser(id : number): Observable<MediaLocationModel[]> {
+    return this.mediaLocationRepository.getMediaLocationsByInvestigationIdForUser(id);
   }
 
   checkIfValuesAreCorrect(mediaLocations : MediaLocationModel[]){
