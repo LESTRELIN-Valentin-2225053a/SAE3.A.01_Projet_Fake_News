@@ -77,3 +77,9 @@
   flex-direction: column;
   width: max-content;
 }
+
+.investigation-update-block{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

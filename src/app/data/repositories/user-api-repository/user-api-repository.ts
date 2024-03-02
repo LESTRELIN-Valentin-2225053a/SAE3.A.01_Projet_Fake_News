@@ -15,7 +15,7 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
   mapper = new UserApiRepositoryMapper();
 
   getCsrfToken(){
-    return this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`);
+    return this.http.get(`${this.apiUrl}/sanctum/csrf-cookie`, {withCredentials: true});
   }
 
   getAllUsers(): Observable<UserModel[]> {
@@ -39,7 +39,7 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
     };
     return this.getCsrfToken().pipe(
       switchMap(() =>
-        this.http.post<UserApiEntity>(`http://localhost:8000/login`, credentials).pipe(
+        this.http.post<UserApiEntity>(`http://localhost:8000/login`, credentials, {withCredentials: true}).pipe(
           map(this.mapper.mapFrom),
           catchError(this.handleError)
         )
@@ -57,42 +57,31 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
 
   checkAdminStatus(): boolean {
     let isAdmin = false;
-    this.http.get<HttpResponse<any>>(`${this.apiUrl}/admin/checkIsAdmin`)
+    this.http.get<HttpResponse<any>>(`${this.apiUrl}/admin/checkIsAdmin`, {withCredentials: true})
       .subscribe(response => {
         isAdmin = response.status === 204;
       });
     return isAdmin;
   }
-  blockUser(id: number): boolean {
-    let isBlocked = false;
-    this.http.put<HttpResponse<any>>(`${this.apiUrl}/admin/user/block/${id}`, {})
-      .subscribe(response => {
-        isBlocked = response.status === 200;
-      });
-    return isBlocked;
+  blockUser(id: number): Observable<boolean> {
+    return this.http.put<HttpResponse<any>>(`${this.apiUrl}/admin/user/block/${id}`, {}, {withCredentials: true})
+      .pipe(map(response => response.status === 204));
   }
-  unblockUser(id: number): boolean {
-    let isUnblocked = false;
-    this.http.put<HttpResponse<any>>(`${this.apiUrl}/admin/user/unblock/${id}`, {})
-      .subscribe(response => {
-        isUnblocked = response.status === 200;
-      });
-    return isUnblocked;
+  unblockUser(id: number): Observable<boolean> {
+    return this.http.put<HttpResponse<any>>(`${this.apiUrl}/admin/user/unblock/${id}`, {}, {withCredentials: true})
+      .pipe(map(response => response.status === 204));
   }
-  deleteUser(id: number): boolean {
-    let isDeleted = false;
-    this.http.put<HttpResponse<any>>(`${this.apiUrl}/admin/user/delete/${id}`, {})
-      .subscribe(response => {
-        isDeleted = response.status === 200;
-      });
-    return isDeleted;
+  deleteUser(id: number): Observable<boolean> {
+    return this.http.delete<HttpResponse<any>>(`${this.apiUrl}/admin/user/delete/${id}`, {withCredentials: true})
+      .pipe(map(response => response.status === 204));
   }
-  promoteUser(id: number): boolean {
-    let isPromoted = false;
-    this.http.put<HttpResponse<any>>(`${this.apiUrl}/admin/user/promote/${id}`, {})
-      .subscribe(response => {
-        isPromoted = response.status === 200;
-      });
-    return isPromoted;
+  promoteUser(id: number): Observable<boolean> {
+    return this.http.put<HttpResponse<any>>(`${this.apiUrl}/admin/user/promote/${id}`, {}, {withCredentials: true})
+      .pipe(map(response => response.status === 204));
+  }
+
+  getLoggedUser(): Observable<UserModel | undefined> {
+    return this.http.get<UserApiEntity>(`${this.apiUrl}/user`,{withCredentials: true})
+      .pipe(map(this.mapper.mapFrom));
   }
 }

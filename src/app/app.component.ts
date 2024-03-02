@@ -52,7 +52,13 @@ import {AdminService} from "./core/services/admin.service";
 export class AppComponent{
   title = 'SAE3.A.01_Projet_Fake_News';
 
-  constructor(private sessionService: SessionService, ) {
+  constructor(private sessionService: SessionService, private userRepository: UserRepository) {
+    userRepository.login('valentin.lestrelin@free.fr','zizipipi').subscribe(
+      user => {
+        console.log(user);
+        userRepository.getLoggedUser().subscribe(user => console.log(user));
+      }
+    );
     sessionService.setInvestigationsWhenGuest();
   }
 }

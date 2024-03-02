@@ -9,26 +9,119 @@
 
 
     <!--Partie Enquêtes-->
-    <div *ngIf="investigationVisible" style="display: flex">
+    <div *ngIf="investigationVisible && !usersVisible && !mediaVisible && !websiteVisible" style="display: flex">
       <div class="investigation-list" [style.width.px]="width*0.30">
         <div class="header-block"><h3>Liste des Enquêtes</h3></div>
         <div class="button-list">
           <ng-container *ngIf="(investigations | async) as investigations">
-            <button *ngFor="let investigation of investigations" class="button-investigation">{{ investigation.title }}</button>
+            <button *ngFor="let investigation of investigations" class="button-investigation"
+                    (click)="clickInvestigation(investigation)">{{ investigation.title }}</button>
           </ng-container>
         </div>
         <div class="add-investigation">
-          <button class="add-button">Ajouter une enquête</button>
+          <button class="add-button"(click)="openInvestigationCreate()">Ajouter une enquête</button>
         </div>
       </div>
       <div class="investigation-details">
-        Michael est raciste ?
+        <div *ngIf="currentInvestigation.getValue() === null && !showInvestigationCreate">
+          <h3>Selectionnez une enquête</h3>
+        </div>
+        <div *ngIf="currentInvestigation.getValue() !== null && !showInvestigationDetails
+        && !showInvestigationUpdate && !showInvestigationCreate">
+          <h3>{{ currentInvestigation.getValue()?.title }}</h3>
+          <div class="actions">
+            <button class="action" (click)="openInvestigationDetails()">Voir les informations</button>
+            <button class="action" (click)="openInvestigationUpdate()">Modifier l'enquête</button>
+            <button class="action" (click)="deleteCurrentInvestigation()">Supprimer l'enquête</button>
+            <!--TODO: add action for add media and website-->
+            <button class="action">Ajouter un média à l'enquête</button>
+            <button class="action">Ajouter un site internet à l'enquête</button>
+          </div>
+        </div>
+        <div *ngIf="currentInvestigation.getValue() !== null && showInvestigationDetails">
+          <div class="investigation-details">
+            <div class="investigation-details-header">
+              <h3>{{ currentInvestigation.getValue()?.title }}</h3>
+              <button class="close-button" (click)="closeInvestigationDetails()">Retour</button>
+            </div>
+            <div class="investigation-details-content">
+              <div class="investigation-details-block">
+                <h4>Informations</h4><!--TODO: add media and website list-->
+                <p><strong>Description : </strong>{{ currentInvestigation.getValue()?.description }}</p>
+                <p><strong>Type de tableau : </strong>{{ currentInvestigation.getValue()?.board_type }}</p>
+                <p><strong>Explication de l'enquête : </strong>{{ currentInvestigation.getValue()?.explanation }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="currentInvestigation.getValue() !== null && showInvestigationUpdate">
+          <div class="investigation-update">
+            <div class="investigation-update-header">
+              <h3>Modifier {{ currentInvestigation.getValue()?.title }}</h3>
+              <button class="close-button" (click)="closeInvestigationUpdate()">Retour</button>
+            </div>
+            <div class="investigation-update-content">
+              <div class="investigation-update-block">
+                <h4>Informations</h4>
+                <form [formGroup]="UpdateInvestigationForm">
+                  <label for="update_title">Titre</label>
+                  <input type="text" id="update_title" name="title" placeholder="Titre" formControlName="update_title" [value]="currentInvestigation.getValue()?.title">
+                  <label for="update_description">Description</label>
+                  <input type="text" id="update_description" name="description" placeholder="Description" formControlName="update_description" [value]="currentInvestigation.getValue()?.description">
+                  <div class="radio-input">
+                    <label>Type de tableau</label>
+                    <input type="radio" id="update_draggable" name="update_board_type" value="DRAGGABLE" formControlName="update_board_type">
+                    <label for="draggable">Glisser-déposer</label>
+                    <input type="radio" id="update_table" name="update_board_type" value="VALIDABLE" formControlName="update_board_type">
+                    <label for="table">Validation</label>
+                  </div>
+                  <label for="update_explanation">Explication de l'enquête</label>
+                  <input type="text" id="update_explanation" name="explanation" placeholder="Explication de l'enquête" formControlName="update_explanation" [value]="currentInvestigation.getValue()?.explanation">
+                  <div class="investigation-update-actions">
+                    <button class="action" (click)="updateCurrentInvestigation()">Modifier</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="currentInvestigation.getValue() === null && showInvestigationCreate">
+          <div class="investigation-create">
+            <div class="investigation-create-header">
+              <h3>Ajouter une enquête</h3>
+              <button class="close-button" (click)="closeInvestigationCreate()">Retour</button>
+            </div>
+            <div class="investigation-create-content">
+              <div class="investigation-create-block">
+                <h4>Informations</h4>
+                <form [formGroup]="CreateInvestigationForm">
+                  <label for="create_title">Titre</label>
+                  <input type="text" id="create_title" name="title" placeholder="Titre" formControlName="create_title">
+                  <label for="create_description">Description</label>
+                  <input type="text" id="create_description" name="description" placeholder="Description" formControlName="create_description">
+                  <div class="radio-input">
+                    <label>Type de tableau</label>
+                    <input type="radio" id="draggable" name="create_board_type" value="DRAGGABLE" formControlName="create_board_type">
+                    <label for="draggable">Glisser-déposer</label>
+                    <input type="radio" id="table" name="create_board_type" value="VALIDABLE" formControlName="create_board_type">
+                    <label for="table">Validation</label>
+                  </div>
+                  <label for="create_explanation">Explication de l'enquête</label>
+                  <input type="text" id="create_explanation" name="explanation" placeholder="Explication de l'enquête" formControlName="create_explanation">
+                  <div class="investigation-create-actions">
+                    <button class="action" (click)="createInvestigation()">Ajouter</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
 
     <!--Partie Utilisateurs-->
-    <div *ngIf="usersVisible" style="display: flex">
+    <div *ngIf="usersVisible && !investigationVisible && !mediaVisible && !websiteVisible" style="display: flex">
       <div class="investigation-list" [style.width.px]="width*0.30">
         <div class="header-block"><h3>Liste des Utilisateurs</h3></div>
         <div class="button-list">
@@ -69,13 +162,14 @@
                 <p><strong>Statut : </strong>{{ currentUser.getValue()?.isBlocked ? 'Bloqué' : 'Actif' }}</p>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
 
-
+    <!--TODO: Make Media and Website part-->
     <!--Partie Médias-->
-    <div *ngIf="mediaVisible" style="display: flex">
+    <div *ngIf="mediaVisible && !investigationVisible && !usersVisible && !websiteVisible" style="display: flex">
       <div class="investigation-list" [style.width.px]="width*0.30">
         <div class="header-block"><h3>Liste des médias</h3></div>
         <div class="button-list">
@@ -94,7 +188,7 @@
 
 
     <!--Partie Sites Internet-->
-    <div *ngIf="websiteVisible" style="display: flex">
+    <div *ngIf="websiteVisible && !investigationVisible && !usersVisible && !mediaVisible" style="display: flex">
       <div class="investigation-list" [style.width.px]="width*0.30">
         <div class="header-block"><h3>Liste des sites</h3></div>
         <div class="button-list">
@@ -110,6 +204,5 @@
         kiki
       </div>
     </div>
-
   </div>
 </div>

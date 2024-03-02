@@ -8,8 +8,9 @@ export abstract class UserRepository {
   abstract getAllUsers() : Observable<UserModel[]>;
   abstract getUserById(id : number): Observable<UserModel>;
   abstract checkAdminStatus() : boolean;
-  abstract blockUser(id : number) : boolean;
-  abstract unblockUser(id : number) : boolean;
-  abstract deleteUser(id : number) : boolean;
-  abstract promoteUser(id : number) : boolean;
+  abstract blockUser(id : number) : Observable<boolean>;
+  abstract unblockUser(id : number) : Observable<boolean>;
+  abstract deleteUser(id : number) : Observable<boolean>;
+  abstract promoteUser(id : number) : Observable<boolean>;
+  abstract getLoggedUser() : Observable<UserModel | undefined>;
 }

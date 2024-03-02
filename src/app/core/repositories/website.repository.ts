@@ -7,4 +7,6 @@ export abstract class WebsiteRepository {
   abstract getWebsiteById(id : number): Observable<WebsiteModel>
 
   abstract getWebsitesByInvestigationId(id : number): Observable<WebsiteModel[]>;
+
+  //abstract createWebsite(title: string, description: string, url: string, investigation_id: number): Observable<boolean>;
 }

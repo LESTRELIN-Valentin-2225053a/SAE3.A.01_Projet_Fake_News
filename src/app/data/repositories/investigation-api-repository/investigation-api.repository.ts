@@ -32,16 +32,29 @@ export class InvestigationApiRepository extends ApiRepository implements Investi
     return of();
   }
 
-  deleteInvestigation(id: number): boolean {
-    return false;
+  deleteInvestigation(id: number): Observable<boolean> {
+    return this.http.delete(`${this.apiUrl}/admin/investigation/delete/${id}`, { observe: 'response', withCredentials: true }).pipe(
+      map(response => response.status === 204));
   }
 
-  newInvestigation(title: string, description: string, explication: string, board_type: string): Observable<InvestigationModel> {
-    return of();
+  newInvestigation(title: string, description: string, explanation: string, board_type: string): Observable<InvestigationModel> {
+    console.log(title, description, explanation, board_type);
+    return this.http.post<InvestigationApiEntity>(`${this.apiUrl}/admin/investigation/new`, {
+      title: title,
+      description: description,
+      explanation: explanation,
+      board_type: board_type
+    }, {withCredentials: true}).pipe(map(this.mapper.mapFrom));
   }
 
   updateInvestigation(id: number, title: string, description: string, explication: string, board_type: string): Observable<InvestigationModel> {
-    return of();
+    console.log("caca");
+    return this.http.put<InvestigationApiEntity>(`${this.apiUrl}/admin/investigation/update/${id}`, {
+      title: title,
+      description: description,
+      explanation: explication,
+      board_type: board_type
+    }, {withCredentials: true}).pipe(map(this.mapper.mapFrom));
   }
 
 }

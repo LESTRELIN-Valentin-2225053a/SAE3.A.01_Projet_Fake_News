@@ -10,5 +10,5 @@ export abstract class InvestigationRepository {
                             explication : string, board_type : string) : Observable<InvestigationModel>;
   abstract updateInvestigation(id : number, title : string, description : string,
                                explication : string, board_type : string) : Observable<InvestigationModel>;
-  abstract deleteInvestigation(id : number) : boolean;
+  abstract deleteInvestigation(id: number) : Observable<boolean>;
 }

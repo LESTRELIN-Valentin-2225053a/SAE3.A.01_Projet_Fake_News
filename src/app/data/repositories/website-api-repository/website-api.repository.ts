@@ -13,16 +13,20 @@ export class WebsiteApiRepository extends ApiRepository implements WebsiteReposi
   mapper = new WebsiteApiRepositoryMapper();
 
   getAllWebsites(): Observable<WebsiteModel[]> {
-    return of([]);
+    return this.http
+      .get<WebsiteApiEntity[]>(`${this.apiUrl}/website/all`)
+      .pipe(map(this.mapper.mapFromList));
   }
 
   getWebsiteById(id: number): Observable<WebsiteModel> {
-    return of();
+    return this.http
+      .get<WebsiteApiEntity>(`${this.apiUrl}/website/${id}`)
+      .pipe(map(this.mapper.mapFrom));
   }
 
   getWebsitesByInvestigationId(id: number): Observable<WebsiteModel[]> {
     return this.http
-      .get<WebsiteApiEntity[]>(`${this.apiUrl}/website/${id}`)
+      .get<WebsiteApiEntity[]>(`${this.apiUrl}/common/investigation/${id}/websites`)
       .pipe(map(this.mapper.mapFromList));
   }
 
