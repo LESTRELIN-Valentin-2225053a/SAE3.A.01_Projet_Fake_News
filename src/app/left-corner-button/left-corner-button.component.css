@@ -18,3 +18,9 @@
 .button img:hover{
   -webkit-filter: drop-shadow(0 0 0.5vw lightgrey);
 }
+
+@media screen and (max-width: 800px) and (orientation: landscape) {
+  .button {
+    width: 12vh;
+  }
+}
