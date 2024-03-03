@@ -5,7 +5,6 @@ import { Component, inject } from '@angular/core';
 import { BoardComponent } from "../board/board.component";
 import {NgIf} from "@angular/common";
 import {RouterLink, RouterOutlet} from "@angular/router";
-import { ScoreChronoComponent } from '../score-chrono/score-chrono.component';
 import { ScoreChronoService } from '../services/score-chrono.service';
 
 // ============================================
@@ -59,7 +58,7 @@ export class Menu {
   }
 
   startTimer(): void {
-    this.scoreChronoService.resetTimer();
+    this.scoreChronoService.reset();
     this.scoreChronoService.startTimer();
   }
 }
