@@ -76,6 +76,11 @@ export class BookSelectionInvestigationComponent{
     this.sessionService.changeInvestigation(this.currentInvestigationOnPage);
   }
 
+  restartInvestigation(): void {
+    this.isConductingInvestigation = true;
+    this.sessionService.changeInvestigation(this.currentInvestigationOnPage);
+  }
+
   /**
    * Validates the investigation response and updates the investigation state accordingly.
    * @function validateResponse

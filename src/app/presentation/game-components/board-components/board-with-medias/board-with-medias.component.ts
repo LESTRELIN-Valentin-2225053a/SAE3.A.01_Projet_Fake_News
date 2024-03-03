@@ -36,6 +36,7 @@ export class BoardWithMediasComponent extends BoardComponent implements OnInit, 
 
   ngOnInit(): void {
     this.medias = this._sessionService.medias.getValue();
+    console.log(this.medias);
   }
 
   ngAfterContentChecked(): void {

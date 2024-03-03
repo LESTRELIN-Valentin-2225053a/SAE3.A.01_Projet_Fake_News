@@ -29,7 +29,8 @@
             <img src="/assets/checkEmpty.png" alt="Croix rouge" class="verif">
           </div>
         </div>
-        <button class="ButtonInvestigation" id="BoutonSelection" *ngIf="!isConductingInvestigation" (click)="selectInvestigation()">Sélectionner</button> <br>
+        <button class="ButtonInvestigation" id="BoutonSelection" *ngIf="!currentInvestigationOnPage.completion && !isConductingInvestigation" (click)="selectInvestigation()">Sélectionner</button>
+        <button class="ButtonInvestigation" id="RetryButton" *ngIf="currentInvestigationOnPage.completion && !isConductingInvestigation" (click)="restartInvestigation()">Réessayer</button><br>
         <button class="ButtonInvestigation" *ngIf="isConductingInvestigation" (click)="validateResponse()">Valider mes réponses</button> <br>
         <button class="ButtonInvestigation" *ngIf="isConductingInvestigation" (click)="abandonInvestigation()">Abandonner</button> <br>
         <div class="NumPageRight"> Page: {{ getPage() + 1 }} </div>

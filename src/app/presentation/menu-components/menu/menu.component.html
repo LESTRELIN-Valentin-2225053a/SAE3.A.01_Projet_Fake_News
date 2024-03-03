@@ -1,8 +1,10 @@
 <div *ngIf="!isContentVisible" class="mainMenuContainer">
   <div class="mainContent">
-    <h1 class="menuTitle">Menu</h1>
+    <h1 class="menuTitle">Enquêtes a MarsActu</h1>
+    <div id="ZoneConnexion" [ngClass]="{'ConnexionZoneVerte': isLogged, 'ConnexionZoneRouge': !isLogged}" *ngIf="loginStorage">{{ loginStorage }}</div>
     <button class="menuButton" routerLink="office">Commencer</button><br>
-    <button class="menuButton" routerLink="tutorial">Tutoriel</button><br>
-    <button class="menuButton" routerLink="login">Connexion</button><br>
+    <button *ngIf="!isLogged" class="menuButton" (click)="openDialog()">Connexion</button>
+    <button *ngIf="isLogged" class="menuButton" (click)="logout()">Deconnexion</button><br>
+    <button class="menuButton" routerLink="context">Contexte</button><br>
   </div>
 </div>

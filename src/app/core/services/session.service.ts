@@ -8,19 +8,21 @@ import {BehaviorSubject} from "rxjs";
 import {InvestigationModel} from "../domain/investigation.model";
 import {MediaLocationModel} from "../domain/media-location.model";
 import {WebsiteModel} from "../domain/website.model";
-import {UserModel} from "../domain/user.model";
+import {AuthService} from "./auth.service";
 
 
 @Injectable({
     providedIn: 'root'
 })
 export class SessionService {
+  private authService : AuthService = inject(AuthService);
   private mediaService: MediaService = inject(MediaService);
   private mediaLocationService: MediaLocationService = inject(MediaLocationService);
   private websiteService: WebsiteService = inject(WebsiteService);
   private investigationService: InvestigationService = inject(InvestigationService);
 
-  currentUser: BehaviorSubject<UserModel | undefined> = new BehaviorSubject<UserModel | undefined>(undefined);
+  // currentUser: BehaviorSubject<UserModel | undefined> = new BehaviorSubject<UserModel | undefined>(undefined);
+  sessionBehavior : 'GUEST' | 'CONNECTED';
 
   currentInvestigation: BehaviorSubject<InvestigationModel | null> = new BehaviorSubject<InvestigationModel | null>(null);
 
@@ -34,10 +36,10 @@ export class SessionService {
 
 
   constructor() {
-    const user = localStorage.getItem("user");
-    if (user) this.currentUser = new BehaviorSubject<UserModel | undefined>(JSON.parse(user));
-    this.currentUser.subscribe(user => {
-      if (!user) this.setInvestigationsWhenGuest();
+    this.authService.isLogged().subscribe(isLogged => {
+      if(isLogged) this.setInvestigationsWhenConnected();
+      else this.setInvestigationsWhenGuest();
+      console.log(this.sessionBehavior);
     })
   }
 
@@ -47,14 +49,29 @@ export class SessionService {
 
   public setInvestigationsWhenGuest() {
     this.investigationService.getAllInvestigations().subscribe(this.investigations);
+    this.sessionBehavior = 'GUEST';
   }
 
   public setInvestigationsWhenConnected() {
     this.investigationService.getAllInvestigationsForUser().subscribe(this.investigations);
+    this.sessionBehavior = 'CONNECTED';
   }
 
   public changeInvestigation(investigation: InvestigationModel) {
     console.log(investigation);
+    this.currentInvestigation.next(investigation);
+    if (this.sessionBehavior === 'CONNECTED') {
+      this.mediaService.getMediasByInvestigationIdForUser(investigation.id).subscribe(this.medias);
+      this.mediaLocationService.getMediaLocationsByInvestigationIdForUser(investigation.id).subscribe(this.mediaLocations);
+      this.websiteService.getWebsitesByInvestigationId(investigation.id).subscribe(this.websites);
+    } else {
+      this.mediaService.getMediasByInvestigationId(investigation.id).subscribe(this.medias);
+      this.mediaLocationService.getMediaLocationsByInvestigationId(investigation.id).subscribe(this.mediaLocations);
+      this.websiteService.getWebsitesByInvestigationId(investigation.id).subscribe(this.websites);
+    }
+  }
+
+  public restartInvestigation(investigation: InvestigationModel) {
     this.currentInvestigation.next(investigation);
     this.mediaService.getMediasByInvestigationId(investigation.id).subscribe(this.medias);
     this.mediaLocationService.getMediaLocationsByInvestigationId(investigation.id).subscribe(this.mediaLocations);
