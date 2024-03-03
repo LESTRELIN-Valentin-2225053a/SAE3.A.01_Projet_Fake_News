@@ -7,6 +7,7 @@ import {SessionService} from "../services/session.service";
 import {RightAnswerComponent} from "../right-answer/right-answer.component";
 import {Dialog} from "@angular/cdk/dialog";
 import {WrongAnswerComponent} from "../wrong-answer/wrong-answer.component";
+import { ScoreChronoService } from '../services/score-chrono.service';
 
 // ============================================
 //                Component
@@ -28,6 +29,7 @@ export class BookSelectionInvestigationComponent{
 // ============================================
 
   sessionService: SessionService = inject(SessionService);
+  scoreChronoService: ScoreChronoService = inject(ScoreChronoService);
 
 // ============================================
 //                Methods
@@ -81,7 +83,9 @@ export class BookSelectionInvestigationComponent{
   validateResponse(): void {
     if (this.sessionService.validateInvestigation()) {
       this.sessionService.currentInvestigationOnPage.completion = true;
-      // this.sessionService.correctionMessage = "Bravo vous avez réussi l'enquete!";
+      // this.sessionService.correctionMessage = "Bravo vous avez réussi l'enquête!";
+      this.scoreChronoService.oneMoreInvestigation();
+      this.scoreChronoService.addScore(10);
       this.openDialogRightAnswer();
       this.sessionService.isConductingInvestigation = false;
     } else {
