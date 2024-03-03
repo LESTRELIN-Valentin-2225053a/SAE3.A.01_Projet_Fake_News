@@ -1,17 +1,11 @@
-<div class="score-chrono-window">
-    <div class="list-element">
-        Temps : 0h 5m 12s | Score : 60
+<div id="window" class="score-chrono-window">
+    <div id="investNum" class="invest-num">
+        {{ completedInvestigations() }} enquête(s) résolue(s).
+    </div>
+    <div *ngFor="let element of getListElements()" class="list-element">
+        <p>Temps : {{ element.elapsedTime }} | Score : {{ element.score }}</p>
     </div>
     <div class="list-element">
-        Temps : 0h 4m 47s | Score : 50
-    </div>
-    <div class="list-element">
-        Temps : 0h 4m 02s | Score : 40
-    </div>
-    <div class="list-element">
-        Temps : 0h 3m 17s | Score : 30
-    </div>
-    <div class="list-element">
-        Temps : 0h 2m 30s | Score : 10
+        <p>Temps : 0h 0m 0s | Score : 0</p>
     </div>
 </div>
