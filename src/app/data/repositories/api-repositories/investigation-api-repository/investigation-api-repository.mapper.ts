@@ -8,6 +8,7 @@ export class InvestigationApiRepositoryMapper extends Mapper<InvestigationApiEnt
       id: param.investigation_id,
       title: param.title,
       description: param.description,
+      explanation: param.explanation,
       board_type : param.board_type,
       completion: param.completion
     };
@@ -18,6 +19,7 @@ export class InvestigationApiRepositoryMapper extends Mapper<InvestigationApiEnt
       investigation_id: param.id,
       title: param.title,
       description: param.description,
+      explanation: param.explanation,
       board_type : param.board_type,
       completion: param.completion
     };
@@ -32,6 +34,7 @@ export class InvestigationApiRepositoryMapper extends Mapper<InvestigationApiEnt
           id: investigationApiEntity.investigation_id,
           title: investigationApiEntity.title,
           description: investigationApiEntity.description,
+          explanation: investigationApiEntity.explanation,
           board_type : investigationApiEntity.board_type,
           completion: investigationApiEntity.completion
         }
@@ -50,6 +53,7 @@ export class InvestigationApiRepositoryMapper extends Mapper<InvestigationApiEnt
           investigation_id: investigationModel.id,
           title: investigationModel.title,
           description: investigationModel.description,
+          explanation: investigationModel.explanation,
           board_type : investigationModel.board_type,
           completion: investigationModel.completion
         }

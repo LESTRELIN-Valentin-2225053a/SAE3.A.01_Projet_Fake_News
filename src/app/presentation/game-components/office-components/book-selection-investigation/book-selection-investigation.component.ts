@@ -1,7 +1,7 @@
 // ============================================
 //                    Import
 // ============================================
-import {Component} from '@angular/core';
+import {Component, TemplateRef, ViewChild} from '@angular/core';
 import {Dialog} from "@angular/cdk/dialog";
 import {SessionService} from "../../../../core/services/session.service";
 import {InvestigationModel} from "../../../../core/domain/investigation.model";
@@ -25,6 +25,7 @@ export class BookSelectionInvestigationComponent{
   investigations : InvestigationModel[];
   currentInvestigationOnPage : InvestigationModel;
   isConductingInvestigation : boolean;
+  @ViewChild('explanationDialog', { read: TemplateRef }) explanationTemplate! : TemplateRef<any>;
 
 // ============================================
 //                Methods
@@ -106,6 +107,11 @@ export class BookSelectionInvestigationComponent{
     this.sessionService.abandonInvestigation();
   }
 
+  openDialogExplanation(): void {
+    this.dialog.open(this.explanationTemplate,{
+      autoFocus : 'false',
+    });
+  }
   /**
    *
    */

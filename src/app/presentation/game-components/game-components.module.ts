@@ -5,7 +5,6 @@ import {LeftCornerButtonComponent} from "./left-corner-button/left-corner-button
 import {RightCornerButtonComponent} from "./right-corner-button/right-corner-button.component";
 import {RouterOutlet} from "@angular/router";
 import {TutorialComponent} from "./tutorial/tutorial.component";
-import {ContextComponent} from "./context/context.component";
 
 
 
@@ -15,7 +14,6 @@ import {ContextComponent} from "./context/context.component";
     LeftCornerButtonComponent,
     RightCornerButtonComponent,
     TutorialComponent,
-    ContextComponent
   ],
   imports: [
     CommonModule,

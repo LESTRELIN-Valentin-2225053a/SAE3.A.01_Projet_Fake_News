@@ -7,12 +7,14 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {RouterLink} from "@angular/router";
 import { ValidateLoginComponent } from './validate-login/validate-login.component';
 import { ValidateRegistrationComponent } from './validate-registration/validate-registration.component';
+import {ContextComponent} from "./context/context.component";
 
 
 
 @NgModule({
   declarations: [
     MenuComponent,
+    ContextComponent,
     FormLoginComponent,
     ValidateLoginComponent,
     ValidateRegistrationComponent,

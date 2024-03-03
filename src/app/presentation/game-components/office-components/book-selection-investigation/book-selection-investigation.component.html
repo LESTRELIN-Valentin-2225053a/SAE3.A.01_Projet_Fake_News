@@ -11,7 +11,10 @@
         <h2 style="text-align: center; font-size: 130%">{{ currentInvestigationOnPage.title }}</h2>  <br>
 
         <div class="description">
-          {{ currentInvestigationOnPage.description }}
+          {{ currentInvestigationOnPage.description }} <br>
+          <button class="button" (click)="openDialogExplanation()">
+            <img alt="question icon" [src]="'/assets/question_icon.png'">
+          </button>
         </div>
         <br>
         <div class="NumPageLeft"> Page: {{ getPage() }} </div>
@@ -43,3 +46,8 @@
     </button>
   </div>
 </div>
+<ng-template #explanationDialog>
+  <div class="explanationDialog">
+    {{ currentInvestigationOnPage.explanation }}
+  </div>
+</ng-template>

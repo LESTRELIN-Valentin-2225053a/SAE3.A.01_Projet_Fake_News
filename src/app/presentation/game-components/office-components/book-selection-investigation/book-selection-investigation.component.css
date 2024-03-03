@@ -101,7 +101,33 @@
 
 }
 
+.button{
+  position: absolute;
+  background-color: transparent;
+  image-rendering: pixelated;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.button img {
+  width: 100%;
+  height: 100%;
+}
+
+.button img:hover{
+  -webkit-filter: drop-shadow(0 0 0.5vw lightgrey);
+}
+
 .ButtonInvestigation:hover {
   background-color: #dc964c;
   transform: scale(1.05);
+}
+
+.explanationDialog{
+  background-color: #f4f4f4;
+  padding: 1%;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  border: #333333 10px solid;
 }

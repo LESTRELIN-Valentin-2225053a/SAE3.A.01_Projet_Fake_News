@@ -5,6 +5,5 @@
     <button class="menuButton" routerLink="office">Commencer</button><br>
     <button *ngIf="!isLogged" class="menuButton" (click)="openDialog()">Connexion</button>
     <button *ngIf="isLogged" class="menuButton" (click)="logout()">Deconnexion</button><br>
-    <button class="menuButton" routerLink="context">Contexte</button><br>
   </div>
 </div>

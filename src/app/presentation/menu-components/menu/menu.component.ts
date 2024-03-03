@@ -1,10 +1,11 @@
 // ============================================
 //                    Import
 // ============================================
-import {Component, ViewContainerRef} from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {AuthService} from "../../../core/services/auth.service";
 import {FormLoginComponent} from "../form-login/form-login.component";
+import {ContextComponent} from "../context/context.component";
 
 
 // ============================================
@@ -15,7 +16,7 @@ import {FormLoginComponent} from "../form-login/form-login.component";
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit{
 
 // ============================================
 //                Variables
@@ -42,6 +43,13 @@ export class MenuComponent {
       else
         this.loginStorage = 'Non connecté';
     });
+  }
+
+  ngOnInit(): void {
+    if (!localStorage.getItem('isFirstVisit')) {
+      this.dialog.open(ContextComponent, {});
+      localStorage.setItem('isFirstVisit', 'true');
+    }
   }
 
   logout(){
