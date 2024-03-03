@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
 }
 
 .mainContentinscription {
@@ -58,6 +57,7 @@ input {
   cursor: pointer;
   text-decoration: underline;
 }
+
 .ContinuInvite:hover{
   color: #dc964c;
 }
