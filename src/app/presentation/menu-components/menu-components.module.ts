@@ -15,7 +15,7 @@ import { ValidateRegistrationComponent } from './validate-registration/validate-
     MenuComponent,
     FormLoginComponent,
     ValidateLoginComponent,
-    ValidateRegistrationComponent
+    ValidateRegistrationComponent,
   ],
   imports: [
     CommonModule,
