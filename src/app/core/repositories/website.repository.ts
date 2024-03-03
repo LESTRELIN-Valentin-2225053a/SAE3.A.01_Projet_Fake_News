@@ -8,5 +8,9 @@ export abstract class WebsiteRepository {
 
   abstract getWebsitesByInvestigationId(id : number): Observable<WebsiteModel[]>;
 
-  //abstract createWebsite(title: string, description: string, url: string, investigation_id: number): Observable<boolean>;
+  abstract newWebsite(formData: FormData): Observable<WebsiteModel>;
+
+  abstract updateWebsite(id: number, formData : FormData): Observable<WebsiteModel>;
+
+  abstract deleteWebsite(id: number): Observable<boolean>;
 }

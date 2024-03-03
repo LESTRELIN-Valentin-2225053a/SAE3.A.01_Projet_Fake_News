@@ -19,7 +19,7 @@ export class WebsiteService {
     return this.websiteRepository.getWebsiteById(id);
   }
 
-  getWebsitesByInvestigationId(id : number): Observable<WebsiteModel[]>{
+  getWebsitesByInvestigationId(id : number): Observable<WebsiteModel[]> {
     return this.websiteRepository.getWebsitesByInvestigationId(id);
   }
 }

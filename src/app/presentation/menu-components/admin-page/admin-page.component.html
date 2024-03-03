@@ -19,7 +19,7 @@
           </ng-container>
         </div>
         <div class="add-investigation">
-          <button class="add-button"(click)="openInvestigationCreate()">Ajouter une enquête</button>
+          <button class="add-button" (click)="openInvestigationCreate()">Ajouter une enquête</button>
         </div>
       </div>
       <div class="investigation-details">
@@ -27,18 +27,20 @@
           <h3>Selectionnez une enquête</h3>
         </div>
         <div *ngIf="currentInvestigation.getValue() !== null && !showInvestigationDetails
-        && !showInvestigationUpdate && !showInvestigationCreate">
+        && !showInvestigationUpdate && !showInvestigationCreate && !showAddWebsite && !showRemoveWebsite">
           <h3>{{ currentInvestigation.getValue()?.title }}</h3>
           <div class="actions">
             <button class="action" (click)="openInvestigationDetails()">Voir les informations</button>
             <button class="action" (click)="openInvestigationUpdate()">Modifier l'enquête</button>
             <button class="action" (click)="deleteCurrentInvestigation()">Supprimer l'enquête</button>
-            <!--TODO: add action for add media and website-->
+            <!--TODO: add action for add media-->
             <button class="action">Ajouter un média à l'enquête</button>
-            <button class="action">Ajouter un site internet à l'enquête</button>
+            <button class="action" (click)="openAddWebsite()">Ajouter un site internet à l'enquête</button>
+            <button class="action">Enlever un média à l'enquête</button>
+            <button class="action" (click)="openRemoveWebsite()">Enlever un site internet à l'enquête</button>
           </div>
         </div>
-        <div *ngIf="currentInvestigation.getValue() !== null && showInvestigationDetails">
+        <div *ngIf="currentInvestigation.getValue() !== null && showInvestigationDetails && !showInvestigationMedia && !showInvestigationWebsite">
           <div class="investigation-details">
             <div class="investigation-details-header">
               <h3>{{ currentInvestigation.getValue()?.title }}</h3>
@@ -50,6 +52,50 @@
                 <p><strong>Description : </strong>{{ currentInvestigation.getValue()?.description }}</p>
                 <p><strong>Type de tableau : </strong>{{ currentInvestigation.getValue()?.board_type }}</p>
                 <p><strong>Explication de l'enquête : </strong>{{ currentInvestigation.getValue()?.explanation }}</p>
+                <div class="investigation-details-actions">
+                  <button class="action" (click)="openInvestigationMedias()">Voir les médias de l'enquête</button>
+                  <button class="action" (click)="openInvestigationWebsites()">Voir les sites internets de l'enquête</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="currentInvestigation.getValue() !== null && showInvestigationDetails && showInvestigationMedia && !showInvestigationWebsite">
+          <div class="investigation-details">
+            <div class="investigation-details-header">
+              <h3>{{ currentInvestigation.getValue()?.title }}</h3>
+              <button class="close-button" (click)="closeInvestigationMedias()">Retour</button>
+            </div>
+            <div class="investigation-details-content">
+              <div class="investigation-details-block">
+                <h4>Médias</h4>
+                <div class="website-list">
+                  <ng-container *ngIf="(mediasOfCurrentInvestigation | async) as medias">
+                    <ul>
+                      <li *ngFor="let media of medias" class="button-investigation">{{ media.description }}</li>
+                    </ul>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="currentInvestigation.getValue() !== null && showInvestigationDetails && !showInvestigationMedia && showInvestigationWebsite">
+          <div class="investigation-details">
+            <div class="investigation-details-header">
+              <h3>{{ currentInvestigation.getValue()?.title }}</h3>
+              <button class="close-button" (click)="closeInvestigationWebsites()">Retour</button>
+            </div>
+            <div class="investigation-details-content">
+              <div class="investigation-details-block">
+                <h4>Sites Internet</h4>
+                <div class="website-list">
+                  <ng-container *ngIf="(websitesOfCurrentInvestigation | async) as websites">
+                    <ul>
+                      <li *ngFor="let website of websites" class="button-investigation">{{ website.title }}</li>
+                    </ul>
+                  </ng-container>
+                </div>
               </div>
             </div>
           </div>
@@ -116,6 +162,54 @@
             </div>
           </div>
         </div>
+        <div *ngIf="currentInvestigation.getValue() !== null && showAddWebsite">
+          <div class="add-website">
+            <div class="add-website-header">
+              <h3>Ajouter un site internet à {{ currentInvestigation.getValue()?.title }}</h3>
+              <button class="close-button" (click)="closeAddWebsite()">Retour</button>
+            </div>
+            <div class="add-website-content">
+              <div class="add-website-block">
+                <h4>Sites Internet</h4>
+                <div class="website-list">
+                  <ng-container *ngIf="(websites | async) as websites">
+                      <form [formGroup]="AddWebsiteForm">
+                        <select formControlName="website_id">
+                          <option value="0" disabled selected hidden>Choisissez un site</option>
+                          <option *ngFor="let website of websites" [value]="website.id">{{ website.title }}</option>
+                        </select>
+                        <button class="action" (click)="linkWebsiteToInvestigation()">Ajouter le site à l'enquête</button>
+                      </form>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="currentInvestigation.getValue() !== null && showRemoveWebsite">
+          <div class="remove-website">
+            <div class="remove-website-header">
+              <h3>Enlever un site internet à {{ currentInvestigation.getValue()?.title }}</h3>
+              <button class="close-button" (click)="closeRemoveWebsite()">Retour</button>
+            </div>
+            <div class="remove-website-content">
+              <div class="remove-website-block">
+                <h4>Sites Internet</h4>
+                <div class="website-list">
+                  <ng-container *ngIf="(websitesOfCurrentInvestigation | async) as websites">
+                    <form [formGroup]="RemoveWebsiteForm">
+                      <select formControlName="website_id">
+                        <option value="0" disabled selected hidden>Choisissez un site</option>
+                        <option *ngFor="let website of websites" [value]="website.id">{{ website.title }}</option>
+                      </select>
+                      <button class="action" (click)="removeWebsiteFromInvestigation()">Enlever le site à l'enquête</button>
+                    </form>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -167,7 +261,7 @@
       </div>
     </div>
 
-    <!--TODO: Make Media and Website part-->
+    <!--TODO: Make Media part-->
     <!--Partie Médias-->
     <div *ngIf="mediaVisible && !investigationVisible && !usersVisible && !websiteVisible" style="display: flex">
       <div class="investigation-list" [style.width.px]="width*0.30">
@@ -178,7 +272,7 @@
           </ng-container>
         </div>
         <div class="add-investigation">
-          <button class="add-button">Ajouter une média</button>
+          <button class="add-button">Ajouter un média</button>
         </div>
       </div>
       <div class="investigation-details">
@@ -193,15 +287,89 @@
         <div class="header-block"><h3>Liste des sites</h3></div>
         <div class="button-list">
           <ng-container *ngIf="(websites | async) as websites">
-            <button *ngFor="let website of websites" class="button-investigation">{{ website.title }}</button>
+            <button *ngFor="let website of websites" class="button-investigation" (click)="clickWebsite(website)">{{ website.title }}</button>
           </ng-container>
         </div>
         <div class="add-investigation">
-          <button class="add-button">Ajouter une site</button>
+          <button class="add-button" (click)="openWebsiteCreate()">Ajouter un site</button>
         </div>
       </div>
       <div class="investigation-details">
-        kiki
+        <div *ngIf="currentWebsite.getValue() === null && !showWebsiteCreate">
+          <h3>Selectionnez un site</h3>
+        </div>
+        <div *ngIf="currentWebsite.getValue() !== null && !showWebsiteDetails && !showWebsiteUpdate">
+          <h3>{{ currentWebsite.getValue()?.title }}</h3>
+          <div class="actions">
+            <button class="action" (click)="openWebsiteDetails()">Voir les informations</button>
+            <button class="action" (click)="openWebsiteUpdate()">Modifier le site</button>
+            <button class="action" (click)="deleteCurrentWebsite()">Supprimer le site</button>
+          </div>
+        </div>
+        <div *ngIf="currentWebsite.getValue() !== null && showWebsiteDetails">
+          <div class="website-details">
+            <div class="website-details-header">
+              <h3>{{ currentWebsite.getValue()?.title }}</h3>
+              <button class="close-button" (click)="closeWebsiteDetails()">Retour</button>
+            </div>
+            <div class="website-details-content">
+              <div class="website-details-block">
+                <h4>Informations</h4>
+                <p><strong>URL : </strong>{{ currentWebsite.getValue()?.link }}</p>
+                <p><strong>Image : </strong></p>
+                <img class="img-detail" [src]="currentWebsite.getValue()?.icon" alt="image">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="currentWebsite.getValue() !== null && showWebsiteUpdate">
+          <div class="website-update">
+            <div class="website-update-header">
+              <h3>Modifier {{ currentWebsite.getValue()?.title }}</h3>
+              <button class="close-button" (click)="closeWebsiteUpdate()">Retour</button>
+            </div>
+            <div class="website-update-content">
+              <div class="website-update-block">
+                <h4>Informations</h4>
+                <form [formGroup]="UpdateWebsiteForm">
+                  <label for="update_title_website">Titre</label>
+                  <input type="text" id="update_title_website" name="title" placeholder="Titre" formControlName="update_title_website" [value]="currentWebsite.getValue()?.title">
+                  <label for="update_link_website">Lien</label>
+                  <input type="text" id="update_link_website" name="link" placeholder="Lien" formControlName="update_link_website" [value]="currentWebsite.getValue()?.link">
+                  <label for="update_icon_w">Icone</label>
+                  <input type="file" id="update_icon_w" name="icon" accept="image/*" (change)="updateOnFileSelected($event)">
+                  <div class="website-update-actions">
+                    <button class="action" (click)="updateCurrentWebsite()">Modifier</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="currentWebsite.getValue() == null && showWebsiteCreate">
+          <div class="website-create">
+            <div class="website-create-header">
+              <h3>Ajouter un site</h3>
+              <button class="close-button" (click)="closeWebsiteCreate()">Retour</button>
+            </div>
+            <div class="website-create-content">
+              <div class="website-create-block">
+                <h4>Informations</h4>
+                <form [formGroup]="CreateWebsiteForm">
+                  <label for="create_title_w">Titre</label>
+                  <input type="text" id="create_title_w" name="title" placeholder="Titre" formControlName="create_title_w" required>
+                  <label for="create_link_w">Lien</label>
+                  <input type="text" id="create_link_w" name="link" placeholder="Lien" formControlName="create_link_w" required>
+                  <label for="create_icon_w">Icone</label>
+                  <input type="file" id="create_icon_w" name="icon" accept="image/*" (change)="CreateOnFileSelected($event)" required>
+                  <div class="website-create-actions">
+                    <button class="action" (click)="createWebsite()">Ajouter</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

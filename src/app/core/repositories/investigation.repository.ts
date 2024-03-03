@@ -11,4 +11,6 @@ export abstract class InvestigationRepository {
   abstract updateInvestigation(id : number, title : string, description : string,
                                explication : string, board_type : string) : Observable<InvestigationModel>;
   abstract deleteInvestigation(id: number) : Observable<boolean>;
+  abstract linkWebsiteToInvestigation(investigation_id: number, website_id: number): Observable<boolean>;
+  abstract removeWebsiteFromInvestigation(investigation_id: number, website_id: number): Observable<boolean>;
 }

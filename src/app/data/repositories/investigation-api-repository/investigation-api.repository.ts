@@ -5,6 +5,7 @@ import {ApiRepository} from "../api.repository";
 import {InvestigationApiRepositoryMapper} from "./investigation-api-repository.mapper";
 import {InvestigationApiEntity} from "./investigation-api-entity";
 import {Injectable} from "@angular/core";
+import {HttpResponse} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +49,6 @@ export class InvestigationApiRepository extends ApiRepository implements Investi
   }
 
   updateInvestigation(id: number, title: string, description: string, explication: string, board_type: string): Observable<InvestigationModel> {
-    console.log("caca");
     return this.http.put<InvestigationApiEntity>(`${this.apiUrl}/admin/investigation/update/${id}`, {
       title: title,
       description: description,
@@ -57,4 +57,13 @@ export class InvestigationApiRepository extends ApiRepository implements Investi
     }, {withCredentials: true}).pipe(map(this.mapper.mapFrom));
   }
 
+  linkWebsiteToInvestigation(investigation_id: number, website_id: number): Observable<boolean> {
+    return this.http.put<HttpResponse<any>>(`${this.apiUrl}/admin/website/${website_id}/link/${investigation_id}`, {}, {withCredentials: true})
+      .pipe(map(response => response.status === 201));
+  }
+
+  removeWebsiteFromInvestigation(investigation_id: number, website_id: number): Observable<boolean> {
+    return this.http.put<HttpResponse<any>>(`${this.apiUrl}/admin/investigation/${investigation_id}/removeWebsite/${website_id}`, {},{withCredentials: true})
+      .pipe(map(response => response.status === 204));
+  }
 }
