@@ -11,14 +11,19 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.list-element {
+.invest-num, .list-element {
     position: relative;
     text-align: center;
     width: 100%;
-    height: auto; 
-    margin-bottom: 10px; 
+    height: auto;
+}
+
+.invest-num {
+    background-color: rgba(169, 224, 66, 0.8);
+}
+
+.list-element { 
     background-color: rgba(255, 255, 255, 0.8);  
-    padding: 5px;
     transition: background-color 0.3s ease;
 }
 
@@ -34,6 +39,10 @@
         height: 40%;
     }
 
+    .invest-num {
+        font-size: 5vh;
+    }
+
     .list-element {
         font-size: 4vh;
     }
@@ -45,6 +54,10 @@
         top: 40%;
         width: 80%;
         height: 20%;
+    }
+
+    .invest-num {
+        font-size: 3vh;
     }
 
     .list-element {
