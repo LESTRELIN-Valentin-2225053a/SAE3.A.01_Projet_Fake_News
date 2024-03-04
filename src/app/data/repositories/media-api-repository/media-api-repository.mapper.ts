@@ -5,9 +5,9 @@ import {MediaModel} from "../../../core/domain/media.model";
 export class MediaApiRepositoryMapper extends Mapper<MediaApiEntity, MediaModel>{
   mapFrom(param: MediaApiEntity): MediaModel {
     return {
-        id: param.id,
+        id: param.media_id,
         description: param.description,
-        trustWorthy: param.trustWorthy,
+        trustWorthy: param.isTrustworthy,
         userTrustWorthy: param.userTrustWorthy,
         type: param.type,
         link: param.link,
@@ -21,9 +21,9 @@ export class MediaApiRepositoryMapper extends Mapper<MediaApiEntity, MediaModel>
 
     param.forEach(mediaApiEntity => {
       mediaModels.push({
-        id: mediaApiEntity.id,
+        id: mediaApiEntity.media_id,
         description: mediaApiEntity.description,
-        trustWorthy: mediaApiEntity.trustWorthy,
+        trustWorthy: mediaApiEntity.isTrustworthy,
         userTrustWorthy: mediaApiEntity.userTrustWorthy,
         type: mediaApiEntity.type,
         link: mediaApiEntity.link,
@@ -37,9 +37,9 @@ export class MediaApiRepositoryMapper extends Mapper<MediaApiEntity, MediaModel>
 
   mapTo(param: MediaModel): MediaApiEntity {
     return {
-      id: param.id,
+      media_id: param.id,
       description: param.description,
-      trustWorthy: param.trustWorthy,
+      isTrustworthy: param.trustWorthy,
       userTrustWorthy: param.userTrustWorthy,
       type: param.type,
       link: param.link,
@@ -54,9 +54,9 @@ export class MediaApiRepositoryMapper extends Mapper<MediaApiEntity, MediaModel>
 
     param.forEach(mediaModel => {
       mediaApiEntities.push({
-        id: mediaModel.id,
+        media_id: mediaModel.id,
         description: mediaModel.description,
-        trustWorthy: mediaModel.trustWorthy,
+        isTrustworthy: mediaModel.trustWorthy,
         userTrustWorthy: mediaModel.userTrustWorthy,
         type: mediaModel.type,
         link: mediaModel.link,

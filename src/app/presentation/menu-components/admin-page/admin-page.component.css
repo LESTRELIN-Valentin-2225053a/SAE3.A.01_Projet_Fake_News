@@ -90,3 +90,9 @@
   max-width: 15vw;
   object-fit: cover;
 }
+
+.media-img-block{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

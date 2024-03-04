@@ -66,4 +66,14 @@ export class InvestigationApiRepository extends ApiRepository implements Investi
     return this.http.put<HttpResponse<any>>(`${this.apiUrl}/admin/investigation/${investigation_id}/removeWebsite/${website_id}`, {},{withCredentials: true})
       .pipe(map(response => response.status === 204));
   }
+
+  linkMediaToInvestigation(investigation_id: number, media_id: number): Observable<boolean> {
+    return this.http.put<HttpResponse<any>>(`${this.apiUrl}/admin/media/${media_id}/link/${investigation_id}`, {}, {withCredentials: true})
+      .pipe(map(response => response.status === 201));
+  }
+
+  removeMediaFromInvestigation(investigation_id: number, media_id: number): Observable<boolean> {
+    return this.http.put<HttpResponse<any>>(`${this.apiUrl}/admin/investigation/${investigation_id}/removeMedia/${media_id}`, {},{withCredentials: true})
+      .pipe(map(response => response.status === 204));
+  }
 }

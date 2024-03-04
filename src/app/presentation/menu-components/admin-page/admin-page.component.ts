@@ -570,4 +570,169 @@ export class AdminPageComponent {
 
   //TODO : Media actions
 
+  // ============================================
+  //                Media Actions
+  // ============================================
+
+  //              Media Variables
+
+  //Variables for the media actions and display
+  showMediaDetails: boolean = false;
+  showMediaUpdate: boolean = false;
+  showMediaCreate: boolean = false;
+
+  UpdateMediaForm: FormGroup = new FormGroup({
+    update_description_media: new FormControl(''),
+    update_isTrustworthy_media: new FormControl(''),
+    update_type_media: new FormControl('')
+  });
+  UpdtaePictureMedia : File = new File([], "NoFiles");
+  UpdateLinkMedia : File = new File([], "NoFiles");
+
+  CreateMediaForm: FormGroup = new FormGroup({
+    create_description_media: new FormControl(''),
+    create_isTrustworthy_media: new FormControl(''),
+    create_type_media: new FormControl('')
+  });
+  CreatePictureMedia : File = new File([], "NoFiles");
+  CreateLinkMedia : File = new File([], "NoFiles");
+
+
+  //              Media Methods
+
+  openMediaDetails() {
+    this.showMediaDetails = true;
+    this.showMediaUpdate = false;
+    this.showMediaCreate = false;
+    console.log(this.currentMedia.getValue());
+  }
+
+  closeMediaDetails() {
+    this.showMediaDetails = false;
+  }
+
+  openMediaUpdate() {
+    this.showMediaUpdate = true;
+    this.showMediaCreate = false;
+    this.showMediaDetails = false;
+    if (this.currentMedia.getValue() != null){
+      this.UpdateMediaForm.setValue({
+        // @ts-ignore
+        update_description_media: this.currentMedia.getValue()?.description,
+        // @ts-ignore
+        update_isTrustworthy_media: this.currentMedia.getValue()?.trustWorthy,
+        // @ts-ignore
+        update_type_media: this.currentMedia.getValue()?.type
+      });
+    }
+  }
+
+  closeMediaUpdate() {
+    this.showMediaUpdate = false;
+  }
+
+  openMediaCreate() {
+    this.showMediaCreate = true;
+    this.showMediaUpdate = false;
+    this.showMediaDetails = false;
+    this.currentMedia.next(null);
+  }
+
+  closeMediaCreate() {
+    this.showMediaCreate = false;
+  }
+
+  deleteCurrentMedia(){
+    if (this.currentMedia.getValue() != null){
+      // @ts-ignore
+      this.AdminService.deleteMedia(this.currentMedia.getValue().id)
+        .subscribe(() => {
+          this.medias = this.mediaService.getAllMedias();
+      });
+    }
+  }
+
+  createMedia(){
+    let description : string = this.CreateMediaForm.get('create_description_media')?.value;
+    let isTrustworthy : boolean = this.CreateMediaForm.get('create_isTrustworthy_media')?.value;
+    let type : string = this.CreateMediaForm.get('create_type_media')?.value;
+    if (description== "" || type == "" || description == null || type == null || this.CreatePictureMedia.name == "NoFiles" || this.CreateLinkMedia.name == "NoFiles"){
+      console.error('Veuillez remplir tous les champs.');
+      return;
+    }
+    else {
+      const formDataFirstRequest = new FormData();
+      formDataFirstRequest.append('description', description);
+      if(isTrustworthy){
+        formDataFirstRequest.append('isTrustworthy', "1");
+      } else{
+        formDataFirstRequest.append('isTrustworthy', "0");
+      }
+      formDataFirstRequest.append('type', type);
+      formDataFirstRequest.append('picture', this.CreatePictureMedia);
+      this.AdminService.newMedia(formDataFirstRequest)
+        .subscribe(() => {
+          this.medias = this.mediaService.getAllMedias();
+        });
+      const formDataSecond = new FormData();
+      formDataSecond.append('link', this.CreateLinkMedia);
+      this.AdminService.addingLinkFileToMedia(1, formDataSecond)
+        .subscribe(() => {
+          this.medias = this.mediaService.getAllMedias();
+        });
+    }
+  }
+
+  CreatePictureOnFileSelected(event: Event) {
+    // @ts-ignore
+    this.CreatePictureMedia = event.target.files[0];
+  }
+
+  CreateLinkOnFileSelected(event: Event) {
+    // @ts-ignore
+    this.CreateLinkMedia = event.target.files[0];
+  }
+
+  updateCurrentMedia(){
+    if (this.currentMedia.getValue() != null){
+      let description : string = this.UpdateMediaForm.get('update_description_media')?.value;
+      let isTrustworthy : boolean = this.UpdateMediaForm.get('update_isTrustworthy_media')?.value;
+      let type : string = this.UpdateMediaForm.get('update_type_media')?.value;
+      const formDataFirstRequest = new FormData();
+      formDataFirstRequest.append('description', description);
+      if(isTrustworthy){
+        formDataFirstRequest.append('isTrustworthy', "1");
+      } else{
+        formDataFirstRequest.append('isTrustworthy', "0");
+      }
+      formDataFirstRequest.append('type', type);
+      if (this.UpdtaePictureMedia.name != "NoFiles"){
+        formDataFirstRequest.append('picture', this.UpdtaePictureMedia);
+      }
+      // @ts-ignore
+      let id : number = this.currentMedia.getValue().id;
+      this.AdminService.updateMedia(id, formDataFirstRequest)
+        .subscribe(() => {
+          this.medias = this.mediaService.getAllMedias();
+        });
+      const formDataSecond = new FormData();
+      if (this.UpdateLinkMedia.name != "NoFiles"){
+        formDataSecond.append('link', this.UpdateLinkMedia);
+        this.AdminService.addingLinkFileToMedia(id, formDataSecond)
+          .subscribe(() => {
+            this.medias = this.mediaService.getAllMedias();
+          });
+      }
+    }
+  }
+
+  UpdatePictureOnFileSelected(event: Event) {
+    // @ts-ignore
+    this.UpdtaePictureMedia = event.target.files[0];
+  }
+
+  UpdateLinkOnFileSelected(event: Event) {
+    // @ts-ignore
+    this.UpdateLinkMedia = event.target.files[0];
+  }
 }

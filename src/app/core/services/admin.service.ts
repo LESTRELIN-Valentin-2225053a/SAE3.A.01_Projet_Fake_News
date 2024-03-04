@@ -4,6 +4,8 @@ import {UserRepository} from "../repositories/user.repository";
 import {Observable, of} from "rxjs";
 import {WebsiteRepository} from "../repositories/website.repository";
 import {WebsiteModel} from "../domain/website.model";
+import {MediaModel} from "../domain/media.model";
+import {MediaRepository} from "../repositories/media.repository";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,8 @@ export class AdminService {
 
   constructor(private investigationRepository: InvestigationRepository,
               private userRepository : UserRepository,
-              private websiteRepository : WebsiteRepository) {}
+              private websiteRepository : WebsiteRepository,
+              private mediaRepository : MediaRepository) {}
 
   checkAdminStatus(): boolean {
     return this.userRepository.checkAdminStatus();
@@ -54,10 +57,6 @@ export class AdminService {
     return this.investigationRepository.removeWebsiteFromInvestigation(investigation_id, website_id);
   }
 
-  linkMediaToInvestigation(investigation_id: number, media_id: number): Observable<boolean> {
-    return of();
-  }
-
   newWebsite(formdata : FormData): Observable<WebsiteModel> {
     return this.websiteRepository.newWebsite(formdata);
   }
@@ -68,6 +67,30 @@ export class AdminService {
 
   deleteWebsite(id: number): Observable<boolean> {
     return this.websiteRepository.deleteWebsite(id);
+  }
+
+  newMedia(formdata : FormData): Observable<MediaModel> {
+    return this.mediaRepository.newMedia(formdata);
+  }
+
+  updateMedia(id: number, formdata : FormData): Observable<MediaModel> {
+    return this.mediaRepository.updateMedia(id, formdata);
+  }
+
+  addingLinkFileToMedia(id: number, formdata : FormData): Observable<MediaModel> {
+    return this.mediaRepository.addingLinkFileToMedia(id, formdata);
+  }
+
+  deleteMedia(id: number): Observable<boolean> {
+    return this.mediaRepository.deleteMedia(id);
+  }
+
+  linkMediaToInvestigation(website_id: number, media_id: number): Observable<boolean> {
+    return this.investigationRepository.linkMediaToInvestigation(website_id, media_id);
+  }
+
+  removeMediaFromInvestigation(website_id: number, media_id: number): Observable<boolean> {
+    return this.investigationRepository.removeMediaFromInvestigation(website_id, media_id);
   }
 
   //TODO : functions of website and media

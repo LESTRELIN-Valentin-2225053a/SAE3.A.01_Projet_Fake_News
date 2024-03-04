@@ -268,15 +268,119 @@
         <div class="header-block"><h3>Liste des médias</h3></div>
         <div class="button-list">
           <ng-container *ngIf="(medias | async) as medias">
-            <button *ngFor="let medias of medias" class="button-investigation">{{ medias.description }}</button>
+            <button *ngFor="let media of medias" class="button-investigation" (click)="clickMedia(media)">{{ media.description }}</button>
           </ng-container>
         </div>
         <div class="add-investigation">
-          <button class="add-button">Ajouter un média</button>
+          <button class="add-button" (click)="openMediaCreate()">Ajouter un média</button>
         </div>
       </div>
       <div class="investigation-details">
-        caca
+        <div *ngIf="currentMedia.getValue() === null && !showMediaCreate">
+          <h3>Selectionnez un média</h3>
+        </div>
+        <div *ngIf="currentMedia.getValue() !== null && !showMediaDetails && !showMediaCreate && !showMediaUpdate">
+          <h3>{{ currentMedia.getValue()?.description }}</h3>
+          <div class="actions">
+            <button class="action" (click)="openMediaDetails()">Voir les informations</button>
+            <button class="action" (click)="openMediaUpdate()">Modifier le média</button>
+            <button class="action" (click)="deleteCurrentMedia()">Supprimer le média</button>
+          </div>
+        </div>
+        <div *ngIf="currentMedia.getValue() !== null && showMediaDetails">
+          <div class="media-details">
+            <div class="media-details-header">
+              <h3>{{ currentMedia.getValue()?.description }}</h3>
+              <button class="close-button" (click)="closeMediaDetails()">Retour</button>
+            </div>
+            <div class="media-details-content">
+              <div class="media-details-block">
+                <h4>Informations</h4>
+                <p><strong>Type : </strong>{{ currentMedia.getValue()?.type }}</p>
+                <p><strong>Media de confiance : </strong>{{ currentMedia.getValue()?.trustWorthy ? "Oui" : "Non"}}</p>
+                <div class="media-img-block">
+                  <p><strong>Image dans le tableau : </strong></p>
+                  <img class="img-detail" [src]="currentMedia.getValue()?.picture" alt="image">
+                  <p><strong>Media :</strong></p>
+                  <div *ngIf="currentMedia.getValue()?.type === 'video'">
+                    <video width="320" height="240" controls>
+                      <source [src]="currentMedia.getValue()?.link" type="video/mp4">
+                    </video>
+                  </div>
+                  <div *ngIf="currentMedia.getValue()?.type === 'img'">
+                    <img class="img-detail" [src]="currentMedia.getValue()?.link" alt="image">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="currentMedia.getValue() !== null && showMediaUpdate">
+          <div class="media-update">
+            <div class="media-update-header">
+              <h3>Modifier {{ currentMedia.getValue()?.description }}</h3>
+              <button class="close-button" (click)="closeMediaUpdate()">Retour</button>
+            </div>
+            <div class="media-update-content">
+              <div class="media-update-block">
+                <h4>Informations</h4>
+                <form [formGroup]="UpdateMediaForm">
+                  <label for="update_description">Description</label>
+                  <input type="text" id="update_description_media" name="update_description_media" placeholder="Description" formControlName="update_description_media" [value]="currentMedia.getValue()?.description">
+                  <div class="radio-input">
+                    <label>Type de média</label>
+                    <input type="radio" id="update_type_media_img" name="update_type_media" value="img" formControlName="update_type_media">
+                    <label for="update_type_media_img">Image</label>
+                    <input type="radio" id="update_type_media_vid" name="update_type_media" value="video" formControlName="update_type_media">
+                    <label for="update_type_media_vid">Vidéo</label>
+                  </div>
+                  <label for="update_isTrustworthy_media">Media de confiance</label>
+                  <input type="checkbox" id="update_isTrustworthy_media" name="trustWorthy" formControlName="update_isTrustworthy_media" [checked]="currentMedia.getValue()?.trustWorthy">
+                  <label for="update_link">Lien</label>
+                  <input type="file" id="update_link" name="picture" accept="image/*" (change)="UpdateLinkOnFileSelected($event)">
+                  <label for="update_picture">Image sur le tableau</label>
+                  <input type="file" id="update_picture" name="picture" accept="image/*" (change)="UpdatePictureOnFileSelected($event)">
+                  <div class="media-update-actions">
+                    <button class="action" (click)="updateCurrentMedia()">Modifier</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="currentMedia.getValue() == null && showMediaCreate">
+          <div class="media-create">
+            <div class="media-create-header">
+              <h3>Ajouter un média</h3>
+              <button class="close-button" (click)="closeMediaCreate()">Retour</button>
+            </div>
+            <div class="media-create-content">
+              <div class="media-create-block">
+                <h4>Informations</h4>
+                <form [formGroup]="CreateMediaForm">
+                  <label for="create_description_media">Description</label>
+                  <input type="text" id="create_description_media" name="description" placeholder="Description" formControlName="create_description_media" required>
+                  <div class="radio-input">
+                    <label>Type de média</label>
+                    <input type="radio" id="create_type_media_img" name="create_type_media" value="img" formControlName="create_type_media">
+                    <label for="create_type_media_img">Image</label>
+                    <input type="radio" id="create_type_media_vid" name="create_type_media" value="video" formControlName="create_type_media">
+                    <label for="create_type_media_vid">Vidéo</label>
+                  </div>
+                  <label for="create_isTrustworthy_media">Media de confiance</label>
+                  <input type="checkbox" id="create_isTrustworthy_media" name="trustWorthy" formControlName="create_isTrustworthy_media">
+                  <label for="create_link">Lien</label>
+                  <input type="file" id="create_link" name="link" accept="image/*" (change)="CreateLinkOnFileSelected($event)" required>
+                  <label for="create_picture">Image sur le tableau</label>
+                  <input type="file" id="create_picture" name="picture" accept="image/*" (change)="CreatePictureOnFileSelected($event)" required>
+                  <div class="media-create-actions">
+                    <button class="action" (click)="createMedia()">Ajouter</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
