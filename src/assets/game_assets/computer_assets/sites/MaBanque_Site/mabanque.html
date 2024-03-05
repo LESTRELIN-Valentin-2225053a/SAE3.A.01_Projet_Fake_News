@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Banque</title>
+    <link rel="stylesheet" type="text/css" href="mabanque.css">
+</head>
+<body>
+
+<header>
+   <img src="logoMaBanque.png">
+</header>
+
+<form>
+    <h2>Mon espace</h2>
+    <input type="text" placeholder="Identifiant" required><br>
+    <input type="password" placeholder="Mot de passe" required><br>
+    <button type="submit">Se connecter</button>
+    <p>Vous n'avez pas de compte ? <a href="">Rejoindre notre banque</a></p>
+</form>
+
+<button class="panelButton" onclick="details('panel0')">Je n'ai pas de compte, que dois-je faire ?</button>
+<div class="panel" id="panel0">
+    Prenez au plus vite rendez-vous avec un conseiller d'une de nos agences pour<br> 
+    ouvrir un compte dans notre banque. 
+</div>
+<button class="panelButton" onclick="details('panel1')">Comment s'identifier ?</button>
+<div class="panel" id="panel1">
+    Entrez votre identifiant à 11 chiffres, puis votre mot de passe à 6 chiffres.<br>
+    Par sécurité, il vous sera demandé de temps à autre une double authentification.<br>
+    Par sécurité, n'enregistrez pas vos codes dans votre navigateur.  
+</div>
+<button class="panelButton" onclick="details('panel2')">À quoi ressemble votre compte ?</button>
+<div class="panel" id="panel2">
+    Sur votre espace, vous aurez accès à votre compte de dépôt et à vos divers livrets (A, jeune, etc.),<br>
+    ainsi qu'à vos historiques de paiements et de versements. Il sera également possible de faire des<br>
+    virements ou encore de faire des demandes de crédit. 
+</div>
+<button class="panelButton" onclick="details('panel3')">Que faire en cas de perte de mot de passe ?</button>
+<div class="panel" id="panel3">
+    Réessayez, sinon, veuillez contacter un conseiller de votre caisse régionale qui vous répondra<br>
+    dans les plus brefs délais.
+</div>
+<button class="panelButton" onclick="details('panel4')">Autre ?</button>
+<div class="panel" id="panel4">
+    Vous avez un problème particulier ? Contactez un de nos conseillers.
+</div>
+
+<div class="footer">
+    <p>© 2024 Ma Banque. Tous droits réservés.</p>
+    <p>Informations légales</p>
+</div>
+
+<script>
+    function details(panelId) {
+        var panel = document.getElementById(panelId);
+        if (panel.classList.contains("show")) {
+            panel.classList.remove("show");
+        } 
+        else {
+            panel.classList.add("show");
+        }
+    }
+</script>
+
+</body>
+</html>
