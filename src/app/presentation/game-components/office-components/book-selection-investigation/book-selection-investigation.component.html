@@ -1,33 +1,33 @@
 <div class="main">
   <div class="LeftPart">
     <button (click)="decreasePage()" class="SwitchPage" [disabled]="isConductingInvestigation || getPage() <= 1">
-          <img alt="page icon" src="/assets/return_icon.png">
+          <img alt="page icon" src="/assets/game_assets/icons_assets/return_icon.png">
     </button>
   </div>
   <div class="Book">
     <div class="Page">
-      <img class="BookPage" src="/assets/BookPixelRightPage.png" alt="Page droite du livre">
+      <img class="BookPage" src="/assets/game_assets/book_assets/BookPixelRightPage.png" alt="Page droite du livre">
       <div class="leftPageText">
         <h2 style="text-align: center; font-size: 130%">{{ currentInvestigationOnPage.title }}</h2>
         <div class="description">
           {{ currentInvestigationOnPage.description }} <br>
           <button class="button" (click)="openDialogExplanation()">
-            <img alt="question icon" [src]="'/assets/white_question_icon.png'">
+            <img alt="question icon" [src]="'/assets/game_assets/icons_assets/white_question_icon.png'">
           </button>
         </div>
         <div class="NumPageLeft"> Page: {{ getPage() }} </div>
       </div>
     </div>
     <div class="Page">
-      <img class="BookPage" src="/assets/BookPixelLeftPage.png" alt="Page gauche du livre">
+      <img class="BookPage" src="/assets/game_assets/book_assets/BookPixelLeftPage.png" alt="Page gauche du livre">
       <div class="rightPageText">
 
         <div style="margin-top: 5%">
           <div *ngIf="currentInvestigationOnPage.completion">
-            <img src="/assets/checkFull.png" alt="Check vert" class="verif">
+            <img src="/assets/game_assets/book_assets/checkFull.png" alt="Check vert" class="verif">
           </div>
           <div *ngIf="!currentInvestigationOnPage.completion">
-            <img src="/assets/checkEmpty.png" alt="Croix rouge" class="verif">
+            <img src="/assets/game_assets/book_assets/checkEmpty.png" alt="Croix rouge" class="verif">
           </div>
         </div>
         <ng-container *ngIf="!isConductingInvestigation">
@@ -45,7 +45,7 @@
   </div>
   <div class="RightPart">
     <button (click)="increasePage()" class="SwitchPage" [disabled]="isConductingInvestigation || getPage() >= investigations.length*2-1">
-      <img alt="page icon" src="/assets/inversed_return_icon.png">
+      <img alt="page icon" src="/assets/game_assets/icons_assets/inversed_return_icon.png">
     </button>
   </div>
 </div>

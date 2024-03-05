@@ -7,7 +7,7 @@
 
 .post-it{
   position: absolute;
-  background-image: url("/assets/post-it.png");
+  background-image: url("/assets/game_assets/board_assets/post-it.png");
   image-rendering: pixelated;
   background-size: contain;
   background-repeat: no-repeat;
