@@ -2,7 +2,6 @@ import {Mapper} from "../../../../core/base/mapper";
 import {MediaLocationApiEntity} from "./media-location-api-entity";
 import {MediaLocationModel} from "../../../../core/domain/media-location.model";
 import {MediaModel} from "../../../../core/domain/media.model";
-import {map} from "rxjs";
 
 /**
  * Mapper class for mapping between MediaLocationApiEntity and MediaLocationModel objects.
