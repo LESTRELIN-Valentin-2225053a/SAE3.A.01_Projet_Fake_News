@@ -12,7 +12,7 @@
         <div class="description">
           {{ currentInvestigationOnPage.description }} <br>
           <button class="button" (click)="openDialogExplanation()">
-            <img alt="question icon" [src]="'/assets/question_icon.png'">
+            <img alt="question icon" [src]="'/assets/white_question_icon.png'">
           </button>
         </div>
         <div class="NumPageLeft"> Page: {{ getPage() }} </div>
@@ -31,7 +31,7 @@
           </div>
         </div>
         <ng-container *ngIf="!isConductingInvestigation">
-          <button class="ButtonInvestigation" id="BoutonSelection" *ngIf="!currentInvestigationOnPage.completion" (click)="selectInvestigation()">Sélectionner</button>
+          <button class="ButtonInvestigation" id="BoutonSelection" *ngIf="!currentInvestigationOnPage.completion" (click)="selectInvestigation()">Commencer l'enquetes</button>
           <button class="ButtonInvestigation" id="RetryButton" *ngIf="currentInvestigationOnPage.completion" (click)="restartInvestigation()">Réessayer</button>
         </ng-container>
         <ng-container *ngIf="isConductingInvestigation" >
@@ -51,6 +51,7 @@
 </div>
 <ng-template #explanationDialog>
   <div class="explanationDialog">
+    <button (click)="CloseDialog()">X</button> <br>
     {{ currentInvestigationOnPage.explanation }}
   </div>
 </ng-template>

@@ -2,13 +2,12 @@
 //                    Import
 // ============================================
 import {Component, TemplateRef, ViewChild} from '@angular/core';
-import {Dialog} from "@angular/cdk/dialog";
+import {Dialog, DialogRef} from "@angular/cdk/dialog";
 import {SessionService} from "../../../../core/services/session.service";
 import {InvestigationModel} from "../../../../core/domain/investigation.model";
 import {WrongAnswerComponent} from "../wrong-answer/wrong-answer.component";
 import {RightAnswerComponent} from "../right-answer/right-answer.component";
 import {WaitingScreenComponent} from "../waiting-screen/waiting-screen.component";
-
 
 // ============================================
 //                Component
@@ -26,6 +25,7 @@ export class BookSelectionInvestigationComponent{
   investigations : InvestigationModel[];
   currentInvestigationOnPage : InvestigationModel;
   isConductingInvestigation : boolean;
+  dialogRef: DialogRef<unknown, any>;
   @ViewChild('explanationDialog', { read: TemplateRef }) explanationTemplate! : TemplateRef<any>;
 
 // ============================================
@@ -77,6 +77,9 @@ export class BookSelectionInvestigationComponent{
     this.isConductingInvestigation = true;
     const waitingDialog = this.dialog.open(WaitingScreenComponent,{autoFocus : 'false'});
     this.sessionService.changeInvestigation(this.currentInvestigationOnPage).subscribe(() => waitingDialog.close());
+    this.dialogRef = this.dialog.open(this.explanationTemplate, {
+      autoFocus: 'false',
+    });
   }
 
   restartInvestigation(): void {
@@ -122,8 +125,8 @@ export class BookSelectionInvestigationComponent{
   }
 
   openDialogExplanation(): void {
-    this.dialog.open(this.explanationTemplate,{
-      autoFocus : 'false',
+    this.dialogRef = this.dialog.open(this.explanationTemplate, {
+      autoFocus: 'false',
     });
   }
   /**
@@ -142,5 +145,9 @@ export class BookSelectionInvestigationComponent{
     this.dialog.open(WrongAnswerComponent, {
       autoFocus: 'false',
     });
+  }
+
+  CloseDialog(): void {
+    this.dialogRef.close();
   }
 }
