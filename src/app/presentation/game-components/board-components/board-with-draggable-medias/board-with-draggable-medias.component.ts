@@ -1,6 +1,3 @@
-// ============================================
-//                    Import
-// ============================================
 import {Component, OnDestroy} from '@angular/core';
 import {BoardWithMediasComponent} from "../board-with-medias/board-with-medias.component";
 import {MediaLocationModel} from "../../../../core/domain/media-location.model";
@@ -8,43 +5,43 @@ import {SessionService} from "../../../../core/services/session.service";
 import {CdkDragEnd} from "@angular/cdk/drag-drop";
 import {MediaModel} from "../../../../core/domain/media.model";
 
-// ============================================
-//                Component
-// ============================================
+/**
+ * Component representing a board with draggable media elements.
+ * Extends the BoardWithMediasComponent to include functionality for draggable media elements.
+ * Manages the positioning of media elements on the board and their interaction with media locations.
+ */
 @Component({
   selector: 'board-with-draggable-medias',
   templateUrl: './board-with-draggable-medias.component.html',
   styleUrl: './board-with-draggable-medias.component.css'
 })
 export class BoardWithDraggableMediasComponent extends BoardWithMediasComponent implements OnDestroy{
-// ============================================
-//                Variables
-// ============================================
-
+  /** Array of media locations on the board. */
   mediaLocations: MediaLocationModel[];
 
-// ============================================
-//                Methods
-// ============================================
-
-
+  /**
+   * Constructs a new instance of the BoardWithDraggableMediasComponent.
+   * @param sessionService - The session service for managing user session and related data.
+   */
   constructor(sessionService: SessionService) {
     super(sessionService);
   }
 
+  /** Lifecycle hook called when the component is destroyed. */
   ngOnDestroy(): void {
     console.log(this.medias);
     console.log(this.mediaLocations);
   }
 
-  override ngOnInit() {
+  /** Lifecycle hook called after Angular has initialized the component's properties. */
+  override ngOnInit(): void {
     super.ngOnInit();
     this.mediaLocations = this.sessionService.mediaLocations.getValue();
   }
 
   /**
-   *
-   * @param $event
+   * Checks if a media element has been dragged onto a media location on the board.
+   * @param $event - The drag event containing information about the dragged media element.
    */
   checkIfDraggedOnMediaLocation($event : CdkDragEnd<MediaModel>) {
     let media: MediaModel = $event.source.data;

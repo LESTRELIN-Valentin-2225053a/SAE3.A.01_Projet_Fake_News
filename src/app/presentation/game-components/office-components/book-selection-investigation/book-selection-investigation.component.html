@@ -36,7 +36,7 @@
         </ng-container>
         <ng-container *ngIf="isConductingInvestigation" >
           <button class="ButtonInvestigation" (click)="validateResponse()">Valider mes réponses</button>
-          <button class="ButtonInvestigation" *ngIf="!currentInvestigationOnPage.completion" (click)="saveInvestigation()">Sauvegarder mes réponses</button>
+          <button class="ButtonInvestigation" *ngIf="!currentInvestigationOnPage.completion && isUserConnected" (click)="saveInvestigation()">Sauvegarder mes réponses</button>
           <button class="ButtonInvestigation" (click)="abandonInvestigation()">Abandonner</button>
         </ng-container>
         <div class="NumPageRight"> Page: {{ getPage() + 1 }} </div>

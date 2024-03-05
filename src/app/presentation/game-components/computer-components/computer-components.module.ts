@@ -8,7 +8,10 @@ import {ComputerComponentsRoutingModule} from "./computer-components-routing.mod
 import {GameComponentsModule} from "../game-components.module";
 
 
-
+/**
+ * Module containing components related to the computer interface.
+ * It imports necessary modules for functionality and declares components for use.
+ */
 @NgModule({
     imports: [
         CommonModule,

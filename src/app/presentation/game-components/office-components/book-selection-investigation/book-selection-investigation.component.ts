@@ -1,6 +1,3 @@
-// ============================================
-//                    Import
-// ============================================
 import {Component, TemplateRef, ViewChild} from '@angular/core';
 import {Dialog} from "@angular/cdk/dialog";
 import {SessionService} from "../../../../core/services/session.service";
@@ -9,10 +6,10 @@ import {WrongAnswerComponent} from "../wrong-answer/wrong-answer.component";
 import {RightAnswerComponent} from "../right-answer/right-answer.component";
 import {WaitingScreenComponent} from "../waiting-screen/waiting-screen.component";
 
-
-// ============================================
-//                Component
-// ============================================
+/**
+ * Component responsible for managing the book selection process during an investigation.
+ * It allows users to select investigations, navigate through investigation pages, validate responses, and manage ongoing investigations.
+ */
 @Component({
   selector: 'app-book-selection-investigation',
   templateUrl: './book-selection-investigation.component.html',
@@ -20,34 +17,44 @@ import {WaitingScreenComponent} from "../waiting-screen/waiting-screen.component
 })
 export class BookSelectionInvestigationComponent{
 
-// ============================================
-//                Variables
-// ===========================================
+  /** Indicates whether the user is connected */
+  isUserConnected : boolean;
+
+  /** List of investigations */
   investigations : InvestigationModel[];
+
+  /** Current investigation on the page */
   currentInvestigationOnPage : InvestigationModel;
+
+  /** Indicates whether an investigation is currently being conducted */
   isConductingInvestigation : boolean;
+
+  /** Reference to the explanation dialog template */
   @ViewChild('explanationDialog', { read: TemplateRef }) explanationTemplate! : TemplateRef<any>;
 
-// ============================================
-//                Methods
-// ============================================
-
+  /**
+   * Constructor
+   * @param dialog The Angular Material dialog service.
+   * @param sessionService The service managing the user session.
+   */
   constructor(public dialog: Dialog, private sessionService : SessionService){
+    this.isUserConnected = sessionService.sessionBehavior === 'CONNECTED';
     this.investigations = sessionService.investigations.getValue();
     this.isConductingInvestigation = sessionService.isConductingInvestigation();
     // @ts-ignore
     this.currentInvestigationOnPage = this.isConductingInvestigation ? sessionService.currentInvestigation.getValue() : this.investigations[0];
   }
 
+  /**
+   * Gets the current page number.
+   * @returns The current page number.
+   */
   getPage(){
     return 2*this.investigations.indexOf(this.currentInvestigationOnPage)+1;
   }
 
   /**
-   * Increases the current page number and updates the investigation if possible.
-   * If the page number is less than the maximum allowed, it increments the page number by 1 and updates the investigation.
-   * @function increasePage
-   * @returns {void}
+   * Increases the current page number by 1 if possible and updates the current investigation.
    */
   increasePage(): void {
     const actualPageIndex= this.investigations.indexOf(this.currentInvestigationOnPage)
@@ -57,9 +64,7 @@ export class BookSelectionInvestigationComponent{
   }
 
   /**
-   * Decreases the current page number by 1 if possible and updates the investigation.
-   * @function decreasePage
-   * @returns {void}
+   * Decreases the current page number by 1 if possible and updates the current investigation.
    */
   decreasePage(): void {
     const actualPageIndex= this.investigations.indexOf(this.currentInvestigationOnPage)
@@ -70,8 +75,6 @@ export class BookSelectionInvestigationComponent{
 
   /**
    * Selects the current investigation and displays the ongoing investigation.
-   * @function selectInvestigation
-   * @returns {void}
    */
   selectInvestigation(): void {
     this.isConductingInvestigation = true;
@@ -79,6 +82,9 @@ export class BookSelectionInvestigationComponent{
     this.sessionService.changeInvestigation(this.currentInvestigationOnPage).subscribe(() => waitingDialog.close());
   }
 
+  /**
+   * Restarts the current investigation.
+   */
   restartInvestigation(): void {
     this.isConductingInvestigation = true;
     const waitingDialog = this.dialog.open(WaitingScreenComponent,{autoFocus : 'false'});
@@ -87,9 +93,7 @@ export class BookSelectionInvestigationComponent{
 
 
   /**
-   * Validates the investigation response and updates the investigation state accordingly.
-   * @function validateResponse
-   * @returns {void}
+   * Validates the user's response to the investigation and updates the investigation state accordingly.
    */
   validateResponse(): void {
     if (this.sessionService.validateInvestigation()) {
@@ -111,6 +115,9 @@ export class BookSelectionInvestigationComponent{
     this.sessionService.abandonInvestigation();
   }
 
+  /**
+   * Saves the progression of the current investigation.
+   */
   saveInvestigation(): void {
     const waitingDialog = this.dialog.open(WaitingScreenComponent,{autoFocus : 'false'});
     this.sessionService.saveCurrentInvestigationProgression(this.currentInvestigationOnPage).subscribe(result => {
@@ -121,13 +128,17 @@ export class BookSelectionInvestigationComponent{
     });
   }
 
+  /**
+   * Opens the explanation dialog.
+   */
   openDialogExplanation(): void {
     this.dialog.open(this.explanationTemplate,{
       autoFocus : 'false',
     });
   }
+
   /**
-   *
+   * Opens the dialog for a correct answer.
    */
   openDialogRightAnswer(): void {
     this.dialog.open(RightAnswerComponent, {
@@ -136,7 +147,7 @@ export class BookSelectionInvestigationComponent{
   }
 
   /**
-   *
+   * Opens the dialog for a wrong answer.
    */
   openDialogWrongAnswer(): void {
     this.dialog.open(WrongAnswerComponent, {
