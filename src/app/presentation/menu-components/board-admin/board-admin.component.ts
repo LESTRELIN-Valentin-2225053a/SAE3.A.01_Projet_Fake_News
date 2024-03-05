@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Inject, Output, ViewChild} from '@angular/core';
 import {Dialog, DIALOG_DATA} from "@angular/cdk/dialog";
 import {MediaModel} from "../../../core/domain/media.model";
 import {InvestigationModel} from "../../../core/domain/investigation.model";
@@ -15,7 +15,7 @@ import {BoardComponent} from "../../game-components/board-components/board/board
 })
 export class BoardAdminComponent {
 
-  @Input() board!: BoardComponent;
+  @ViewChild('board') board : BoardComponent;
   @Output('cdkDragEnded') dragEndedEvent = new EventEmitter<CdkDragEnd<MediaModel>>();
 
 
