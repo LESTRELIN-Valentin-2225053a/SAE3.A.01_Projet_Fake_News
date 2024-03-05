@@ -2,18 +2,28 @@ import {Mapper} from "../../../../core/base/mapper";
 import {MediaLocationApiEntity} from "./media-location-api-entity";
 import {MediaLocationModel} from "../../../../core/domain/media-location.model";
 import {MediaModel} from "../../../../core/domain/media.model";
+import {map} from "rxjs";
 
+/**
+ * Mapper class for mapping between MediaLocationApiEntity and MediaLocationModel objects.
+ * This class provides methods for mapping entities from and to models.
+ */
 export class MediaLocationApiRepositoryMapper extends Mapper<MediaLocationApiEntity, MediaLocationModel>{
+
+  /**
+   * Maps a MediaLocationApiEntity object to a MediaLocationModel object.
+   * @param param The MediaLocationApiEntity object to map.
+   * @returns The mapped MediaLocationModel object.
+   */
   mapFrom(param: MediaLocationApiEntity): MediaLocationModel {
     let media : MediaModel | undefined;
-    if (param.media_id && param.media_description && param.media_isTrustworthy && param.media_isTrustworthy &&
-    param.media_type && param.media_link && param.media_picture){
+    if (param.media_id !== undefined){
       media = {
-        id: param.media_id,
-        description: param.media_description,
-        trustWorthy: param.media_isTrustworthy,
-        type: param.media_type,
-        link: param.media_link,
+        id: param.media_id, // @ts-ignore
+        description: param.media_description, // @ts-ignore
+        trustWorthy: param.media_isTrustworthy, // @ts-ignore
+        type: param.media_type, // @ts-ignore
+        link: param.media_link, // @ts-ignore
         picture: param.media_picture,
         pos: {x : param.x, y: param.y}
       }
@@ -27,13 +37,18 @@ export class MediaLocationApiRepositoryMapper extends Mapper<MediaLocationApiEnt
     };
   }
 
+  /**
+   * Maps an array of MediaLocationApiEntity objects to an array of MediaLocationModel objects.
+   * @param param The array of MediaLocationApiEntity objects to map.
+   * @returns The mapped array of MediaLocationModel objects.
+   */
   mapFromList(param: MediaLocationApiEntity[]): MediaLocationModel[] {
     let mediaLocationModels : MediaLocationModel[] = [];
 
     param.forEach(mediaLocationApiEntity => {
       let media : MediaModel | undefined;
 
-      if (mediaLocationApiEntity.media_id){
+      if (mediaLocationApiEntity.media_id !== undefined){
 
         media = {
           id: mediaLocationApiEntity.media_id,  // @ts-ignore
@@ -58,6 +73,11 @@ export class MediaLocationApiRepositoryMapper extends Mapper<MediaLocationApiEnt
     return mediaLocationModels;
   }
 
+  /**
+   * Maps a MediaLocationModel object to a MediaLocationApiEntity object.
+   * @param param The MediaLocationModel object to map.
+   * @returns The mapped MediaLocationApiEntity object.
+   */
   mapTo(param: MediaLocationModel): MediaLocationApiEntity {
     return {
       id : param.id,
@@ -74,6 +94,11 @@ export class MediaLocationApiRepositoryMapper extends Mapper<MediaLocationApiEnt
     };
   }
 
+  /**
+   * Maps an array of MediaLocationModel objects to an array of MediaLocationApiEntity objects.
+   * @param param The array of MediaLocationModel objects to map.
+   * @returns The mapped array of MediaLocationApiEntity objects.
+   */
   mapToList(param: MediaLocationModel[]): MediaLocationApiEntity[] {
     let mediaLocationApiEntities : MediaLocationApiEntity[] = [];
 

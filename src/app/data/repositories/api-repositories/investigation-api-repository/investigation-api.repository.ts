@@ -6,10 +6,16 @@ import {InvestigationApiRepositoryMapper} from "./investigation-api-repository.m
 import {InvestigationApiEntity} from "./investigation-api-entity";
 import {Injectable} from "@angular/core";
 
+/**
+ * Repository class for handling API requests related to investigations.
+ * This class implements the InvestigationRepository interface.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class InvestigationApiRepository extends ApiRepository implements InvestigationRepository{
+
+  /** Mapper instance for mapping between API entities and domain models. */
   mapper = new InvestigationApiRepositoryMapper();
 
   getAllInvestigations(): Observable<InvestigationModel[]> {

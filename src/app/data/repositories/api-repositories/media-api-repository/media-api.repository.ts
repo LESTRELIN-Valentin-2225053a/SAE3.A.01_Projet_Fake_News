@@ -10,6 +10,8 @@ import {Injectable} from "@angular/core";
   providedIn: 'root'
 })
 export class MediaApiRepository extends ApiRepository implements MediaRepository{
+
+  /** Mapper instance for mapping between API entities and domain models. */
   mapper = new MediaApiRepositoryMapper();
 
   getAllMedias(): Observable<MediaModel[]> {
