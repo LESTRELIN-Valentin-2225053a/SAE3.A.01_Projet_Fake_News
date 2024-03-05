@@ -1,5 +1,8 @@
+// ============================================
+//                    Import
+// ============================================
 import {Component, TemplateRef, ViewChild} from '@angular/core';
-import {Dialog} from "@angular/cdk/dialog";
+import {Dialog, DialogRef} from "@angular/cdk/dialog";
 import {SessionService} from "../../../../core/services/session.service";
 import {InvestigationModel} from "../../../../core/domain/investigation.model";
 import {WrongAnswerComponent} from "../wrong-answer/wrong-answer.component";
@@ -31,6 +34,8 @@ export class BookSelectionInvestigationComponent{
 
   /** Reference to the explanation dialog template */
   @ViewChild('explanationDialog', { read: TemplateRef }) explanationTemplate! : TemplateRef<any>;
+
+  dialogRef: DialogRef<unknown, any>;
 
   /**
    * Constructor
@@ -80,6 +85,9 @@ export class BookSelectionInvestigationComponent{
     this.isConductingInvestigation = true;
     const waitingDialog = this.dialog.open(WaitingScreenComponent,{autoFocus : 'false'});
     this.sessionService.changeInvestigation(this.currentInvestigationOnPage).subscribe(() => waitingDialog.close());
+    this.dialogRef = this.dialog.open(this.explanationTemplate, {
+      autoFocus: 'false',
+    });
   }
 
   /**
@@ -132,8 +140,8 @@ export class BookSelectionInvestigationComponent{
    * Opens the explanation dialog.
    */
   openDialogExplanation(): void {
-    this.dialog.open(this.explanationTemplate,{
-      autoFocus : 'false',
+    this.dialogRef = this.dialog.open(this.explanationTemplate, {
+      autoFocus: 'false',
     });
   }
 
@@ -153,5 +161,9 @@ export class BookSelectionInvestigationComponent{
     this.dialog.open(WrongAnswerComponent, {
       autoFocus: 'false',
     });
+  }
+
+  CloseDialog(): void {
+    this.dialogRef.close();
   }
 }

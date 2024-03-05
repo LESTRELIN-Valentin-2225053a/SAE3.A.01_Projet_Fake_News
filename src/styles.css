@@ -8,7 +8,7 @@
 }
 
 body {
-  background-image: url("/assets/background-image.png");
+  background-image: url("/assets/game_assets/office_assets/background-image.png");
   background-size: 10%;
   background-repeat: repeat;
   overflow: hidden;
