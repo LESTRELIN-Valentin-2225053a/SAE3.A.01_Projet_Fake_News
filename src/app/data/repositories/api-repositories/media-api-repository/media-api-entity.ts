@@ -1,7 +1,7 @@
 export interface MediaApiEntity {
-  id : number;
+  media_id : number;
   description : string;
-  trustWorthy : boolean;
+  isTrustworthy : boolean;
   userTrustWorthy? : boolean;
   type: 'img' | 'video' | 'audio'; // img, video, audio
   link: string;

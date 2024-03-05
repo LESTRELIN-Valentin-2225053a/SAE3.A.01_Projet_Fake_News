@@ -23,4 +23,8 @@ export class InvestigationService {
   getAllInvestigationsForUser(): Observable<InvestigationModel[]> {
     return this.investigationRepository.getAllInvestigationsForUser();
   }
+
+  completeInvestigationByIdForUser(id : number): Observable<boolean> {
+    return this.investigationRepository.updateCompletionOfInvestigationByIdForUser(id);
+  }
 }

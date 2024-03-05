@@ -11,13 +11,15 @@ import {MediaLocationOnBoardComponent} from "./media-location-on-board/media-loc
 import {BoardWithValidatableMediasComponent} from "./board-with-validatable-medias/board-with-validatable-medias.component";
 import {BoardForRouterComponent} from "./board-for-router/board-for-router.component";
 import {BoardComponentsRoutingModule} from "./board-components-routing.module";
+import {GameComponentsModule} from "../game-components.module";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    CdkDrag,
-    BoardComponentsRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        CdkDrag,
+        BoardComponentsRoutingModule,
+        GameComponentsModule
+    ],
   declarations: [
     MediaOnBoardComponent,
     DraggableMediaOnBoardComponent,

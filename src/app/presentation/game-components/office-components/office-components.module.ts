@@ -8,20 +8,24 @@ import {
 import {RightAnswerComponent} from "./right-answer/right-answer.component";
 import {WrongAnswerComponent} from "./wrong-answer/wrong-answer.component";
 import {OfficeComponentsRoutingModule} from "./office-components-routing.module";
+import {GameComponentsModule} from "../game-components.module";
+import {WaitingScreenComponent} from "./waiting-screen/waiting-screen.component";
 
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    CoreModule,
-    OfficeComponentsRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        CoreModule,
+        OfficeComponentsRoutingModule,
+        GameComponentsModule
+    ],
   declarations: [
     OfficeComponent,
     RightAnswerComponent,
     WrongAnswerComponent,
-    BookSelectionInvestigationComponent
+    BookSelectionInvestigationComponent,
+    WaitingScreenComponent
   ]
 })
 export class OfficeComponentsModule { }

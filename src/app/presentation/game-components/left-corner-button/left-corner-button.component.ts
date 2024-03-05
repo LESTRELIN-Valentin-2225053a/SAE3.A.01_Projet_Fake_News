@@ -1,6 +1,5 @@
 // Import
 import { Component } from '@angular/core';
-import {Location} from "@angular/common";
 
 // Component
 @Component({
@@ -8,15 +7,4 @@ import {Location} from "@angular/common";
   templateUrl: './left-corner-button.component.html',
   styleUrls: ['./left-corner-button.component.css']
 })
-export class LeftCornerButtonComponent {
-
-  /**
-   * Constructor
-   * @param location
-   */
-  constructor(private location: Location) {}
-
-  goBack(){
-    this.location.back();
-  }
-}
+export class LeftCornerButtonComponent {}

@@ -7,6 +7,7 @@ import {SessionService} from "../../../../core/services/session.service";
 import {InvestigationModel} from "../../../../core/domain/investigation.model";
 import {WrongAnswerComponent} from "../wrong-answer/wrong-answer.component";
 import {RightAnswerComponent} from "../right-answer/right-answer.component";
+import {WaitingScreenComponent} from "../waiting-screen/waiting-screen.component";
 
 
 // ============================================
@@ -74,13 +75,16 @@ export class BookSelectionInvestigationComponent{
    */
   selectInvestigation(): void {
     this.isConductingInvestigation = true;
-    this.sessionService.changeInvestigation(this.currentInvestigationOnPage);
+    const waitingDialog = this.dialog.open(WaitingScreenComponent,{autoFocus : 'false'});
+    this.sessionService.changeInvestigation(this.currentInvestigationOnPage).subscribe(() => waitingDialog.close());
   }
 
   restartInvestigation(): void {
     this.isConductingInvestigation = true;
-    this.sessionService.changeInvestigation(this.currentInvestigationOnPage);
+    const waitingDialog = this.dialog.open(WaitingScreenComponent,{autoFocus : 'false'});
+    this.sessionService.restartInvestigation(this.currentInvestigationOnPage).subscribe(() => waitingDialog.close());
   }
+
 
   /**
    * Validates the investigation response and updates the investigation state accordingly.
@@ -105,6 +109,16 @@ export class BookSelectionInvestigationComponent{
   abandonInvestigation(): void {
     this.isConductingInvestigation = false;
     this.sessionService.abandonInvestigation();
+  }
+
+  saveInvestigation(): void {
+    const waitingDialog = this.dialog.open(WaitingScreenComponent,{autoFocus : 'false'});
+    this.sessionService.saveCurrentInvestigationProgression(this.currentInvestigationOnPage).subscribe(result => {
+      if (result) {
+        this.abandonInvestigation();
+        waitingDialog.close();
+      }
+    });
   }
 
   openDialogExplanation(): void {

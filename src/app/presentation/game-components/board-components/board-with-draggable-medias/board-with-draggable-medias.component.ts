@@ -1,7 +1,7 @@
 // ============================================
 //                    Import
 // ============================================
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {BoardWithMediasComponent} from "../board-with-medias/board-with-medias.component";
 import {MediaLocationModel} from "../../../../core/domain/media-location.model";
 import {SessionService} from "../../../../core/services/session.service";
@@ -16,7 +16,7 @@ import {MediaModel} from "../../../../core/domain/media.model";
   templateUrl: './board-with-draggable-medias.component.html',
   styleUrl: './board-with-draggable-medias.component.css'
 })
-export class BoardWithDraggableMediasComponent extends BoardWithMediasComponent{
+export class BoardWithDraggableMediasComponent extends BoardWithMediasComponent implements OnDestroy{
 // ============================================
 //                Variables
 // ============================================
@@ -32,6 +32,10 @@ export class BoardWithDraggableMediasComponent extends BoardWithMediasComponent{
     super(sessionService);
   }
 
+  ngOnDestroy(): void {
+    console.log(this.medias);
+    console.log(this.mediaLocations);
+  }
 
   override ngOnInit() {
     super.ngOnInit();

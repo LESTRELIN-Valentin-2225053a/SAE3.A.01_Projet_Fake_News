@@ -1,6 +1,6 @@
 import {ApiRepository} from "../api.repository";
 import {MediaRepository} from "../../../../core/repositories/media.repository";
-import {map, Observable} from "rxjs";
+import {catchError, map, Observable, of} from "rxjs";
 import {MediaModel} from "../../../../core/domain/media.model";
 import {MediaApiRepositoryMapper} from "./media-api-repository.mapper";
 import {MediaApiEntity} from "./media-api-entity";
@@ -34,5 +34,11 @@ export class MediaApiRepository extends ApiRepository implements MediaRepository
     return this.http
       .get<MediaApiEntity[]>(`${this.apiUrl}/user/investigation/${id}/medias`,{withCredentials: true})
       .pipe(map(this.mapper.mapFromList));
+  }
+
+  updateMediasByInvestigationIdForUser(id: number, medias: MediaModel[]): Observable<boolean> {
+    return this.http.put(`${this.apiUrl}/user/investigation/${id}/medias/save`,this.mapper.mapToList(medias),{withCredentials: true})
+      .pipe(map(() => true),
+        catchError(() => { return of(false); }));
   }
 }

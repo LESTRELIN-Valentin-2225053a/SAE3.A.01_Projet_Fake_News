@@ -90,6 +90,7 @@
 .ButtonInvestigation {
 
   margin: 5% auto -5%;
+  margin-bottom: 2%;
   display: flex;
   background-color: peru;
   color: #fff;

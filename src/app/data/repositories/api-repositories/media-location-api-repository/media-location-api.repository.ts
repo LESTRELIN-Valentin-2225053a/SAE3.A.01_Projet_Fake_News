@@ -1,8 +1,8 @@
 import {ApiRepository} from "../api.repository";
 import {MediaLocationRepository} from "../../../../core/repositories/media-location.repository";
-import {map, Observable} from "rxjs";
+import {catchError, map, Observable, of} from "rxjs";
 import {MediaLocationModel} from "../../../../core/domain/media-location.model";
-import {MediaLocationApiEntity} from "./media-location-entity";
+import {MediaLocationApiEntity} from "./media-location-api-entity";
 import {MediaLocationApiRepositoryMapper} from "./media-location-api-repository.mapper";
 import {Injectable} from "@angular/core";
 
@@ -34,5 +34,11 @@ export class MediaLocationApiRepository extends ApiRepository implements MediaLo
     return this.http
         .get<MediaLocationApiEntity[]>(`${this.apiUrl}/user/investigation/${id}/mediaLocations`,{withCredentials: true})
         .pipe(map(this.mapper.mapFromList));
+  }
+
+  updateMediaLocationsByInvestigationIdForUser(id: number, mediaLocations: MediaLocationModel[]): Observable<boolean> {
+    return this.http.put(`${this.apiUrl}/user/investigation/${id}/mediaLocations/save`,this.mapper.mapToList(mediaLocations),{withCredentials: true})
+      .pipe(map(() => true),
+        catchError(() => { return of(false); }));
   }
 }

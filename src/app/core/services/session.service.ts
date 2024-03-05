@@ -4,7 +4,7 @@ import {MediaLocationService} from "./media-location.service";
 import {WebsiteService} from "./website.service";
 import {InvestigationService} from "./investigation.service";
 import {MediaModel} from "../domain/media.model";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, forkJoin, mergeMap, tap} from "rxjs";
 import {InvestigationModel} from "../domain/investigation.model";
 import {MediaLocationModel} from "../domain/media-location.model";
 import {WebsiteModel} from "../domain/website.model";
@@ -61,21 +61,36 @@ export class SessionService {
     console.log(investigation);
     this.currentInvestigation.next(investigation);
     if (this.sessionBehavior === 'CONNECTED') {
-      this.mediaService.getMediasByInvestigationIdForUser(investigation.id).subscribe(this.medias);
-      this.mediaLocationService.getMediaLocationsByInvestigationIdForUser(investigation.id).subscribe(this.mediaLocations);
-      this.websiteService.getWebsitesByInvestigationId(investigation.id).subscribe(this.websites);
+      const sources = [
+        this.mediaService.getMediasByInvestigationIdForUser(investigation.id).pipe(tap(this.medias)),
+        this.mediaLocationService.getMediaLocationsByInvestigationIdForUser(investigation.id).pipe(tap(this.mediaLocations)),
+        this.websiteService.getWebsitesByInvestigationId(investigation.id).pipe(tap(this.websites))
+      ]
+      return forkJoin(sources);
     } else {
-      this.mediaService.getMediasByInvestigationId(investigation.id).subscribe(this.medias);
-      this.mediaLocationService.getMediaLocationsByInvestigationId(investigation.id).subscribe(this.mediaLocations);
-      this.websiteService.getWebsitesByInvestigationId(investigation.id).subscribe(this.websites);
+      const sources = [
+        this.mediaService.getMediasByInvestigationId(investigation.id).pipe(tap(this.medias)),
+        this.mediaLocationService.getMediaLocationsByInvestigationId(investigation.id).pipe(tap(this.mediaLocations)),
+        this.websiteService.getWebsitesByInvestigationId(investigation.id).pipe(tap(this.websites))
+      ]
+      return forkJoin(sources);
     }
   }
 
   public restartInvestigation(investigation: InvestigationModel) {
     this.currentInvestigation.next(investigation);
-    this.mediaService.getMediasByInvestigationId(investigation.id).subscribe(this.medias);
-    this.mediaLocationService.getMediaLocationsByInvestigationId(investigation.id).subscribe(this.mediaLocations);
-    this.websiteService.getWebsitesByInvestigationId(investigation.id).subscribe(this.websites);
+    const sources = [
+      this.mediaService.getMediasByInvestigationId(investigation.id).pipe(tap(this.medias)),
+      this.mediaLocationService.getMediaLocationsByInvestigationId(investigation.id).pipe(tap(this.mediaLocations)),
+      this.websiteService.getWebsitesByInvestigationId(investigation.id).pipe(tap(this.websites))
+    ]
+    return forkJoin(sources);
+  }
+
+  public saveCurrentInvestigationProgression(investigation : InvestigationModel) {
+    return this.mediaService.updateMediasByInvestigationIdForUser(investigation.id,this.medias.getValue()).pipe(
+      mergeMap(() => this.mediaLocationService.updateMediaLocationsByInvestigationIdForUser(investigation.id,this.mediaLocations.getValue()))
+    )
   }
 
   public abandonInvestigation(){
@@ -96,6 +111,8 @@ export class SessionService {
     if(result && this.currentInvestigation){
       const succeededInvestigation = this.currentInvestigation.getValue() as InvestigationModel;
       succeededInvestigation.completion = true;
+      if(this.sessionBehavior === 'CONNECTED')
+        this.investigationService.completeInvestigationByIdForUser(succeededInvestigation.id).subscribe();
       this.abandonInvestigation();
     }
     return result;

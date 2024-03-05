@@ -22,11 +22,16 @@ export class MediaService {
     return this.mediaRepository.getMediasByInvestigationIdForUser(id);
   }
 
+  updateMediasByInvestigationIdForUser(id: number, medias : MediaModel[]) : Observable<boolean> {
+    return this.mediaRepository.updateMediasByInvestigationIdForUser(id,medias);
+  }
+
   getAllMedias(): Observable<MediaModel[]> {
     return this.mediaRepository.getAllMedias();
   }
 
   checkIfValuesAreCorrect(medias : MediaModel[]){
+    if (medias.length === 0) return false;
     let result = true;
     medias.every(media => {
       return result = media.trustWorthy == media.userTrustWorthy;

@@ -1,14 +1,28 @@
 import {Mapper} from "../../../../core/base/mapper";
-import {MediaLocationApiEntity} from "./media-location-entity";
+import {MediaLocationApiEntity} from "./media-location-api-entity";
 import {MediaLocationModel} from "../../../../core/domain/media-location.model";
+import {MediaModel} from "../../../../core/domain/media.model";
 
 export class MediaLocationApiRepositoryMapper extends Mapper<MediaLocationApiEntity, MediaLocationModel>{
   mapFrom(param: MediaLocationApiEntity): MediaLocationModel {
+    let media : MediaModel | undefined;
+    if (param.media_id && param.media_description && param.media_isTrustworthy && param.media_isTrustworthy &&
+    param.media_type && param.media_link && param.media_picture){
+      media = {
+        id: param.media_id,
+        description: param.media_description,
+        trustWorthy: param.media_isTrustworthy,
+        type: param.media_type,
+        link: param.media_link,
+        picture: param.media_picture,
+        pos: {x : param.x, y: param.y}
+      }
+    }
     return {
       id : param.id,
       pos: {x: param.x,y: param.y},
-      media : param.media,
       expected_media_id : param.expected_media_id,
+      media: media,
       description : param.description
     };
   }
@@ -17,10 +31,25 @@ export class MediaLocationApiRepositoryMapper extends Mapper<MediaLocationApiEnt
     let mediaLocationModels : MediaLocationModel[] = [];
 
     param.forEach(mediaLocationApiEntity => {
+      let media : MediaModel | undefined;
+
+      if (mediaLocationApiEntity.media_id){
+
+        media = {
+          id: mediaLocationApiEntity.media_id,  // @ts-ignore
+          description: mediaLocationApiEntity.media_description,  // @ts-ignore
+          trustWorthy: mediaLocationApiEntity.media_isTrustworthy,  // @ts-ignore
+          type: mediaLocationApiEntity.media_type,  // @ts-ignore
+          link: mediaLocationApiEntity.media_link,  // @ts-ignore
+          picture: mediaLocationApiEntity.media_picture,
+          pos: {x : mediaLocationApiEntity.x, y: mediaLocationApiEntity.y}
+        }
+      }
+
       mediaLocationModels.push({
         id : mediaLocationApiEntity.id,
         pos: {x: mediaLocationApiEntity.x,y: mediaLocationApiEntity.y},
-        media : mediaLocationApiEntity.media,
+        media : media,
         expected_media_id : mediaLocationApiEntity.expected_media_id,
         description : mediaLocationApiEntity.description
       });
@@ -34,8 +63,13 @@ export class MediaLocationApiRepositoryMapper extends Mapper<MediaLocationApiEnt
       id : param.id,
       x: param.pos.x,
       y: param.pos.y,
-      media : param.media,
       expected_media_id : param.expected_media_id,
+      media_id: param.media?.id,
+      media_description: param.media?.description,
+      media_isTrustworthy: param.media?.trustWorthy,
+      media_type: param.media?.type,
+      media_link: param.media?.link,
+      media_picture: param.media?.picture,
       description : param.description
     };
   }
@@ -43,14 +77,19 @@ export class MediaLocationApiRepositoryMapper extends Mapper<MediaLocationApiEnt
   mapToList(param: MediaLocationModel[]): MediaLocationApiEntity[] {
     let mediaLocationApiEntities : MediaLocationApiEntity[] = [];
 
-    param.forEach(mediaLocationModels => {
+    param.forEach(mediaLocationModel => {
       mediaLocationApiEntities.push({
-        id : mediaLocationModels.id,
-        x: mediaLocationModels.pos.x,
-        y: mediaLocationModels.pos.y,
-        media : mediaLocationModels.media,
-        expected_media_id : mediaLocationModels.expected_media_id,
-        description : mediaLocationModels.description
+        id : mediaLocationModel.id,
+        x: mediaLocationModel.pos.x,
+        y: mediaLocationModel.pos.y,
+        expected_media_id : mediaLocationModel.expected_media_id,
+        media_id: mediaLocationModel.media?.id,
+        media_description: mediaLocationModel.media?.description,
+        media_isTrustworthy: mediaLocationModel.media?.trustWorthy,
+        media_type: mediaLocationModel.media?.type,
+        media_link: mediaLocationModel.media?.link,
+        media_picture: mediaLocationModel.media?.picture,
+        description : mediaLocationModel.description,
       });
     });
 

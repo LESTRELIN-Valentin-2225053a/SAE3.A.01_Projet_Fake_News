@@ -26,11 +26,17 @@ export class MediaLocationService {
     return this.mediaLocationRepository.getMediaLocationsByInvestigationIdForUser(id);
   }
 
+  updateMediaLocationsByInvestigationIdForUser(id : number, mediaLocations : MediaLocationModel[]): Observable<boolean> {
+    return this.mediaLocationRepository.updateMediaLocationsByInvestigationIdForUser(id,mediaLocations);
+  }
+
   checkIfValuesAreCorrect(mediaLocations : MediaLocationModel[]){
+    if(mediaLocations.length === 0) return false;
     let result: boolean = true;
     mediaLocations.every(mediaLocation => {
       return result = mediaLocation.media?.id == mediaLocation.expected_media_id;
     });
+    console.log(result);
     return result;
   }
 }

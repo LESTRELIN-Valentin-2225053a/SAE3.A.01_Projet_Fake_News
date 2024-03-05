@@ -6,4 +6,5 @@ export abstract class InvestigationRepository {
   abstract getAllInvestigations(): Observable<InvestigationModel[]>;
   abstract getAllInvestigationsForUser(): Observable<InvestigationModel[]>;
   abstract getInvestigationByIdForUser(id: number): Observable<InvestigationModel>;
+  abstract updateCompletionOfInvestigationByIdForUser(id: number): Observable<boolean>;
 }
