@@ -86,3 +86,7 @@ input[type="email"], input[type="password"] {
     max-width: 100%;
   }
 }
+input::placeholder {
+  font-size:16px;
+}
+
