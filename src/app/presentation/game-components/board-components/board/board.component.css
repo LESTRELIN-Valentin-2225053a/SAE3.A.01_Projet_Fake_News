@@ -1,6 +1,4 @@
 .board {
-  left: 10vw;
-  top: 10vh;
   position: relative; /* à garder, nécéssaire pour placer les médias dans le tableau */
   background-color: #281F18;
   border: 0.75vw solid #170B04;

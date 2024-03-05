@@ -18,13 +18,22 @@ export class BoardAdminComponent {
   @ViewChild('board') board : BoardComponent;
   @Output('cdkDragEnded') dragEndedEvent = new EventEmitter<CdkDragEnd<MediaModel>>();
 
-
   mediaWidthRatio : number = 0.1;
-  mediaLocation : MediaLocationModel = { pos:{x:0, y:0} } as MediaLocationModel;
+
+  media : MediaModel;
+  mediaLocation : MediaLocationModel;
 
   constructor(public dialog: Dialog,@Inject(DIALOG_DATA) public data: {media : MediaModel, investigation : InvestigationModel},
               private adminService : AdminService,
-              private mediaService : MediaService){}
+              private mediaService : MediaService){
+    this.media = data.media;
+    this.media.pos = {x: 0, y: 0};
+    this.mediaLocation = {
+      pos : {x: 0, y: 0},
+      expected_media_id: this.media.id,
+      description: ''
+    } as MediaLocationModel;
+  }
 
   onDragEnd($event: CdkDragEnd){
     let newMediaPosition: Readonly<Point> = $event.source.getFreeDragPosition();
