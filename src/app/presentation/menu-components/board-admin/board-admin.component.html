@@ -1,0 +1,16 @@
+<board #board>
+  <ng-container *ngIf="data.investigation.board_type === 'DRAGGABLE' && data.media.trustWorthy">
+    <media-location-on-board  cdkDrag [data]="mediaLocation" cdkDragBoundary=".board"
+                             [mediaRatio]="mediaWidthRatio" (cdkDragEnded)="onDragEnd($event)"></media-location-on-board>
+    <draggable-media-on-board [media]="data.media"
+                              [style.width.%]="mediaWidthRatio*100"
+                              [board]="board"
+                              cdkDragBoundary=".board"/>
+  </ng-container>
+  <ng-container *ngIf="data.investigation.board_type === 'VALIDABLE' || !data.media.trustWorthy">
+    <draggable-media-on-board [media]="data.media"
+                              [style.width.%]="mediaWidthRatio*100"
+                              [board]="board"
+                              cdkDragBoundary=".board"/>
+  </ng-container>
+</board>

@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, ViewContainerRef} from '@angular/core';
 
 import {InvestigationModel} from "../../../core/domain/investigation.model";
 import {MediaModel} from "../../../core/domain/media.model";
@@ -11,7 +11,8 @@ import {UserService} from "../../../core/services/user.service";
 import {BehaviorSubject, map, Observable} from "rxjs";
 import { AdminService } from '../../../core/services/admin.service';
 import {FormControl, FormGroup} from "@angular/forms";
-
+import {BoardAdminComponent} from "../board-admin/board-admin.component";
+import {Dialog} from "@angular/cdk/dialog";
 @Component({
   selector: 'admin-page',
   templateUrl: './admin-page.component.html',
@@ -30,6 +31,8 @@ export class AdminPageComponent {
   private investigationService: InvestigationService = inject(InvestigationService);
   private UserService: UserService = inject(UserService);
   private AdminService: AdminService = inject(AdminService);
+  private dialog: Dialog = inject(Dialog);
+  private viewContainerRef: ViewContainerRef = inject(ViewContainerRef);
 
   //Variables for the list of objects
   investigations : Observable<InvestigationModel[]>;
@@ -229,11 +232,28 @@ export class AdminPageComponent {
   //AddMedia
   //Show the adding media display
   showAddMedia: boolean = false;
+  //Form for the adding of the media
+  AddMediaForm: FormGroup = new FormGroup({
+    media_id: new FormControl(''),
+    PosX : new FormControl(''),
+    PosY : new FormControl('')
+  });
+  AddMediaLocationForm: FormGroup = new FormGroup({
+    PosX : new FormControl(''),
+    PosY : new FormControl('')
+  });
+
+  //RemoveMedia
+  //Show the removing media display
+  showRemoveMedia: boolean = false;
+  //Form for the removing of the media
+  RemoveMediaForm: FormGroup = new FormGroup({
+    media_id: new FormControl('')
+  });
 
   //AddWebsite
   //Show the adding website display
   showAddWebsite: boolean = false;
-  possibleWebsites :WebsiteModel[] = [];
   //Form for the adding of the website
   AddWebsiteForm: FormGroup = new FormGroup({
     website_id: new FormControl('')
@@ -377,7 +397,89 @@ export class AdminPageComponent {
       });
   }
 
-  //TODO : functions link Media and Website
+  //TODO : functions link Media
+
+  openAddMedia() {
+    this.showAddMedia = true;
+    this.showInvestigationDetails = false;
+    this.showInvestigationMedia = false;
+    this.showInvestigationWebsite = false;
+    this.showInvestigationCreate = false;
+    this.showInvestigationUpdate = false;
+    this.mediasOfCurrentInvestigation = this.mediaService
+      .getMediasByInvestigationId(<number>this.currentInvestigation.getValue()?.id);
+  }
+
+  closeAddMedia() {
+    this.showAddMedia = false;
+  }
+
+  OpenDialogForPos(){
+    let media_id : number = this.AddMediaForm.get('media_id')?.value;
+    this.mediaService.getMediaById(media_id).subscribe((value) => {
+      this.dialog.open(BoardAdminComponent, {
+        data : {media : value, investigation : this.currentInvestigation.getValue()},
+        viewContainerRef: this.viewContainerRef
+      });
+    });
+
+  }
+
+  linkMediaToInvestigation(){
+    let media_id : number = this.AddMediaForm.get('media_id')?.value;
+    let media : BehaviorSubject<MediaModel | null> = new BehaviorSubject<MediaModel | null>(null);
+    this.mediaService.getMediaById(media_id).subscribe((value) => {
+      media.next(value);
+    });
+    let PosX : string = this.AddMediaLocationForm.get('PosX')?.value;
+    let PosY : string = this.AddMediaLocationForm.get('PosY')?.value;
+    let formDATA = new FormData();
+    formDATA.append('PosX', PosX);
+    formDATA.append('PosY', PosY);
+    if (this.currentInvestigation.getValue() != null){
+      if (this.currentInvestigation.getValue()?.board_type == "DRAGGABLE"
+      && media.getValue()?.trustWorthy == true){
+        formDATA.append('LocationPosX', this.AddMediaLocationForm.get('PosX')?.value);
+        formDATA.append('LocationPosY', this.AddMediaLocationForm.get('PosY')?.value);
+      }
+      // @ts-ignore
+      let investigation_id : number = this.currentInvestigation.getValue().id;
+      this.AdminService.linkMediaToInvestigation(investigation_id, media_id, formDATA)
+        .subscribe(() => {
+          this.mediasOfCurrentInvestigation = this.mediaService
+            .getMediasByInvestigationId(<number>this.currentInvestigation.getValue()?.id);
+        });
+    }
+  }
+
+  openRemoveMedia() {
+    this.showRemoveMedia = true;
+    this.showAddMedia = false;
+    this.showInvestigationDetails = false;
+    this.showInvestigationMedia = false;
+    this.showInvestigationWebsite = false;
+    this.showInvestigationCreate = false;
+    this.showInvestigationUpdate = false;
+    this.mediasOfCurrentInvestigation = this.mediaService
+      .getMediasByInvestigationId(<number>this.currentInvestigation.getValue()?.id);
+  }
+
+  closeRemoveMedia() {
+    this.showRemoveMedia = false;
+  }
+
+  removeMediaFromInvestigation(media : MediaModel){
+    let media_id : number = this.RemoveMediaForm.get('media_id')?.value;
+    if (this.currentInvestigation.getValue() != null){
+      // @ts-ignore
+      let investigation_id : number = this.currentInvestigation.getValue().id;
+      this.AdminService.removeMediaFromInvestigation(investigation_id, media_id)
+        .subscribe(() => {
+          this.mediasOfCurrentInvestigation = this.mediaService
+            .getMediasByInvestigationId(<number>this.currentInvestigation.getValue()?.id);
+        });
+    }
+  }
 
   openAddWebsite() {
     this.showAddWebsite = true;
@@ -387,7 +489,6 @@ export class AdminPageComponent {
     this.showInvestigationWebsite = false;
     this.showInvestigationCreate = false;
     this.showInvestigationUpdate = false;
-    this.possibleWebsites = [];
     this.websitesOfCurrentInvestigation = this.websiteService
       .getWebsitesByInvestigationId(<number>this.currentInvestigation.getValue()?.id);
   }
@@ -567,8 +668,6 @@ export class AdminPageComponent {
     // @ts-ignore
     this.UpdateIcon = event.target.files[0];
   }
-
-  //TODO : Media actions
 
   // ============================================
   //                Media Actions

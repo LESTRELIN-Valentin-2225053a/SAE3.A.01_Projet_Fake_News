@@ -67,8 +67,8 @@ export class InvestigationApiRepository extends ApiRepository implements Investi
       .pipe(map(response => response.status === 204));
   }
 
-  linkMediaToInvestigation(investigation_id: number, media_id: number): Observable<boolean> {
-    return this.http.put<HttpResponse<any>>(`${this.apiUrl}/admin/media/${media_id}/link/${investigation_id}`, {}, {withCredentials: true})
+  linkMediaToInvestigation(investigation_id: number, media_id: number, formdata : FormData): Observable<boolean> {
+    return this.http.put<HttpResponse<any>>(`${this.apiUrl}/admin/media/${media_id}/link/${investigation_id}`, formdata, {withCredentials: true})
       .pipe(map(response => response.status === 201));
   }
 

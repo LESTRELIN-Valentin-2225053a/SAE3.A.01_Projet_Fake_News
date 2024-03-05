@@ -13,21 +13,26 @@ import {BoardForRouterComponent} from "./board-for-router/board-for-router.compo
 import {BoardComponentsRoutingModule} from "./board-components-routing.module";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    CdkDrag,
-    BoardComponentsRoutingModule
-  ],
-  declarations: [
-    MediaOnBoardComponent,
+    imports: [
+        CommonModule,
+        CdkDrag,
+        BoardComponentsRoutingModule
+    ],
+  exports: [
     DraggableMediaOnBoardComponent,
-    ValidatableMediaOnBoardComponent,
-    MediaLocationOnBoardComponent,
     BoardComponent,
-    BoardWithMediasComponent,
-    BoardWithDraggableMediasComponent,
-    BoardWithValidatableMediasComponent,
-    BoardForRouterComponent
-  ]
+    MediaLocationOnBoardComponent
+  ],
+    declarations: [
+        MediaOnBoardComponent,
+        DraggableMediaOnBoardComponent,
+        ValidatableMediaOnBoardComponent,
+        MediaLocationOnBoardComponent,
+        BoardComponent,
+        BoardWithMediasComponent,
+        BoardWithDraggableMediasComponent,
+        BoardWithValidatableMediasComponent,
+        BoardForRouterComponent
+    ]
 })
 export class BoardComponentsModule { }

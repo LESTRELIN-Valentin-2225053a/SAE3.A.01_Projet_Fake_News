@@ -27,16 +27,16 @@
           <h3>Selectionnez une enquête</h3>
         </div>
         <div *ngIf="currentInvestigation.getValue() !== null && !showInvestigationDetails
-        && !showInvestigationUpdate && !showInvestigationCreate && !showAddWebsite && !showRemoveWebsite">
+        && !showInvestigationUpdate && !showInvestigationCreate && !showAddWebsite && !showRemoveWebsite && !showRemoveMedia">
           <h3>{{ currentInvestigation.getValue()?.title }}</h3>
           <div class="actions">
             <button class="action" (click)="openInvestigationDetails()">Voir les informations</button>
             <button class="action" (click)="openInvestigationUpdate()">Modifier l'enquête</button>
             <button class="action" (click)="deleteCurrentInvestigation()">Supprimer l'enquête</button>
             <!--TODO: add action for add media-->
-            <button class="action">Ajouter un média à l'enquête</button>
+            <button class="action" (click)="openAddMedia()">Ajouter un média à l'enquête</button>
             <button class="action" (click)="openAddWebsite()">Ajouter un site internet à l'enquête</button>
-            <button class="action">Enlever un média à l'enquête</button>
+            <button class="action" (click)="openRemoveMedia()">Enlever un média à l'enquête</button>
             <button class="action" (click)="openRemoveWebsite()">Enlever un site internet à l'enquête</button>
           </div>
         </div>
@@ -48,7 +48,7 @@
             </div>
             <div class="investigation-details-content">
               <div class="investigation-details-block">
-                <h4>Informations</h4><!--TODO: add media and website list-->
+                <h4>Informations</h4>
                 <p><strong>Description : </strong>{{ currentInvestigation.getValue()?.description }}</p>
                 <p><strong>Type de tableau : </strong>{{ currentInvestigation.getValue()?.board_type }}</p>
                 <p><strong>Explication de l'enquête : </strong>{{ currentInvestigation.getValue()?.explanation }}</p>
@@ -210,6 +210,54 @@
             </div>
           </div>
         </div>
+        <div *ngIf="currentInvestigation.getValue() !== null && showAddMedia">
+          <div class="add-media">
+            <div class="add-media-header">
+              <h3>Ajouter un média à {{ currentInvestigation.getValue()?.title }}</h3>
+              <button class="close-button" (click)="closeAddMedia()">Retour</button>
+            </div>
+            <div class="add-media-content">
+              <div class="add-media-block">
+                <h4>Médias</h4>
+                <div class="website-list">
+                  <ng-container *ngIf="(medias | async) as medias">
+                    <form [formGroup]="AddMediaForm">
+                      <select formControlName="media_id">
+                        <option value="0" disabled selected hidden>Choisissez un média</option>
+                        <option *ngFor="let media of medias" [value]="media.id">{{ media.description }}</option>
+                      </select>
+                      <button class="action" (click)="OpenDialogForPos()">Ajouter le média à l'enquête</button>
+                    </form>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="currentInvestigation.getValue() !== null && showRemoveMedia">
+          <div class="remove-media">
+            <div class="remove-media-header">
+              <h3>Enlever un média à {{ currentInvestigation.getValue()?.title }}</h3>
+              <button class="close-button" (click)="closeRemoveMedia()">Retour</button>
+            </div>
+            <div class="remove-media-content">
+              <div class="remove-media-block">
+                <h4>Médias</h4>
+                <div class="website-list">
+                  <ng-container *ngIf="(mediasOfCurrentInvestigation | async) as medias">
+                    <form [formGroup]="RemoveMediaForm">
+                      <select formControlName="media_id">
+                        <option value="0" disabled selected hidden>Choisissez un média</option>
+                        <option *ngFor="let media of medias" [value]="media.id">{{ media.description }}</option>
+                      </select>
+                      <button class="action" *ngFor="let media of medias" (click)="removeMediaFromInvestigation(media)">Enlever le média à l'enquête</button>
+                    </form>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -261,7 +309,6 @@
       </div>
     </div>
 
-    <!--TODO: Make Media part-->
     <!--Partie Médias-->
     <div *ngIf="mediaVisible && !investigationVisible && !usersVisible && !websiteVisible" style="display: flex">
       <div class="investigation-list" [style.width.px]="width*0.30">

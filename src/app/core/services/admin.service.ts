@@ -85,8 +85,8 @@ export class AdminService {
     return this.mediaRepository.deleteMedia(id);
   }
 
-  linkMediaToInvestigation(website_id: number, media_id: number): Observable<boolean> {
-    return this.investigationRepository.linkMediaToInvestigation(website_id, media_id);
+  linkMediaToInvestigation(website_id: number, media_id: number, formdata : FormData): Observable<boolean> {
+    return this.investigationRepository.linkMediaToInvestigation(website_id, media_id, formdata);
   }
 
   removeMediaFromInvestigation(website_id: number, media_id: number): Observable<boolean> {

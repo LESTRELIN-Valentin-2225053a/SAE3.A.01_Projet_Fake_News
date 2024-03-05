@@ -13,6 +13,6 @@ export abstract class InvestigationRepository {
   abstract deleteInvestigation(id: number) : Observable<boolean>;
   abstract linkWebsiteToInvestigation(investigation_id: number, website_id: number): Observable<boolean>;
   abstract removeWebsiteFromInvestigation(investigation_id: number, website_id: number): Observable<boolean>;
-  abstract linkMediaToInvestigation(investigation_id: number, media_id: number): Observable<boolean>;
+  abstract linkMediaToInvestigation(investigation_id: number, media_id: number , formdata : FormData): Observable<boolean>;
   abstract removeMediaFromInvestigation(investigation_id: number, media_id: number): Observable<boolean>;
 }
