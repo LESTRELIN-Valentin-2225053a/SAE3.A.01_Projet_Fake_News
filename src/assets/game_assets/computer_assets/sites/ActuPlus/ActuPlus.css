@@ -1,0 +1,82 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+header {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+section {
+  padding: 20px;
+  margin: 20px 0;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+footer {
+  background-color: #007BFF;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+img {
+  float: left;
+  padding: 2%;
+  width: 30%;
+  height: auto;
+}
+
+#culture {
+  overflow: auto;
+  font-size: 150%;
+}
+
+#economie {
+  overflow: auto;
+  font-size: 150%;
+}
+
+#politique {
+  overflow: auto;
+  font-size: 150%;
+}
+
+#principale {
+  overflow: auto;
+  font-size: 150%;
+}
+
+text {
+
+}
