@@ -19,7 +19,7 @@ export abstract class InvestigationRepository {
   abstract getAllInvestigations(): Observable<InvestigationModel[]>;
 
   /**
-   * Retrieves all investigations for a user.
+   * Retrieves all investigations for an authenticated user.
    * @returns An observable that emits an array of investigation models associated with the user.
    */
   abstract getAllInvestigationsForUser(): Observable<InvestigationModel[]>;
