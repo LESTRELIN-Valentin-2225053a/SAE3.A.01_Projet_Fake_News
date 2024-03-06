@@ -30,7 +30,7 @@ export interface MediaModel {
   picture: string;
 
   /**
-   * The position of the media on a draggable board.
+   * The position of the media on a board.
    * It represents the coordinates (x, y) of the media element.
    */
   pos: {x: number; y: number};
