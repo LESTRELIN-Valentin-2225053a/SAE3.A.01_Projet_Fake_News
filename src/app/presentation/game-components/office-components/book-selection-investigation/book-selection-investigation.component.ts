@@ -35,7 +35,7 @@ export class BookSelectionInvestigationComponent{
   /** Reference to the explanation dialog template */
   @ViewChild('explanationDialog', { read: TemplateRef }) explanationTemplate! : TemplateRef<any>;
 
-  dialogRef: DialogRef<unknown, any>;
+  dialogRefExplanation: DialogRef<unknown, any>;
 
   /**
    * Constructor
@@ -83,9 +83,12 @@ export class BookSelectionInvestigationComponent{
    */
   selectInvestigation(): void {
     this.isConductingInvestigation = true;
-    const waitingDialog = this.dialog.open(WaitingScreenComponent,{autoFocus : 'false'});
+    const waitingDialog = this.dialog.open(WaitingScreenComponent,{
+      autoFocus : 'false',
+      disableClose: true,
+    });
     this.sessionService.changeInvestigation(this.currentInvestigationOnPage).subscribe(() => waitingDialog.close());
-    this.dialogRef = this.dialog.open(this.explanationTemplate, {
+    this.dialogRefExplanation = this.dialog.open(this.explanationTemplate, {
       autoFocus: 'false',
     });
   }
@@ -127,7 +130,10 @@ export class BookSelectionInvestigationComponent{
    * Saves the progression of the current investigation.
    */
   saveInvestigation(): void {
-    const waitingDialog = this.dialog.open(WaitingScreenComponent,{autoFocus : 'false'});
+    const waitingDialog = this.dialog.open(WaitingScreenComponent,{
+      autoFocus : 'false',
+      disableClose: true
+    });
     this.sessionService.saveCurrentInvestigationProgression(this.currentInvestigationOnPage).subscribe(result => {
       if (result) {
         this.abandonInvestigation();
@@ -140,7 +146,7 @@ export class BookSelectionInvestigationComponent{
    * Opens the explanation dialog.
    */
   openDialogExplanation(): void {
-    this.dialogRef = this.dialog.open(this.explanationTemplate, {
+    this.dialogRefExplanation = this.dialog.open(this.explanationTemplate, {
       autoFocus: 'false',
     });
   }
@@ -149,21 +155,23 @@ export class BookSelectionInvestigationComponent{
    * Opens the dialog for a correct answer.
    */
   openDialogRightAnswer(): void {
-    this.dialog.open(RightAnswerComponent, {
+    const dialogRef = this.dialog.open(RightAnswerComponent, {
       autoFocus: 'false',
     });
+    setTimeout(() => dialogRef.close(), 1500);
   }
 
   /**
    * Opens the dialog for a wrong answer.
    */
   openDialogWrongAnswer(): void {
-    this.dialog.open(WrongAnswerComponent, {
+    const dialogRef = this.dialog.open(WrongAnswerComponent, {
       autoFocus: 'false',
     });
+    setTimeout(() => dialogRef.close(), 1500);
   }
 
   CloseDialog(): void {
-    this.dialogRef.close();
+     this.dialogRefExplanation.close();
   }
 }

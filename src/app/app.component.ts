@@ -50,6 +50,5 @@ import {AuthService} from "./core/services/auth.service";
 export class AppComponent{
   title = 'SAE3.A.01_Projet_Fake_News';
 
-  constructor() {
-  }
+  constructor() {}
 }

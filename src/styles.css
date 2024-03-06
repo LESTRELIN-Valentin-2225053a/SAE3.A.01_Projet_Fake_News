@@ -9,10 +9,18 @@
 
 body {
   background-image: url("/assets/game_assets/office_assets/background-image.png");
-  background-size: 10%;
   background-repeat: repeat;
-  overflow: hidden;
   font-family: Minecraft, serif;
 }
 
+@media screen and (orientation: landscape) {
+  body {
+    background-size: 10%;
+  }
+}
 
+@media screen and (orientation: portrait) {
+  body {
+    background-size: 20%;
+  }
+}

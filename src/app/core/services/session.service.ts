@@ -9,6 +9,7 @@ import {InvestigationModel} from "../domain/investigation.model";
 import {MediaLocationModel} from "../domain/media-location.model";
 import {WebsiteModel} from "../domain/website.model";
 import {AuthService} from "./auth.service";
+import {ChronometerService} from "./chronometer.service";
 
 /**
  * The SessionService manages the current user session and related data.
@@ -33,6 +34,9 @@ export class SessionService {
 
   /** The investigation service instance. */
   private investigationService: InvestigationService = inject(InvestigationService);
+
+  /** The chronometer service instance. */
+  private chronometerService: ChronometerService = inject(ChronometerService);
 
   /** The session behavior, indicating whether the user is a guest or connected. */
   sessionBehavior : 'GUEST' | 'CONNECTED';
@@ -129,7 +133,7 @@ export class SessionService {
           catchError(() => {return of([]);})
           ,tap(this.websites))
       ]
-      return forkJoin(sources);
+      return forkJoin(sources).pipe(tap(() => this.chronometerService.startTimer()));
     }
   }
 
@@ -151,7 +155,7 @@ export class SessionService {
         catchError(() => {return of([]);})
         ,tap(this.websites))
     ]
-    return forkJoin(sources);
+    return forkJoin(sources).pipe(tap(() => this.chronometerService.startTimer()));
   }
 
   /**
@@ -173,6 +177,7 @@ export class SessionService {
     this.medias.next([]);
     this.mediaLocations.next([]);
     this.websites.next([]);
+    this.chronometerService.reset();
   }
 
   /**
@@ -190,6 +195,7 @@ export class SessionService {
     if(result && this.currentInvestigation){
       const succeededInvestigation = this.currentInvestigation.getValue() as InvestigationModel;
       succeededInvestigation.completion = true;
+      succeededInvestigation.score = this.investigationService.getInvestigationScore(this.chronometerService.elapsedTime);
       if(this.sessionBehavior === 'CONNECTED')
         this.investigationService.completeInvestigationByIdForUser(succeededInvestigation.id).subscribe();
       this.abandonInvestigation();

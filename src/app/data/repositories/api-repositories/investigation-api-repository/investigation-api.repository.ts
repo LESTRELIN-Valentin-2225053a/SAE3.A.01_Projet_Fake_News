@@ -18,30 +18,45 @@ export class InvestigationApiRepository extends ApiRepository implements Investi
   /** Mapper instance for mapping between API entities and domain models. */
   mapper = new InvestigationApiRepositoryMapper();
 
+  /**
+   * @inheritDoc
+   */
   getAllInvestigations(): Observable<InvestigationModel[]> {
     return this.http
       .get<InvestigationApiEntity[]>(`${this.apiUrl}/guest/investigation/all`)
       .pipe(map(this.mapper.mapFromList));
   }
 
+  /**
+   * @inheritDoc
+   */
   getInvestigationById(id: number): Observable<InvestigationModel> {
     return this.http
       .get<InvestigationApiEntity>(`${this.apiUrl}/guest/investigation/${id}`)
       .pipe(map(this.mapper.mapFrom));
   }
 
+  /**
+   * @inheritDoc
+   */
   getAllInvestigationsForUser(): Observable<InvestigationModel[]> {
     return this.http
       .get<InvestigationApiEntity[]>(`${this.apiUrl}/user/investigation/all`,{withCredentials: true})
       .pipe(map(this.mapper.mapFromList));
   }
 
+  /**
+   * @inheritDoc
+   */
   getInvestigationByIdForUser(id: number): Observable<InvestigationModel> {
     return this.http
       .get<InvestigationApiEntity>(`${this.apiUrl}/user/investigation/${id}`,{withCredentials: true})
       .pipe(map(this.mapper.mapFrom));
   }
 
+  /**
+   * @inheritDoc
+   */
   updateCompletionOfInvestigationByIdForUser(id: number): Observable<boolean> {
     return this.http
       .put(`${this.apiUrl}/user/investigation/${id}/complete`,{},{withCredentials: true})

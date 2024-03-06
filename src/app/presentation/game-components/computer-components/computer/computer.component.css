@@ -113,3 +113,11 @@ html, body {
 .cdk-drag-placeholder {
   opacity: 0;
 }
+
+
+@media screen and (max-width: 600px) and (orientation: landscape) {
+  .computer {
+    width: 90vw;
+    height: 90vh;
+  }
+}

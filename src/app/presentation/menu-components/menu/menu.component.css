@@ -54,9 +54,41 @@ button {
   background-color: transparent;
   color: white;
 }
+
 .ConnexionZoneRouge{
   color: red;
 }
+
 .ConnexionZoneVerte{
   color: green;
+}
+
+@media screen and (orientation: landscape) {
+  .mainContent {
+    left: 5%;
+    right: 65%;
+  }
+  @media screen and (max-width: 700px) {
+    .menuTitle {
+      font-size: 12vh;
+    }
+    .menuButton {
+      font-size: 7vh;
+    }
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .mainContent {
+    left: 0;
+    right: 50%;
+  }
+  @media screen and (max-width: 400px) {
+    .menuTitle {
+      font-size: 7vh;
+    }
+    .menuButton {
+      font-size: 5vh;
+    }
+  }
 }

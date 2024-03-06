@@ -11,7 +11,6 @@
   image-rendering: pixelated;
   background-size: contain;
   background-repeat: no-repeat;
-  width: 80%;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -25,7 +24,6 @@
   cursor: pointer;
   outline: none;
   width: 30%;
-  left: 10%;
   top: -5%;
 }
 
@@ -49,7 +47,6 @@
   cursor: pointer;
   outline: none;
   width: 30%;
-  left: 45%;
   top: 23%;
 }
 
@@ -74,7 +71,6 @@
   cursor: pointer;
   outline: none;
   width: 40%;
-  left: 50%;
   top: -80%;
 }
 
@@ -100,7 +96,6 @@
   cursor: pointer;
   outline: none;
   width: 40%;
-  left: 75%;
   top: -20%;
 }
 
@@ -138,4 +133,98 @@
   width: 83%;
   height: 55%;
   transition: transform 0.5s ease;
+}
+
+.chrono-box {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  box-sizing: border-box;
+  border: 1.5vh solid lightgray;
+}
+
+
+.chrono {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+}
+
+p#chrono {
+  color: black;
+}
+
+@media screen and (orientation: landscape) {
+  .desk {
+    width: 80%;
+  }
+
+  .computer {
+    left: 10%;
+  }
+
+  .book {
+    left: 45%;
+  }
+
+  .board {
+    left: 50%;
+  }
+
+  .bonsai {
+    left: 75%;
+  }
+
+  .chrono-box {
+    left: 10%;
+    width: 17%;
+    height: 12%;
+  }
+
+  p#chrono {
+    font-size: 3vh;
+  }
+
+  @media screen and (max-width: 600px) {
+    .desk {
+      width: 90%;
+    }
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .desk {
+    width: 250%;
+  }
+
+  .computer {
+    left: 30%;
+  }
+
+  .book {
+    left: 50%;
+  }
+
+  .board {
+    left: 30%;
+  }
+
+  .bonsai {
+    left: 60%;
+  }
+
+  .chrono-box {
+    left: 30%;
+    width: 40%;
+    height: 10%;
+  }
+
+  p#chrono {
+    font-size: 1.5vh;
+  }
 }

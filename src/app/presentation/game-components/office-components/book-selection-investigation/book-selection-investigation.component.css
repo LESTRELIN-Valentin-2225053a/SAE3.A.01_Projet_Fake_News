@@ -1,15 +1,15 @@
-.main{
+.main {
   display: flex;
   width: 75%;
   margin: auto;
 }
 
-.Book{
+.Book {
   display: flex;
   image-rendering: pixelated;
 }
 
-.Page{
+.Page {
   position: relative;
   flex: 1;
 }
@@ -20,34 +20,33 @@
   z-index: 0;
 }
 
-.leftPageText{
+.leftPageText, .rightPageText{
   position: absolute;
-  left: 15%;
   top: 5%;
   height: 80%;
   width: 80%;
   z-index: 2;
 }
 
-.NumPageLeft{
-  position: absolute;
-  left: 0;
-  bottom: 0;
-}
-
-.NumPageRight{
-  position: absolute;
-  right: 0;
-  bottom: 0;
+.leftPageText{
+  left: 15%;
 }
 
 .rightPageText{
-  position: absolute;
   right: 15%;
-  top: 5%;
-  height: 80%;
-  width: 80%;
-  z-index: 2;
+}
+
+.NumPageLeft, .NumPageRight {
+  position: absolute;
+  bottom: 0;
+}
+
+.NumPageLeft{
+  left: 0;
+}
+
+.NumPageRight{
+  right: 0;
 }
 
 .LeftPart, .RightPart {
@@ -88,7 +87,6 @@
 }
 
 .ButtonInvestigation {
-
   margin: 5% auto -5%;
   margin-bottom: 2%;
   display: flex;
@@ -116,7 +114,7 @@
   height: 100%;
 }
 
-.button img:hover{
+.button img:hover {
   -webkit-filter: drop-shadow(0 0 0.5vw lightgrey);
 }
 
@@ -131,4 +129,17 @@
   border-radius: 5px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   border: #333333 10px solid;
+}
+
+
+@media screen and (orientation: landscape) {
+  .main {
+    width: 75%;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .main {
+    width: 100%;
+  }
 }

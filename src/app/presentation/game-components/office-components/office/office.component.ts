@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {Dialog} from "@angular/cdk/dialog";
 import {SessionService} from "../../../../core/services/session.service";
 import {BookSelectionInvestigationComponent} from "../book-selection-investigation/book-selection-investigation.component";
+import {ChronometerService} from "../../../../core/services/chronometer.service";
 
 /**
  * Component representing the office environment.
@@ -23,8 +24,10 @@ export class OfficeComponent {
    * @param router The Angular router service.
    * @param viewContainerRef The reference to the view container.
    * @param sessionService The service managing the user session.
+   * @param chronometerService
    */
-  constructor(public dialog: Dialog, private router: Router, private viewContainerRef: ViewContainerRef, private sessionService: SessionService) {
+  constructor(public dialog: Dialog, private router: Router, private viewContainerRef: ViewContainerRef,
+              private sessionService: SessionService, private chronometerService : ChronometerService) {
   }
 
   /**
@@ -43,6 +46,10 @@ export class OfficeComponent {
    */
   noInvestigationChosen() : boolean {
     return !this.sessionService.isConductingInvestigation();
+  }
+
+  getChronometerElapsedTime() {
+    return this.chronometerService.getElapsedTimeAsString();
   }
 
   /**

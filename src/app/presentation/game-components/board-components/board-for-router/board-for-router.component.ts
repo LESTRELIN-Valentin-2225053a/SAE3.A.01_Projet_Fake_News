@@ -8,6 +8,7 @@ import {SessionService} from "../../../../core/services/session.service";
 @Component({
   selector: 'board-for-router',
   templateUrl: './board-for-router.component.html',
+  styleUrl: './board-for-router.component.css'
 })
 export class BoardForRouterComponent {
   /** The type of board determined by the current investigation. */

@@ -13,7 +13,6 @@
 }
 
 .element-icon {
-  font-size: 24px;
   margin-right: 10px;
 }
 
@@ -28,4 +27,30 @@
 .element-description p {
   margin: 0;
   color: #555;
+}
+
+@media screen and (orientation: landscape) {
+  @media screen and (max-width: 600px) {
+    .instructions-dialog {
+      min-width: 300px;
+    }
+  }
+
+  .element-icon, .element-description h3 {
+    font-size: 4vh;
+  }
+
+  .element-description p {
+    font-size: 3vh;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .element-icon, .element-description h3 {
+    font-size: 3vh;
+  }
+
+  .element-description p {
+    font-size: 2vh;
+  }
 }

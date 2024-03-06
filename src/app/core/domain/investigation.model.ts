@@ -25,4 +25,9 @@ export interface InvestigationModel {
    * If true, the investigation is considered completed; otherwise, it is incomplete.
    */
   completion: boolean;
+
+  /**
+   * (Optional) The score achieved in the investigation, if available.
+   */
+  score? : number;
 }

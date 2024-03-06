@@ -50,6 +50,11 @@ export class InvestigationService {
     return this.investigationRepository.getAllInvestigationsForUser();
   }
 
+
+  getInvestigationScore(duration : number) : number {
+    return 1000*Math.exp(-0.02*duration);
+  }
+
   /**
    * Marks an investigation as completed for the current user.
    * @param id The ID of the investigation to mark as completed.

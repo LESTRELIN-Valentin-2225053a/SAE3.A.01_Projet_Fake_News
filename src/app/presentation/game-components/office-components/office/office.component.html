@@ -7,6 +7,9 @@
     <button [routerLink]="'./board'" [disabled]="noInvestigationChosen()" class="board"><img src="/assets/game_assets/board_assets/board.png" alt="Tableau"/></button>
     <div class="bonsai" (click)="shakeBonsai()"><img src="/assets/game_assets/office_assets/bonsai.png" alt="Arbre qui secoue lorsque l'on clique avec la souris et qui est pas mal"/></div>
   </div>
+  <div class="chrono-box" *ngIf="!noInvestigationChosen()">
+    <div class="chrono"><p id="chrono">Temps : {{ getChronometerElapsedTime() }}</p></div>
+  </div>
 </div>
 <left-corner-button></left-corner-button>
 <right-corner-button></right-corner-button>

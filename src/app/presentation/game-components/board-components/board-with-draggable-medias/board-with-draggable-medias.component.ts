@@ -36,7 +36,17 @@ export class BoardWithDraggableMediasComponent extends BoardWithMediasComponent 
   /** Lifecycle hook called after Angular has initialized the component's properties. */
   override ngOnInit(): void {
     super.ngOnInit();
-    this.mediaLocations = this.sessionService.mediaLocations.getValue();
+    this.mediaLocations = this.sessionService.mediaLocations.getValue().sort((a, b) => a.pos.x - b.pos.x);
+  }
+
+  /**
+   * Sorts media locations by their horizontal position.
+   * @param a - The first media location model.
+   * @param b - The second media location model.
+   * @returns A negative, zero, or positive value depending on the comparison result.
+   */
+  sortByHorizontalPosition(a : MediaLocationModel, b : MediaLocationModel): number {
+    return a.pos.x - b.pos.x;
   }
 
   /**
