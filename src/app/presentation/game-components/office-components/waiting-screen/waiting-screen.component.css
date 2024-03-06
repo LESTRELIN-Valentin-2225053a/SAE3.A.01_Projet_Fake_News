@@ -1,4 +1,44 @@
 .WaitingScreen {
-  background-color: #dc964c;
+  background: linear-gradient(135deg, #dc964c 0%, #e2b04a 100%);
   padding: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+
+.WaitingMessage {
+  font-size: 1em;
+  padding: 10px;
+  animation: blink 1.5s infinite;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+.Loader {
+  width: 40px;
+  height: 40px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid;
+  border-color: #000 #0000;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
