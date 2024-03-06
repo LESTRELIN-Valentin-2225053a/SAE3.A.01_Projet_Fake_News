@@ -1,7 +1,7 @@
 import {MediaModel} from "./media.model";
 
 /**
- * Represents the model for the location of media within an investigation.
+ * Represents the model for a media location associated with an investigation.
  */
 export interface MediaLocationModel {
   /** The unique identifier of the media location. */
