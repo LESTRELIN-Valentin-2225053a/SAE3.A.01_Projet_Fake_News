@@ -1,3 +1,9 @@
+<h2 *ngIf="data.investigation.board_type === 'DRAGGABLE' && data.media.trustWorthy" class="explication">
+  Placez le media dans le tableau ainsi que la case où il devra être placé
+</h2>
+<h2 *ngIf="data.investigation.board_type === 'VALIDABLE' || !data.media.trustWorthy" class="explication">
+  Placez le media dans le tableau
+</h2>
 <board class="board" #board>
   <ng-container *ngIf="data.investigation.board_type === 'DRAGGABLE' && data.media.trustWorthy">
     <div cdkDrag cdkDragBoundary=".board" [style.width.%]="mediaWidthRatio*100" [cdkDragFreeDragPosition]="mediaLocation.pos" (cdkDragEnded)="onDragEnd($event)" class="mediaLocation">
@@ -14,3 +20,12 @@
                               cdkDragBoundary=".board"/>
   </ng-container>
 </board>
+<div class="bottom-block">
+  <form *ngIf="data.investigation.board_type === 'DRAGGABLE' && data.media.trustWorthy" [formGroup]="descriptionLocationForm">
+    <div class="form-group">
+      <label for="description">Description de la case</label>
+      <input type="text" class="form-control" id="description" formControlName="description">
+    </div>
+  </form>
+  <button class="btn btn-primary" (click)="linkMediaToInvestigation()">Enregistrer</button>
+</div>

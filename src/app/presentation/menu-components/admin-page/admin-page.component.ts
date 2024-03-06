@@ -234,13 +234,7 @@ export class AdminPageComponent {
   showAddMedia: boolean = false;
   //Form for the adding of the media
   AddMediaForm: FormGroup = new FormGroup({
-    media_id: new FormControl(''),
-    PosX : new FormControl(''),
-    PosY : new FormControl('')
-  });
-  AddMediaLocationForm: FormGroup = new FormGroup({
-    PosX : new FormControl(''),
-    PosY : new FormControl('')
+    media_id: new FormControl('')
   });
 
   //RemoveMedia
@@ -418,39 +412,18 @@ export class AdminPageComponent {
     let media_id : number = this.AddMediaForm.get('media_id')?.value;
     this.mediaService.getMediaById(media_id).subscribe((value) => {
       this.dialog.open(BoardAdminComponent, {
-        data : {media : value, investigation : this.currentInvestigation.getValue()},
+        data : {
+          media : value,
+          investigation : this.currentInvestigation.getValue()
+        },
         viewContainerRef: this.viewContainerRef
       });
+      this.mediasOfCurrentInvestigation = this.mediaService
+        .getMediasByInvestigationId(<number>this.currentInvestigation.getValue()?.id);
     });
 
   }
 
-  linkMediaToInvestigation(){
-    let media_id : number = this.AddMediaForm.get('media_id')?.value;
-    let media : BehaviorSubject<MediaModel | null> = new BehaviorSubject<MediaModel | null>(null);
-    this.mediaService.getMediaById(media_id).subscribe((value) => {
-      media.next(value);
-    });
-    let PosX : string = this.AddMediaLocationForm.get('PosX')?.value;
-    let PosY : string = this.AddMediaLocationForm.get('PosY')?.value;
-    let formDATA = new FormData();
-    formDATA.append('PosX', PosX);
-    formDATA.append('PosY', PosY);
-    if (this.currentInvestigation.getValue() != null){
-      if (this.currentInvestigation.getValue()?.board_type == "DRAGGABLE"
-      && media.getValue()?.trustWorthy == true){
-        formDATA.append('LocationPosX', this.AddMediaLocationForm.get('PosX')?.value);
-        formDATA.append('LocationPosY', this.AddMediaLocationForm.get('PosY')?.value);
-      }
-      // @ts-ignore
-      let investigation_id : number = this.currentInvestigation.getValue().id;
-      this.AdminService.linkMediaToInvestigation(investigation_id, media_id, formDATA)
-        .subscribe(() => {
-          this.mediasOfCurrentInvestigation = this.mediaService
-            .getMediasByInvestigationId(<number>this.currentInvestigation.getValue()?.id);
-        });
-    }
-  }
 
   openRemoveMedia() {
     this.showRemoveMedia = true;

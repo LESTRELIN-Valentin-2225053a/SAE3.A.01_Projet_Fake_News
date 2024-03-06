@@ -7,6 +7,7 @@ import {MediaService} from "../../../core/services/media.service";
 import {MediaLocationModel} from "../../../core/domain/media-location.model";
 import {CdkDragEnd, Point} from "@angular/cdk/drag-drop";
 import {BoardComponent} from "../../game-components/board-components/board/board.component";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'board-admin',
@@ -22,6 +23,10 @@ export class BoardAdminComponent {
 
   media : MediaModel;
   mediaLocation : MediaLocationModel;
+
+  descriptionLocationForm : FormGroup = new FormGroup({
+    description: new FormControl(''),
+  });
 
   constructor(public dialog: Dialog,@Inject(DIALOG_DATA) public data: {media : MediaModel, investigation : InvestigationModel},
               private adminService : AdminService,
@@ -41,5 +46,24 @@ export class BoardAdminComponent {
     this.mediaLocation.pos.y = newMediaPosition.y/this.board.height;
     console.log(this.mediaLocation.pos.x,this.mediaLocation.pos.y);
     this.dragEndedEvent.emit($event);
+  }
+
+  linkMediaToInvestigation(){
+    let formData = new FormData();
+    formData.append('PosX', this.media.pos.x.toString());
+    formData.append('PosY', this.media.pos.y.toString());
+    if (this.data.investigation.board_type == 'DRAGGABLE' && this.data.media.trustWorthy){
+      // @ts-ignore
+      let description = this.descriptionLocationForm.get('description').value;
+      formData.append('description', description);
+      formData.append('LocationPosX', this.mediaLocation.pos.x.toString());
+      formData.append('LocationPosY', this.mediaLocation.pos.y.toString());
+    }
+    console.log(formData);
+    this.adminService.linkMediaToInvestigation(this.data.investigation.id, this.media.id, formData).subscribe(
+   () => {
+        this.dialog.closeAll();
+      }
+    );
   }
 }
