@@ -12,7 +12,9 @@ import {GameComponentsModule} from "../game-components.module";
 import {WaitingScreenComponent} from "./waiting-screen/waiting-screen.component";
 
 
-
+/**
+ * Module responsible for managing components related to the office feature of the application.
+ */
 @NgModule({
     imports: [
         CommonModule,

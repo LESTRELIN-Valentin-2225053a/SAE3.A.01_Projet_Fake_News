@@ -7,7 +7,7 @@
 .desk {
   position: fixed;
   aspect-ratio: 3;
-  background-image : url("/assets/desk.png");
+  background-image : url("/assets/game_assets/office_assets/desk.png");
   image-rendering: pixelated;
   background-size: contain;
   background-repeat: no-repeat;

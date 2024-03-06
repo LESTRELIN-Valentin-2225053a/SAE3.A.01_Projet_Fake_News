@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #003366;
+    color: #fff;
+    padding: 20px;
+}
+
+header img {
+    height: 50px;
+    width: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+header img:hover {
+    transform: scale(1.1);
+}
+
+form {
+    margin: 20px auto;
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+form input {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: calc(100% - 20px);
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #003366;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.footer {
+    background-color: #003366;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.panelButton {
+    background-color: #f1f1f1;
+    color: #333;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active,
+.panelButton:hover {
+    background-color: #ccc;
+}
+
+.panel {
+    padding: 20px;
+    background-color: white;
+    overflow: hidden;
+    display: none;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+}
+
+
+.panel.show {
+    display: block;
+}

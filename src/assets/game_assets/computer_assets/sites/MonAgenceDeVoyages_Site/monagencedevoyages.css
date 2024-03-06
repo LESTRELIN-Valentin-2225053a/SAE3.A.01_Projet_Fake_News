@@ -1,0 +1,94 @@
+body {
+   margin: 0;
+   padding: 0;
+   font-family: Arial, sans-serif;
+   background-image: url('maldives.jpg');
+   background-size: cover;
+   background-attachment: fixed;
+}
+
+header {
+   background-image: url('avion.jpg');
+   background-size: cover;
+   height: 300px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+}
+
+header h1 {
+   font-family: 'Playfair Display', serif;
+   color: crimson;
+   font-size: 80px;
+}
+
+nav {
+   text-align: center;
+   background-color: rgba(255, 255, 255, 0.7);
+   padding: 10px 0;
+}
+
+nav a {
+   color: #333;
+   text-decoration: none;
+   padding: 10px 20px;
+   margin: 0 10px;
+   border-radius: 5px;
+   background-color: #f7c623;
+   transition: background-color 0.3s;
+}
+
+nav a:hover {
+   background-color: #ffa500;
+}
+
+.flex-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+   margin-top: 20px;
+}
+
+.image-container {
+   width: 48%;
+   position: relative;
+   overflow: hidden;
+   margin-bottom: 20px;
+}
+
+.image-container:hover img {
+   opacity: 0.5;
+}
+
+.image-container:hover .country {
+   opacity: 1;
+}
+
+.image-container img {
+   width: 100%;
+   height: auto;
+   transition: opacity 0.3s;
+}
+
+.country {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   text-align: center;
+   color: white;
+   transition: opacity 0.3s, font-size 0.3s;
+   font-size: 50px;
+   font-weight: bold;
+}
+
+.country:hover {
+   font-size: 20px;
+}
+
+footer {
+   background-color: rgba(255, 255, 255, 0.7);
+   text-align: center;
+   padding: 20px;
+}

@@ -6,6 +6,12 @@ import {WebsiteApiEntity} from "./website-api-entity";
 import {WebsiteApiRepositoryMapper} from "./website-api-repository.mapper";
 import {Injectable} from "@angular/core";
 
+/**
+ * Repository class for handling API requests related to investigations.
+ * This class implements the InvestigationRepository interface.
+ * Handles operations such as retrieving all websites, getting a website by ID,
+ * and fetching websites associated with a specific investigation.
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -29,5 +35,4 @@ export class WebsiteApiRepository extends ApiRepository implements WebsiteReposi
       .get<WebsiteApiEntity[]>(`${this.apiUrl}/common/investigation/${id}/websites`)
       .pipe(map(this.mapper.mapFromList));
   }
-
 }

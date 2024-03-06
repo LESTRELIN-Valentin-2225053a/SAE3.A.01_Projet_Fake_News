@@ -2,7 +2,17 @@ import {Mapper} from "../../../../core/base/mapper";
 import {MediaApiEntity} from "./media-api-entity";
 import {MediaModel} from "../../../../core/domain/media.model";
 
+/**
+ * Maps data between Media API entities and Media domain models.
+ * Provides methods to convert from one type to another and vice versa.
+ */
 export class MediaApiRepositoryMapper extends Mapper<MediaApiEntity, MediaModel>{
+
+  /**
+   * Maps a MediaApiEntity object to a MediaModel object.
+   * @param param The MediaApiEntity object to map from.
+   * @returns The mapped MediaModel object.
+   */
   mapFrom(param: MediaApiEntity): MediaModel {
     return {
         id: param.media_id,
@@ -16,6 +26,11 @@ export class MediaApiRepositoryMapper extends Mapper<MediaApiEntity, MediaModel>
     };
   }
 
+  /**
+   * Maps an array of MediaApiEntity objects to an array of MediaModel objects.
+   * @param param The array of MediaApiEntity objects to map from.
+   * @returns The mapped array of MediaModel objects.
+   */
   mapFromList(param: MediaApiEntity[]): MediaModel[] {
     let mediaModels: MediaModel[] = [];
 
@@ -35,6 +50,11 @@ export class MediaApiRepositoryMapper extends Mapper<MediaApiEntity, MediaModel>
     return mediaModels;
   }
 
+  /**
+   * Maps a MediaModel object to a MediaApiEntity object.
+   * @param param The MediaModel object to map from.
+   * @returns The mapped MediaApiEntity object.
+   */
   mapTo(param: MediaModel): MediaApiEntity {
     return {
       media_id: param.id,
@@ -49,6 +69,11 @@ export class MediaApiRepositoryMapper extends Mapper<MediaApiEntity, MediaModel>
     };
   }
 
+  /**
+   * Maps an array of MediaModel objects to an array of MediaApiEntity objects.
+   * @param param The array of MediaModel objects to map from.
+   * @returns The mapped array of MediaApiEntity objects.
+   */
   mapToList(param: MediaModel[]): MediaApiEntity[] {
     let mediaApiEntities: MediaApiEntity[] = [];
 

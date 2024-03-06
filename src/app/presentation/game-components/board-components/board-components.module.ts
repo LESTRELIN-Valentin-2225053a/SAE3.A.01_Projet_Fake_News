@@ -13,6 +13,10 @@ import {BoardForRouterComponent} from "./board-for-router/board-for-router.compo
 import {BoardComponentsRoutingModule} from "./board-components-routing.module";
 import {GameComponentsModule} from "../game-components.module";
 
+/**
+ * Module containing components related to the board functionality.
+ * Provides components for displaying media on the board, draggable media, validatable media, media locations, and boards for routing purposes.
+ */
 @NgModule({
     imports: [
         CommonModule,

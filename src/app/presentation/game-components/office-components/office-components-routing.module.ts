@@ -9,6 +9,9 @@ const routes: Routes = [
   }
 ];
 
+/**
+ * Module responsible for routing related to the office feature of the application.
+ */
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

@@ -10,7 +10,10 @@ import { ValidateRegistrationComponent } from './validate-registration/validate-
 import {ContextComponent} from "./context/context.component";
 
 
-
+/**
+ * Module for Menu Components.
+ * This module declares and imports components related to the menu.
+ */
 @NgModule({
   declarations: [
     MenuComponent,
