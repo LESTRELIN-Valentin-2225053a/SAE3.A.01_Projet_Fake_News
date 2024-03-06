@@ -1,0 +1,103 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #f2f2f2;
+  padding: 20px;
+  text-align: center;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+section {
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+footer {
+  background-color: #f2f2f2;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+article {
+  max-width: 800px; /* Limite la largeur de l'article pour la lisibilité */
+  margin: 20px auto; /* Centre l'article sur la page */
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2.5em; /* Augmente la taille du titre */
+  text-align: center; /* Centre le titre */
+  margin-bottom: 20px; /* Espace entre le titre et l'image */
+}
+
+img {
+  display: block; /* Permet de centrer l'image */
+  max-width: 100%; /* S'assure que l'image ne dépasse pas la largeur de l'article */
+  height: auto; /* Maintient les proportions de l'image */
+  margin: 0 auto 20px; /* Centre l'image et ajoute de l'espace en dessous */
+}
+
+p {
+  text-align: justify; /* Justifie le texte de l'article pour une lecture confortable */
+  line-height: 1.6; /* Améliore la lisibilité du paragraphe */
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+
+.article1 {
+  background-color: #ffffff;
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 800px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+.article-content p {
+  text-align: justify;
+  line-height: 1.6;
+}
+
+span {
+  font-weight: bold;
+}
+
+
+
+

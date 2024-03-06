@@ -1,0 +1,48 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: linear-gradient(to right, #0055a4 33.33%, white 33.33%, white 66.66%, #ef4135 66.66%);
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.wrapper {
+  background-color: rgba(0, 255, 0, 0.8); /* Vert avec transparence */
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px auto; /* Ajout d'un margin pour espacer du haut et du bas */
+  width: 60%;
+  max-width: 800px;
+}
+
+header h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.articles {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+article {
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+article h2 {
+  margin-top: 0;
+}
+
+article img {
+  max-width: 100%;
+  height: auto;
+  margin: 15px 0;
+}
