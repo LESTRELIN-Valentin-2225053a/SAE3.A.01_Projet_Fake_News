@@ -1,4 +1,5 @@
 <div class="folder" [style.width.px]="width" [style.height.px]="height">
+  <div class="folder-top"><button id="back-button" class="back-button">×</button></div>
   <div class="folder-header">
     <button class="tabs" (click)="showInvestigation()">Enquêtes</button>
     <button class="tabs" (click)="showUsers()">Utilisateurs</button>
@@ -27,7 +28,7 @@
           <h3>Selectionnez une enquête</h3>
         </div>
         <div *ngIf="currentInvestigation.getValue() !== null && !showInvestigationDetails
-        && !showInvestigationUpdate && !showInvestigationCreate && !showAddWebsite && !showRemoveWebsite && !showRemoveMedia">
+        && !showInvestigationUpdate && !showInvestigationCreate && !showAddWebsite && !showRemoveWebsite && !showRemoveMedia && !showAddMedia">
           <h3>{{ currentInvestigation.getValue()?.title }}</h3>
           <div class="actions">
             <button class="action" (click)="openInvestigationDetails()">Voir les informations</button>
@@ -172,13 +173,13 @@
                 <h4>Sites Internet</h4>
                 <div class="website-list">
                   <ng-container *ngIf="(websites | async) as websites">
-                      <form [formGroup]="AddWebsiteForm">
-                        <select formControlName="website_id">
-                          <option value="0" disabled selected hidden>Choisissez un site</option>
-                          <option *ngFor="let website of websites" [value]="website.id">{{ website.title }}</option>
-                        </select>
-                        <button class="action" (click)="linkWebsiteToInvestigation()">Ajouter le site à l'enquête</button>
-                      </form>
+                    <form [formGroup]="AddWebsiteForm">
+                      <select formControlName="website_id">
+                        <option value="0" disabled selected hidden>Choisissez un site</option>
+                        <option *ngFor="let website of websites" [value]="website.id">{{ website.title }}</option>
+                      </select>
+                      <button class="action" (click)="linkWebsiteToInvestigation()">Ajouter le site à l'enquête</button>
+                    </form>
                   </ng-container>
                 </div>
               </div>
@@ -280,11 +281,11 @@
           <div class="actions">
             <button class="action" (click)="openUserDetails()">Voir les informations</button>
             <button *ngIf="currentUser.getValue()?.isBlocked" class="action"
-              (click)="unblockCurrentUser()">Débloquer l'utilisateur</button>
+                    (click)="unblockCurrentUser()">Débloquer l'utilisateur</button>
             <button *ngIf="!currentUser.getValue()?.isBlocked" class="action"
-              (click)="blockCurrentUser()">Bloquer l'utilisateur</button>
+                    (click)="blockCurrentUser()">Bloquer l'utilisateur</button>
             <button *ngIf="!currentUser.getValue()?.isAdmin" class="action"
-              (click)="promoteCurrentUser()">Promouvoir en administrateur</button>
+                    (click)="promoteCurrentUser()">Promouvoir en administrateur</button>
             <button class="action" (click)="deleteCurrentUser()">Supprimer l'utilisateur</button>
           </div>
         </div>
@@ -349,7 +350,7 @@
                   <img class="img-detail" [src]="currentMedia.getValue()?.picture" alt="image">
                   <p><strong>Media :</strong></p>
                   <div *ngIf="currentMedia.getValue()?.type === 'video'">
-                    <video width="320" height="240" controls>
+                    <video width="480" height="360" controls>
                       <source [src]="currentMedia.getValue()?.link" type="video/mp4">
                     </video>
                   </div>
