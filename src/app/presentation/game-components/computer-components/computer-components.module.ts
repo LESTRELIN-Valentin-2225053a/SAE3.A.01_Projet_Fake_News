@@ -6,6 +6,7 @@ import {CoreModule} from "../../../core/core.module";
 import {CdkDrag, CdkDropList} from "@angular/cdk/drag-drop";
 import {ComputerComponentsRoutingModule} from "./computer-components-routing.module";
 import {GameComponentsModule} from "../game-components.module";
+import {SafeUrlPipe} from "./computer/safe-url.pipe";
 
 
 /**
@@ -23,7 +24,8 @@ import {GameComponentsModule} from "../game-components.module";
     ],
   declarations: [
     ComputerComponent,
-    TabComponent
+    TabComponent,
+    SafeUrlPipe
   ]
 })
 export class ComputerComponentsModule { }

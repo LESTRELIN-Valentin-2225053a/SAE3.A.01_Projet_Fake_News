@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {DomSanitizer} from "@angular/platform-browser";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 import {WebsiteModel} from "../../../../core/domain/website.model";
 import {SessionService} from "../../../../core/services/session.service";
@@ -20,20 +19,12 @@ export class ComputerComponent implements OnInit{
   /** The list of websites available on the computer. */
   websites: WebsiteModel[];
 
-  constructor(private sessionService : SessionService, private _sanitizer : DomSanitizer) {
+  constructor(private sessionService : SessionService) {
   }
 
   ngOnInit(): void {
     this.websites = this.sessionService.websites.getValue();
     this.actualWebsite = this.websites[0];
-  }
-
-
-  /**
-   * Gets the DomSanitizer instance for sanitizing URLs.
-   */
-  get sanitizer(): DomSanitizer {
-    return this._sanitizer;
   }
 
   /**

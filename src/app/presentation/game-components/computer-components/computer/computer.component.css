@@ -6,9 +6,6 @@ html, body {
   padding: 0;
 }
 
-
-
-
 .computer {
   position: relative;
   display: grid;
@@ -65,17 +62,6 @@ html, body {
   white-space: nowrap;
 }
 
-
-.app-tab {
-  border: 5px solid #ccc;
-  margin-right: 10px;
-  padding: 8px;
-  flex-shrink: 0;
-}
-
-
-
-
 .table {
   width: 100vw;
   height: 100vh;
@@ -114,10 +100,3 @@ html, body {
   opacity: 0;
 }
 
-
-@media screen and (max-width: 600px) and (orientation: landscape) {
-  .computer {
-    width: 90vw;
-    height: 90vh;
-  }
-}

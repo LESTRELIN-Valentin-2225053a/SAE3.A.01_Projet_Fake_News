@@ -17,6 +17,8 @@ export class TabComponent {
    */
   @Input() website! : WebsiteModel;
 
+  @Input() isActive: boolean = false;
+
   /**
    * Event emitter that emits the website model when the tab is clicked.
    */

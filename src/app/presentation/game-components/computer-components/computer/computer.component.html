@@ -11,9 +11,10 @@
     </div>
     <div class="screen">
       <div cdkDropList cdkDropListOrientation="horizontal" class="tabs" (cdkDropListDropped)="drop($event)">
-        <tab *ngFor="let website of websites" cdkDrag cdkDragBoundary=".screen" [cdkDragLockAxis]="'x'" [website]="website" (tabClicked)="changeTab($event)" class="app-tab"></tab>
+        <tab *ngFor="let website of websites" cdkDrag cdkDragBoundary=".screen"
+             [cdkDragLockAxis]="'x'" [website]="website" (tabClicked)="changeTab($event)" [isActive]="actualWebsite === website" class="app-tab"></tab>
       </div>
-      <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(actualWebsite.link)" class="website"></iframe>
+      <iframe [src]="actualWebsite.link | safeUrl" class="website"></iframe>
     </div>
   </div>
   <div class="monitor-stand"></div>
