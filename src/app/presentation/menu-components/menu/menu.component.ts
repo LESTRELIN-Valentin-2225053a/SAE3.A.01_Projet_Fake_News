@@ -3,6 +3,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {AuthService} from "../../../core/services/auth.service";
 import {FormLoginComponent} from "../form-login/form-login.component";
 import {ContextComponent} from "../context/context.component";
+import {Observable} from "rxjs";
 
 /**
  * Component representing the menu for the application.
@@ -23,7 +24,7 @@ export class MenuComponent implements OnInit{
   /** Flag to indicate whether the user is logged in. */
   isLogged: boolean = false;
 
-  isAdmin: boolean = false;
+  isAdmin: Observable<boolean>;
 
   /**
    * Constructor for MenuComponent.
@@ -31,7 +32,7 @@ export class MenuComponent implements OnInit{
    * @param dialog - MatDialog service for opening dialogs.
    * @param viewContainerRef - Reference to the view container for dialogs.
    */
-  constructor(private authService : AuthService, public dialog: MatDialog, private viewContainerRef: ViewContainerRef) {
+  constructor(public authService : AuthService, public dialog: MatDialog, private viewContainerRef: ViewContainerRef) {
     authService.isLogged().subscribe(isLogged => {
       this.isLogged = isLogged;
       if(this.isLogged)
@@ -39,9 +40,7 @@ export class MenuComponent implements OnInit{
       else
         this.loginStorage = 'Non connecté';
     });
-    authService.checkAdminStatus().subscribe(isAdmin => {
-      this.isAdmin = isAdmin;
-    });
+    this.isAdmin = authService.isAdmin
   }
 
   /**

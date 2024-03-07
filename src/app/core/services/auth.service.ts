@@ -17,13 +17,17 @@ export class AuthService {
    * True if the user is logged in, false otherwise.
    */
   private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private isAdminInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  private isAdminSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  public isAdmin: Observable<boolean> = this.isAdminSubject.asObservable();
 
   constructor(private userRepository : UserRepository) {
     this.userRepository.getLoggedUser().pipe(tap(user => console.log(user)))
       .subscribe(user => {
         this.isLoggedInSubject.next(user !== undefined);
-        this.userRepository.checkAdminStatus().pipe(tap(isAdmin => console.log(isAdmin))).subscribe(this.isAdminInSubject);
+        // this.userRepository.checkAdminStatus().pipe(tap(isAdmin => console.log(isAdmin))).subscribe(this.isAdminSubject);
+        this.isAdminSubject.next(user ? user.isAdmin : false);
       });
   }
 
@@ -38,7 +42,7 @@ export class AuthService {
     return this.userRepository.register(name, mail, password).pipe(
       tap(user => {
         this.isLoggedInSubject.next(user !== undefined)
-        this.userRepository.checkAdminStatus().subscribe(this.isAdminInSubject);
+        this.isAdminSubject.next(user ? user.isAdmin : false);
       }) // Notify observers when logged in
     );
   }
@@ -53,7 +57,7 @@ export class AuthService {
     return this.userRepository.login(mail, password).pipe(
       tap(user => {
         this.isLoggedInSubject.next(user !== undefined)
-        this.userRepository.checkAdminStatus().subscribe(this.isAdminInSubject);
+        this.isAdminSubject.next(user ? user.isAdmin : false);
       }) // Notify observers when logged in
     );
   }
@@ -66,7 +70,7 @@ export class AuthService {
     return this.userRepository.logout().pipe(
       tap(() => {
         this.isLoggedInSubject.next(false);
-        this.isAdminInSubject.next(false);
+        this.isAdminSubject.next(false);
       }) // Notify observers when logged out
     );
   }
@@ -79,7 +83,4 @@ export class AuthService {
     return this.isLoggedInSubject.asObservable();
   }
 
-  checkAdminStatus(): Observable<boolean> {
-    return this.isAdminInSubject.asObservable();
-  }
 }

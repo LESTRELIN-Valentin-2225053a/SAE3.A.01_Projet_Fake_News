@@ -120,7 +120,7 @@ export class SessionService {
           catchError(() => {return of([]);})
           ,tap(this.websites))
       ]
-      return forkJoin(sources);
+      return forkJoin(sources).pipe(tap(() => this.chronometerService.startTimer()));
     } else {
       const sources = [
         this.mediaService.getMediasByInvestigationId(investigation.id).pipe(

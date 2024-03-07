@@ -3,7 +3,7 @@
     <h1 class="menuTitle">Enquêtes a MarsActu</h1>
     <div id="ZoneConnexion" [ngClass]="{'ConnexionZoneVerte': isLogged, 'ConnexionZoneRouge': !isLogged}" *ngIf="loginStorage">{{ loginStorage }}</div>
     <button class="menuButton" routerLink="office">Commencer</button><br>
-    <button *ngIf="isAdmin" class="menuButton" routerLink="admin">Administration</button><br>
+    <button *ngIf="isAdmin | async" class="menuButton" routerLink="admin">Administration</button><br>
     <button *ngIf="!isLogged" class="menuButton" (click)="openDialog()">Connexion</button>
     <button *ngIf="isLogged" class="menuButton" (click)="logout()">Deconnexion</button><br>
   </div>

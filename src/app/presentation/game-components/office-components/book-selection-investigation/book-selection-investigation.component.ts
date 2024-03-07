@@ -1,6 +1,3 @@
-// ============================================
-//                    Import
-// ============================================
 import {Component, TemplateRef, ViewChild} from '@angular/core';
 import {Dialog, DialogRef} from "@angular/cdk/dialog";
 import {SessionService} from "../../../../core/services/session.service";
