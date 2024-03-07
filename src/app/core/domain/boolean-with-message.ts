@@ -1,4 +1,14 @@
+/**
+ * Represents a boolean value with an associated message.
+ */
 export interface BooleanWithMessage {
-  status: boolean,
-  message: string
+  /**
+   * The boolean status.
+   */
+  status: boolean;
+
+  /**
+   * The associated message.
+   */
+  message: string;
 }

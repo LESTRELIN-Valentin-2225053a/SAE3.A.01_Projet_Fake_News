@@ -5,7 +5,6 @@ import {UserModel} from "../../../../core/domain/user.model";
 import {UserApiEntity} from "./user-api-entity";
 import {UserApiRepositoryMapper} from "./user-api-repository.mapper";
 import {Injectable} from "@angular/core";
-import {HttpResponse} from "@angular/common/http";
 
 /**
  * Repository responsible for interacting with the user-related API endpoints.
@@ -111,6 +110,9 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
     return this.http.get<UserApiEntity>(`${this.apiUrl}/user/${id}`).pipe(map(this.mapper.mapFrom));
   }
 
+  /**
+   * @inheritDoc
+   */
   checkAdminStatus(): Observable<boolean> {
     return this.http.get(`${this.apiUrl}/admin/checkIsAdmin`, {withCredentials: true})
       .pipe(map(() => {
@@ -119,6 +121,10 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
         return of(false);
       }));
   }
+
+  /**
+   * @inheritDoc
+   */
   blockUser(id: number): Observable<boolean> {
     return this.http.put(`${this.apiUrl}/admin/user/block/${id}`, {}, {withCredentials: true})
       .pipe(map(() => {
@@ -127,6 +133,10 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
         return of(false);
       }));
   }
+
+  /**
+   * @inheritDoc
+   */
   unblockUser(id: number): Observable<boolean> {
     return this.http.put(`${this.apiUrl}/admin/user/unblock/${id}`, {}, {withCredentials: true})
       .pipe(map(() => {
@@ -135,6 +145,10 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
         return of(false);
       }));
   }
+
+  /**
+   * @inheritDoc
+   */
   deleteUser(id: number): Observable<boolean> {
     return this.http.delete(`${this.apiUrl}/admin/user/delete/${id}`, {withCredentials: true})
       .pipe(map(() => {
@@ -143,6 +157,10 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
         return of(false);
       }));
   }
+
+  /**
+   * @inheritDoc
+   */
   promoteUser(id: number): Observable<boolean> {
     return this.http.put(`${this.apiUrl}/admin/user/promote/${id}`, {}, {withCredentials: true})
       .pipe(map(() => {

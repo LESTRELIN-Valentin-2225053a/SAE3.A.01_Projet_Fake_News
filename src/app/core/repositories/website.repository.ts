@@ -24,10 +24,27 @@ export abstract class WebsiteRepository {
    * @returns An observable array of website models associated with the investigation.
    */
   abstract getWebsitesByInvestigationId(id: number): Observable<WebsiteModel[]>;
+
+  /**
+   * Creates a new website.
+   * @param formData The form data containing information about the new website.
+   * @returns An observable of the newly created website model.
+   */
   abstract newWebsite(formData: FormData): Observable<WebsiteModel>;
 
+  /**
+   * Updates a website by its ID.
+   * @param id The ID of the website to update.
+   * @param formData The form data containing updated information about the website.
+   * @returns An observable of the updated website model.
+   */
   abstract updateWebsite(id: number, formData : FormData): Observable<WebsiteModel>;
 
+  /**
+   * Deletes a website by its ID.
+   * @param id The ID of the website to delete.
+   * @returns An observable indicating whether the delete operation was successful.
+   */
   abstract deleteWebsite(id: number): Observable<boolean>;
 }
 

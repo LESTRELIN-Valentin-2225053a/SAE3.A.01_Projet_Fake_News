@@ -47,10 +47,38 @@ export abstract class UserRepository {
    */
   abstract getUserById(id: number): Observable<UserModel>;
 
-  abstract checkAdminStatus() : Observable<boolean>;
-  abstract blockUser(id : number) : Observable<boolean>;
-  abstract unblockUser(id : number) : Observable<boolean>;
-  abstract deleteUser(id : number) : Observable<boolean>;
-  abstract promoteUser(id : number) : Observable<boolean>;
+  /**
+   * Checks if the current user is an admin.
+   * @returns An observable indicating whether the current user is an admin.
+   */
+  abstract checkAdminStatus(): Observable<boolean>;
+
+  /**
+   * Blocks a user by their ID.
+   * @param id The ID of the user to block.
+   * @returns An observable indicating whether the user was successfully blocked.
+   */
+  abstract blockUser(id: number): Observable<boolean>;
+
+  /**
+   * Unblocks a user by their ID.
+   * @param id The ID of the user to unblock.
+   * @returns An observable indicating whether the user was successfully unblocked.
+   */
+  abstract unblockUser(id: number): Observable<boolean>;
+
+  /**
+   * Deletes a user by their ID.
+   * @param id The ID of the user to delete.
+   * @returns An observable indicating whether the user was successfully deleted.
+   */
+  abstract deleteUser(id: number): Observable<boolean>;
+
+  /**
+   * Promotes a user to admin by their ID.
+   * @param id The ID of the user to promote.
+   * @returns An observable indicating whether the user was successfully promoted.
+   */
+  abstract promoteUser(id: number): Observable<boolean>;
 }
 

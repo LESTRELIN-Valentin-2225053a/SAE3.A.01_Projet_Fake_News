@@ -47,18 +47,27 @@ export class WebsiteApiRepository extends ApiRepository implements WebsiteReposi
       .pipe(map(this.mapper.mapFromList));
   }
 
+  /**
+   * @inheritDoc
+   */
   newWebsite(formData : FormData): Observable<WebsiteModel> {
     return this.http
       .post<WebsiteApiEntity>(`${this.apiUrl}/admin/website/new`, formData, { withCredentials: true })
       .pipe(map(this.mapper.mapFrom));
   }
 
+  /**
+   * @inheritDoc
+   */
   updateWebsite(id: number, formData : FormData): Observable<WebsiteModel> {
     return this.http
       .post<WebsiteApiEntity>(`${this.apiUrl}/admin/website/update/${id}`, formData, { withCredentials: true })
       .pipe(map(this.mapper.mapFrom));
   }
 
+  /**
+   * @inheritDoc
+   */
   deleteWebsite(id: number): Observable<boolean> {
     return this.http
       .delete(`${this.apiUrl}/admin/website/delete/${id}`, { observe: 'response', withCredentials: true })

@@ -85,6 +85,11 @@ export class AuthService {
     return this.isLoggedInSubject.asObservable();
   }
 
+  /**
+   * Validates user registration form.
+   * @param form The registration form.
+   * @returns A BooleanWithMessage object indicating the validation status and message.
+   */
   validateRegistration(form : FormGroup) : BooleanWithMessage {
     let errorMessage: string = '';
     const nameControl = form.get('registerName');
@@ -115,6 +120,11 @@ export class AuthService {
     }
   }
 
+  /**
+   * Validates user login form.
+   * @param form The login form.
+   * @returns A BooleanWithMessage object indicating the validation status and message.
+   */
   validateLogin(form : FormGroup): BooleanWithMessage {
     let errorMessage : string = '';
     const emailControl = form.get('loginEmail');

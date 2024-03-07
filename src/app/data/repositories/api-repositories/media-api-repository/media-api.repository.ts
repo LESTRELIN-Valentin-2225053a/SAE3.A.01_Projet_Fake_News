@@ -59,23 +59,35 @@ export class MediaApiRepository extends ApiRepository implements MediaRepository
         catchError(() => { return of(false); }));
   }
 
+  /**
+   * @inheritDoc
+   */
   newMedia(formdata: FormData): Observable<MediaModel> {
     return this.http.post<MediaApiEntity>(`${this.apiUrl}/admin/media/new`, formdata, {withCredentials: true})
       .pipe(map(this.mapper.mapFrom));
   }
 
+  /**
+   * @inheritDoc
+   */
   updateMedia(id: number, formdata: FormData): Observable<MediaModel> {
     return this.http
       .post<MediaApiEntity>(`${this.apiUrl}/admin/media/update/${id}`, formdata, {withCredentials: true})
       .pipe(map(this.mapper.mapFrom));
   }
 
+  /**
+   * @inheritDoc
+   */
   addingLinkFileToMedia(id: number, formdata: FormData): Observable<MediaModel> {
     return this.http
       .post<MediaApiEntity>(`${this.apiUrl}/admin/media/${id}/addLinkFile`, formdata, {withCredentials: true})
       .pipe(map(this.mapper.mapFrom));
   }
 
+  /**
+   * @inheritDoc
+   */
   deleteMedia(id: number): Observable<boolean> {
     return this.http.delete(`${this.apiUrl}/admin/media/delete/${id}`, { observe: 'response', withCredentials: true })
       .pipe(map(() => {

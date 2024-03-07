@@ -41,8 +41,33 @@ export abstract class MediaRepository {
    */
   abstract getAllMedias(): Observable<MediaModel[]>;
 
+  /**
+   * Adds a new media.
+   * @param formdata The form data containing information about the new media.
+   * @returns An observable of the newly created media model.
+   */
   abstract newMedia(formdata : FormData): Observable<MediaModel>;
+
+  /**
+   * Updates a media by its ID.
+   * @param id The ID of the media to update.
+   * @param formdata The form data containing updated information about the media.
+   * @returns An observable of the updated media model.
+   */
   abstract updateMedia(id: number, formdata : FormData): Observable<MediaModel>;
+
+  /**
+   * Adds a link file to a media.
+   * @param id The ID of the media.
+   * @param formdata The form data containing information about the link file.
+   * @returns An observable of the updated media model.
+   */
   abstract addingLinkFileToMedia(id: number, formdata : FormData): Observable<MediaModel>;
+
+  /**
+   * Deletes a media by its ID.
+   * @param id The ID of the media to delete.
+   * @returns An observable indicating whether the delete operation was successful.
+   */
   abstract deleteMedia(id: number): Observable<boolean>;
 }

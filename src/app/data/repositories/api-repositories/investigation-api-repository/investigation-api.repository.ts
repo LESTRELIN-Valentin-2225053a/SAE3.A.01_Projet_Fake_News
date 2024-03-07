@@ -5,7 +5,6 @@ import {ApiRepository} from "../api.repository";
 import {InvestigationApiRepositoryMapper} from "./investigation-api-repository.mapper";
 import {InvestigationApiEntity} from "./investigation-api-entity";
 import {Injectable} from "@angular/core";
-import {HttpResponse} from "@angular/common/http";
 
 /**
  * Repository class for handling API requests related to investigations.
@@ -65,11 +64,17 @@ export class InvestigationApiRepository extends ApiRepository implements Investi
           catchError(() => { return of(false); }));
   }
 
+  /**
+   * @inheritDoc
+   */
   deleteInvestigation(id: number): Observable<boolean> {
     return this.http.delete(`${this.apiUrl}/admin/investigation/delete/${id}`, { observe: 'response', withCredentials: true }).pipe(
       map(response => response.status === 204));
   }
 
+  /**
+   * @inheritDoc
+   */
   newInvestigation(title: string, description: string, explanation: string, board_type: string): Observable<InvestigationModel> {
     console.log(title, description, explanation, board_type);
     return this.http.post<InvestigationApiEntity>(`${this.apiUrl}/admin/investigation/new`, {
@@ -80,6 +85,9 @@ export class InvestigationApiRepository extends ApiRepository implements Investi
     }, {withCredentials: true}).pipe(map(this.mapper.mapFrom));
   }
 
+  /**
+   * @inheritDoc
+   */
   updateInvestigation(id: number, title: string, description: string, explication: string, board_type: string): Observable<InvestigationModel> {
     return this.http.put<InvestigationApiEntity>(`${this.apiUrl}/admin/investigation/update/${id}`, {
       title: title,
@@ -89,6 +97,9 @@ export class InvestigationApiRepository extends ApiRepository implements Investi
     }, {withCredentials: true}).pipe(map(this.mapper.mapFrom));
   }
 
+  /**
+   * @inheritDoc
+   */
   linkWebsiteToInvestigation(investigation_id: number, website_id: number): Observable<boolean> {
     return this.http.put(`${this.apiUrl}/admin/website/${website_id}/link/${investigation_id}`, {}, {withCredentials: true})
       .pipe(map(() => {
@@ -98,6 +109,9 @@ export class InvestigationApiRepository extends ApiRepository implements Investi
       }));
   }
 
+  /**
+   * @inheritDoc
+   */
   removeWebsiteFromInvestigation(investigation_id: number, website_id: number): Observable<boolean> {
     return this.http.put(`${this.apiUrl}/admin/investigation/${investigation_id}/removeWebsite/${website_id}`, {},{withCredentials: true})
       .pipe(map(() => {
@@ -107,6 +121,9 @@ export class InvestigationApiRepository extends ApiRepository implements Investi
       }));
   }
 
+  /**
+   * @inheritDoc
+   */
   linkMediaToInvestigation(investigation_id: number, media_id: number, formdata : FormData): Observable<boolean> {
     return this.http.post(`${this.apiUrl}/admin/media/${media_id}/link/${investigation_id}`, formdata, {withCredentials: true})
       .pipe(map(() => {
@@ -116,6 +133,9 @@ export class InvestigationApiRepository extends ApiRepository implements Investi
       }));
   }
 
+  /**
+   * @inheritDoc
+   */
   removeMediaFromInvestigation(investigation_id: number, media_id: number): Observable<boolean> {
     return this.http.put(`${this.apiUrl}/admin/investigation/${investigation_id}/removeMedia/${media_id}`, {},{withCredentials: true})
       .pipe(map(() => {
