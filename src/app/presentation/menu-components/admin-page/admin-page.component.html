@@ -29,7 +29,7 @@
           <h3>Selectionnez une enquête</h3>
         </div>
         <div *ngIf="currentInvestigation.getValue() !== null && !showInvestigationDetails
-        && !showInvestigationUpdate && !showInvestigationCreate && !showAddWebsite && !showRemoveWebsite && !showRemoveMedia">
+        && !showInvestigationUpdate && !showInvestigationCreate && !showAddWebsite && !showRemoveWebsite && !showRemoveMedia && !showAddMedia">
           <h3>{{ currentInvestigation.getValue()?.title }}</h3>
           <div class="actions">
             <button class="action" (click)="openInvestigationDetails()">Voir les informations</button>
@@ -352,7 +352,7 @@
                   <img class="img-detail" [src]="currentMedia.getValue()?.picture" alt="image">
                   <p><strong>Media :</strong></p>
                   <div *ngIf="currentMedia.getValue()?.type === 'video'">
-                    <video width="320" height="240" controls>
+                    <video width="480" height="360" controls>
                       <source [src]="currentMedia.getValue()?.link" type="video/mp4">
                     </video>
                   </div>
