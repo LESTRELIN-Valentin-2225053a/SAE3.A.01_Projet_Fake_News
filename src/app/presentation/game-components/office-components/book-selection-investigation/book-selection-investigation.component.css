@@ -109,16 +109,6 @@
   outline: none;
 }
 
-.transparent-button {
-  position: absolute;
-  top: 2%;
-  left: 0.1%;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-
 .button img {
   width: 100%;
   height: 100%;
@@ -135,6 +125,9 @@
 
 .explanationDialog{
   background-color: #f4f4f4;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
   position: relative;
   padding: 1%;
   border-radius: 5px;
@@ -142,6 +135,15 @@
   border: #333333 10px solid;
 }
 
+.transparent-button {
+  position: absolute;
+  top: 3%;
+  left: 1%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
 
 @media screen and (orientation: landscape) {
   .main {
