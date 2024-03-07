@@ -16,20 +16,31 @@ import {Injectable} from "@angular/core";
   providedIn: 'root'
 })
 export class WebsiteApiRepository extends ApiRepository implements WebsiteRepository {
+
+  /** Mapper instance for mapping between API entities and domain models. */
   mapper = new WebsiteApiRepositoryMapper();
 
+  /**
+   * @inheritDoc
+   */
   getAllWebsites(): Observable<WebsiteModel[]> {
     return this.http
       .get<WebsiteApiEntity[]>(`${this.apiUrl}/website/all`)
       .pipe(map(this.mapper.mapFromList));
   }
 
+  /**
+   * @inheritDoc
+   */
   getWebsiteById(id: number): Observable<WebsiteModel> {
     return this.http
       .get<WebsiteApiEntity>(`${this.apiUrl}/website/${id}`)
       .pipe(map(this.mapper.mapFrom));
   }
 
+  /**
+   * @inheritDoc
+   */
   getWebsitesByInvestigationId(id: number): Observable<WebsiteModel[]> {
     return this.http
       .get<WebsiteApiEntity[]>(`${this.apiUrl}/common/investigation/${id}/websites`)

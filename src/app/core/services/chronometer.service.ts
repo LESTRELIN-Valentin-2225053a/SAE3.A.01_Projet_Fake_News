@@ -31,6 +31,7 @@ export class ChronometerService {
     this._elapsedTime = 0;
   }
 
+  /** Getter for the elapsed time. */
   get elapsedTime(): number {
     return this._elapsedTime;
   }

@@ -14,6 +14,7 @@ import {Injectable} from "@angular/core";
   providedIn: 'root'
 })
 export class UserApiRepository extends ApiRepository implements UserRepository{
+
   /** Instance of the mapper for mapping user API entities to user domain models and vice versa. */
   mapper = new UserApiRepositoryMapper();
 
@@ -33,6 +34,9 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
     return of(undefined);
   }
 
+  /**
+   * @inheritDoc
+   */
   login(mail: string, password: string){
     const credentials = {
       email: mail,
@@ -48,6 +52,9 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
     );
   }
 
+  /**
+   * @inheritDoc
+   */
   logout(): Observable<boolean> {
     return this.getCsrfToken().pipe(
       switchMap(() =>
@@ -59,6 +66,9 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
     );
   }
 
+  /**
+   * @inheritDoc
+   */
   register(name: string, email: string, password: string): Observable<UserModel | undefined> {
     const credentials = {
       name: name,
@@ -75,6 +85,9 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
     );
   }
 
+  /**
+   * @inheritDoc
+   */
   getLoggedUser(): Observable<UserModel | undefined> {
     return this.http.get<UserApiEntity>(`${this.apiUrl}/user`,{withCredentials: true}).pipe(
       map(this.mapper.mapFrom),
@@ -82,11 +95,17 @@ export class UserApiRepository extends ApiRepository implements UserRepository{
     );
   }
 
+  /**
+   * @inheritDoc
+   */
   getAllUsers(): Observable<UserModel[]> {
     return this.http.get<UserApiEntity[]>(`${this.apiUrl}/user/all`)
       .pipe(map(this.mapper.mapFromList));
   }
 
+  /**
+   * @inheritDoc
+   */
   getUserById(id: number): Observable<UserModel> {
     return this.http.get<UserApiEntity>(`${this.apiUrl}/user/${id}`).pipe(map(this.mapper.mapFrom));
   }
