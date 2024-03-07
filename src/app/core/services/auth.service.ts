@@ -85,18 +85,6 @@ export class AuthService {
     return this.isLoggedInSubject.asObservable();
   }
 
-  isStringEmail(email: string): boolean {
-    return !/\S+@\S+\.\S+/.test(email);
-  }
-
-  hasStringMoreThanXCharacters(value: string,x : number): boolean{
-    return value.length > x;
-  }
-
-  hasStringLessThanXCharacters(value: string,x : number): boolean {
-    return value.length < x;
-  }
-
   validateRegistration(form : FormGroup) : BooleanWithMessage {
     let errorMessage: string = '';
     const nameControl = form.get('registerName');
