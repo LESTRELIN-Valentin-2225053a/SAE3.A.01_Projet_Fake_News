@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {UserRepository} from "../repositories/user.repository";
 import {UserModel} from "../domain/user.model";
 import {BehaviorSubject, Observable, tap} from "rxjs";
+import {FormGroup} from "@angular/forms";
+import {BooleanWithMessage} from "../domain/boolean-with-message";
 
 /**
  * The AuthService provides authentication functionality in the application,
@@ -83,4 +85,62 @@ export class AuthService {
     return this.isLoggedInSubject.asObservable();
   }
 
+  isStringEmail(email: string): boolean {
+    return !/\S+@\S+\.\S+/.test(email);
+  }
+
+  hasStringMoreThanXCharacters(value: string,x : number): boolean{
+    return value.length > x;
+  }
+
+  hasStringLessThanXCharacters(value: string,x : number): boolean {
+    return value.length < x;
+  }
+
+  validateRegistration(form : FormGroup) : BooleanWithMessage {
+    let errorMessage: string = '';
+    const nameControl = form.get('registerName');
+    const emailControl = form.get('registerEmail');
+    const passwordControl = form.get('registerPassword');
+    const passwordVerifControl = form.get('registerPasswordVerif');
+
+    if (form.invalid) {
+      errorMessage = 'Veuillez remplir tous les champs.';
+      return {status : false, message: errorMessage};
+    } else if (emailControl && emailControl.value && !/\S+@\S+\.\S+/.test(emailControl.value)) {
+      errorMessage = 'Veuillez saisir une adresse e-mail valide.';
+      return {status : false, message: errorMessage};
+    }else if(nameControl && nameControl.value && nameControl.value.length > 12) {
+      errorMessage = 'Le nom doit contenir au minimum 12 caractères.';
+      return {status : false, message: errorMessage};
+    } else if(passwordControl && passwordControl.value && passwordControl.value.length < 8) {
+      errorMessage = 'Le mot de passe doit contenir au moins 8 caractères.';
+      return {status : false, message: errorMessage};
+    } else if (passwordControl && passwordControl.value && !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&,;./:§µù£¤)(~#{'|\W])[A-Za-z\d@$!%*?&\W]{8,}$/.test(passwordControl.value)) {
+      errorMessage = 'Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial.';
+      return {status : false, message: errorMessage};
+    } else if (passwordControl && passwordVerifControl && passwordControl.value !== passwordVerifControl.value) {
+      errorMessage = 'Les mots de passe ne correspondent pas.';
+      return {status : false, message: errorMessage};
+    } else {
+      return {status : true, message: errorMessage};
+    }
+  }
+
+  validateLogin(form : FormGroup): BooleanWithMessage {
+    let errorMessage : string = '';
+    const emailControl = form.get('loginEmail');
+
+    if (form.invalid) {
+      errorMessage = 'Veuillez remplir tous les champs.';
+      return {status: false,message: errorMessage};
+    } else {
+      if (emailControl && emailControl.value && !/\S+@\S+\.\S+/.test(emailControl.value)) {
+        errorMessage = 'Veuillez saisir une adresse e-mail valide.';
+        return {status: false,message: errorMessage};
+      } else {
+        return {status: true,message: errorMessage};
+      }
+    }
+  }
 }

@@ -64,7 +64,10 @@ export class SessionService {
     this.authService.isLogged().subscribe(isLogged => {
       if(isLogged) this.setInvestigationsWhenConnected();
       else this.setInvestigationsWhenGuest();
-      console.log(this.sessionBehavior);
+      this.currentInvestigation.next(null);
+      this.medias.next([]);
+      this.mediaLocations.next([]);
+      this.websites.next([]);
     })
   }
 

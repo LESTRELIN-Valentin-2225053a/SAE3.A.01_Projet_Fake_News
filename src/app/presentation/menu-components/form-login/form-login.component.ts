@@ -64,22 +64,10 @@ export class FormLoginComponent {
    * Method to validate the login form.
    * @returns {boolean} - Returns true if the form is valid, false otherwise.
    */
-  validateLogin() {
-    this.errorMessages = '';
-    const emailControl = this.loginForm.get('loginEmail');
-    const passwordControl = this.loginForm.get('loginPassword');
-
-    if (this.loginForm.invalid) {
-      this.errorMessages = 'Veuillez remplir tous les champs.';
-      return false;
-    } else {
-      if (emailControl && emailControl.value && !/\S+@\S+\.\S+/.test(emailControl.value)) {
-        this.errorMessages = 'Veuillez saisir une adresse e-mail valide.';
-        return false;
-      } else {
-        return true;
-      }
-    }
+  validateLogin(): boolean {
+    const result= this.authService.validateLogin(this.loginForm);
+    this.errorMessages = result.message;
+    return result.status;
   }
 
   /**
@@ -110,33 +98,9 @@ export class FormLoginComponent {
    * @returns {boolean} - Returns true if the form is valid, false otherwise.
    */
   validateRegistration() {
-    this.errorMessages = '';
-    const nameControl = this.registerForm.get('registerName');
-    const emailControl = this.registerForm.get('registerEmail');
-    const passwordControl = this.registerForm.get('registerPassword');
-    const passwordVerifControl = this.registerForm.get('registerPasswordVerif');
-
-    if (this.registerForm.invalid) {
-      this.errorMessages = 'Veuillez remplir tous les champs.';
-      return false;
-    } else if (emailControl && emailControl.value && !/\S+@\S+\.\S+/.test(emailControl.value)) {
-      this.errorMessages = 'Veuillez saisir une adresse e-mail valide.';
-      return false;
-    }else if(nameControl && nameControl.value && nameControl.value.length > 12) {
-      this.errorMessages = 'Le nom doit contenir au minimum 12 caractères.';
-      return false;
-    } else if(passwordControl && passwordControl.value && passwordControl.value.length < 8) {
-      this.errorMessages = 'Le mot de passe doit contenir au moins 8 caractères.';
-      return false;
-    } else if (passwordControl && passwordControl.value && !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&,;./:§µù£¤)(~#{'|\W])[A-Za-z\d@$!%*?&\W]{8,}$/.test(passwordControl.value)) {
-      this.errorMessages = 'Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial.';
-      return false;
-    } else if (passwordControl && passwordVerifControl && passwordControl.value !== passwordVerifControl.value) {
-      this.errorMessages = 'Les mots de passe ne correspondent pas.';
-      return false;
-    } else {
-      return true;
-    }
+    const result = this.authService.validateRegistration(this.registerForm);
+    this.errorMessages = result.message;
+    return result.status;
   }
 
   /** Method to send the registration form data. */
