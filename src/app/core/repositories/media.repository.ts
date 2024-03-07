@@ -40,4 +40,9 @@ export abstract class MediaRepository {
    * @returns An observable array of all media models.
    */
   abstract getAllMedias(): Observable<MediaModel[]>;
+
+  abstract newMedia(formdata : FormData): Observable<MediaModel>;
+  abstract updateMedia(id: number, formdata : FormData): Observable<MediaModel>;
+  abstract addingLinkFileToMedia(id: number, formdata : FormData): Observable<MediaModel>;
+  abstract deleteMedia(id: number): Observable<boolean>;
 }

@@ -14,6 +14,7 @@ export class WebsiteApiRepositoryMapper extends Mapper<WebsiteApiEntity, Website
    */
   mapFrom(param: WebsiteApiEntity): WebsiteModel {
     return {
+      id : param.id,
       title : param.title,
       link : param.link,
       icon : param.icon
@@ -31,6 +32,7 @@ export class WebsiteApiRepositoryMapper extends Mapper<WebsiteApiEntity, Website
     param.forEach(websiteApiEntity => {
       websiteModels.push(
         {
+          id : websiteApiEntity.id,
           title : websiteApiEntity.title,
           link : websiteApiEntity.link,
           icon : websiteApiEntity.icon
@@ -48,7 +50,7 @@ export class WebsiteApiRepositoryMapper extends Mapper<WebsiteApiEntity, Website
    */
   mapTo(param: WebsiteModel): WebsiteApiEntity {
     return {
-      id : 0,
+      id : param.id,
       title : param.title,
       link : param.link,
       icon : param.icon
@@ -66,7 +68,7 @@ export class WebsiteApiRepositoryMapper extends Mapper<WebsiteApiEntity, Website
     param.forEach(websiteModel => {
       websiteApiEntities.push(
         {
-          id : 0,
+          id : websiteModel.id,
           title : websiteModel.title,
           link : websiteModel.link,
           icon : websiteModel.icon

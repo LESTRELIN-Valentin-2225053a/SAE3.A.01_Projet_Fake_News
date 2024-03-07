@@ -46,5 +46,11 @@ export abstract class UserRepository {
    * @returns An observable of the user model.
    */
   abstract getUserById(id: number): Observable<UserModel>;
+
+  abstract checkAdminStatus() : Observable<boolean>;
+  abstract blockUser(id : number) : Observable<boolean>;
+  abstract unblockUser(id : number) : Observable<boolean>;
+  abstract deleteUser(id : number) : Observable<boolean>;
+  abstract promoteUser(id : number) : Observable<boolean>;
 }
 

@@ -24,5 +24,10 @@ export abstract class WebsiteRepository {
    * @returns An observable array of website models associated with the investigation.
    */
   abstract getWebsitesByInvestigationId(id: number): Observable<WebsiteModel[]>;
+  abstract newWebsite(formData: FormData): Observable<WebsiteModel>;
+
+  abstract updateWebsite(id: number, formData : FormData): Observable<WebsiteModel>;
+
+  abstract deleteWebsite(id: number): Observable<boolean>;
 }
 

@@ -1,5 +1,6 @@
 import {Routes} from '@angular/router';
 import {MenuComponent} from "./presentation/menu-components/menu/menu.component";
+import {AdminPageComponent} from "./presentation/menu-components/admin-page/admin-page.component";
 
 
 export const routes: Routes = [
@@ -15,7 +16,8 @@ export const routes: Routes = [
   {
     path: 'office/computer',
     loadChildren: () => import('./presentation/game-components/computer-components/computer-components.module').then(m => m.ComputerComponentsModule)
-  }
+  },
+  { path: 'admin', component: AdminPageComponent}
 ];
 
 // import('./game-components/game-components.module').then(m => m.GameComponentsModule)

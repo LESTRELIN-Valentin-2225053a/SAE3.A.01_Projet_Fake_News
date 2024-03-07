@@ -18,12 +18,16 @@ import {GameComponentsModule} from "../game-components.module";
  * Provides components for displaying media on the board, draggable media, validatable media, media locations, and boards for routing purposes.
  */
 @NgModule({
-    imports: [
-        CommonModule,
-        CdkDrag,
-        BoardComponentsRoutingModule,
-        GameComponentsModule
-    ],
+  imports: [
+    CommonModule,
+    CdkDrag,
+    BoardComponentsRoutingModule,
+    GameComponentsModule
+  ],
+  exports: [
+    DraggableMediaOnBoardComponent,
+    BoardComponent,
+  ],
   declarations: [
     MediaOnBoardComponent,
     DraggableMediaOnBoardComponent,

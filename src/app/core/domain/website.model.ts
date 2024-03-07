@@ -2,6 +2,9 @@
  * Represents a website in the system.
  */
 export interface WebsiteModel {
+  /** The unique identifier of the website. */
+  id: number;
+
   /** The title of the website. */
   title: string;
 

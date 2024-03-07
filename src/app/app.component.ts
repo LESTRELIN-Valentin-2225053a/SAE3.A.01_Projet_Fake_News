@@ -20,6 +20,8 @@ import {PresentationModule} from "./presentation/presentation.module";
 import {UserRepository} from "./core/repositories/user.repository";
 import {UserApiRepository} from "./data/repositories/api-repositories/user-api-repository/user-api-repository";
 import {AuthService} from "./core/services/auth.service";
+import {AdminService} from "./core/services/admin.service";
+import {UserService} from "./core/services/user.service";
 
 
 
@@ -41,7 +43,9 @@ import {AuthService} from "./core/services/auth.service";
     {provide: WebsiteRepository, useClass: WebsiteApiRepository},
     WebsiteService,
     {provide: UserRepository, useClass: UserApiRepository},
+    UserService,
     AuthService,
+    AdminService,
     SessionService
   ],
   templateUrl: './app.component.html',

@@ -1,0 +1,6 @@
+.mediaLocation{
+  position: absolute;
+  aspect-ratio : 1 / 1;
+  background-color: #281F18;
+  outline: 0.3vw dashed white;
+}

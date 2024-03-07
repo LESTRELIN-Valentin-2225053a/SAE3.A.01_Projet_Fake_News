@@ -37,4 +37,13 @@ export abstract class InvestigationRepository {
    * @returns An observable that emits a boolean value indicating whether the update was successful.
    */
   abstract updateCompletionOfInvestigationByIdForUser(id: number): Observable<boolean>;
+  abstract newInvestigation(title : string, description : string,
+                            explication : string, board_type : string) : Observable<InvestigationModel>;
+  abstract updateInvestigation(id : number, title : string, description : string,
+                               explication : string, board_type : string) : Observable<InvestigationModel>;
+  abstract deleteInvestigation(id: number) : Observable<boolean>;
+  abstract linkWebsiteToInvestigation(investigation_id: number, website_id: number): Observable<boolean>;
+  abstract removeWebsiteFromInvestigation(investigation_id: number, website_id: number): Observable<boolean>;
+  abstract linkMediaToInvestigation(investigation_id: number, media_id: number , formdata : FormData): Observable<boolean>;
+  abstract removeMediaFromInvestigation(investigation_id: number, media_id: number): Observable<boolean>;
 }

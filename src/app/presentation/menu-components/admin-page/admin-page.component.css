@@ -1,0 +1,98 @@
+.folder {
+  left: 10vw;
+  top: 10vh;
+  position: relative; /* à garder, nécéssaire pour placer les médias dans le tableau */
+  background-color: #d9d9d7;
+  border: 1.25vw solid #dc964c;
+  display: flex;
+  flex-direction: column;
+}
+
+.folder-header {
+  border-bottom: solid black;
+  display: flex;
+}
+
+.tabs {
+  flex: 1;
+  border: 1px solid black;
+  padding: 0.5vw;
+  font-family: Minecraft, serif;
+}
+
+.folder-content {
+  flex: 1;
+  display: flex;
+}
+
+.header-block h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  border-bottom: solid black;
+}
+
+
+.investigation-details {
+  flex: 1;
+}
+
+.investigation-list {
+  border-right: solid black 1px;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-list {
+  overflow-y: auto;
+  max-height: 53vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.button-investigation {
+  width: 100%;
+  margin-bottom: 0.5vw;
+}
+
+.add-investigation {
+  margin-top: auto;
+  margin-bottom: 1vw;
+  display: flex;
+  justify-content: center;
+  border-top: solid black;
+}
+
+.add-button {
+  margin-top: 1vw;
+}
+
+.investigation-details {
+  padding: 0.5vw;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+}
+
+.website-update-block,
+.investigation-update-block{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img-detail{
+  max-height: 15vw;
+  max-width: 15vw;
+  object-fit: cover;
+}
+
+.media-img-block{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

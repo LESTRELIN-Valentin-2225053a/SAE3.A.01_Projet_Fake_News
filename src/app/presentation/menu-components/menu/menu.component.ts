@@ -23,6 +23,8 @@ export class MenuComponent implements OnInit{
   /** Flag to indicate whether the user is logged in. */
   isLogged: boolean = false;
 
+  isAdmin: boolean = false;
+
   /**
    * Constructor for MenuComponent.
    * @param authService - Authentication service for user authentication.
@@ -36,6 +38,9 @@ export class MenuComponent implements OnInit{
         this.loginStorage = 'Connecté';
       else
         this.loginStorage = 'Non connecté';
+    });
+    authService.checkAdminStatus().subscribe(isAdmin => {
+      this.isAdmin = isAdmin;
     });
   }
 
