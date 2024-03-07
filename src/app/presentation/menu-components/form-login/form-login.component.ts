@@ -123,12 +123,12 @@ export class FormLoginComponent {
       this.errorMessages = 'Veuillez saisir une adresse e-mail valide.';
       return false;
     }else if(nameControl && nameControl.value && nameControl.value.length > 12) {
-      this.errorMessages = 'Le nom doit contenir au maximum 12 caractères.';
+      this.errorMessages = 'Le nom doit contenir au minimum 12 caractères.';
       return false;
     } else if(passwordControl && passwordControl.value && passwordControl.value.length < 8) {
       this.errorMessages = 'Le mot de passe doit contenir au moins 8 caractères.';
       return false;
-    } else if (passwordControl && passwordControl.value && !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(passwordControl.value)) {
+    } else if (passwordControl && passwordControl.value && !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&,;./:§µù£¤)(~#{'|\W])[A-Za-z\d@$!%*?&\W]{8,}$/.test(passwordControl.value)) {
       this.errorMessages = 'Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial.';
       return false;
     } else if (passwordControl && passwordVerifControl && passwordControl.value !== passwordVerifControl.value) {
