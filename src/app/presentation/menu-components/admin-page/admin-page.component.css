@@ -1,17 +1,101 @@
 .folder {
-  left: 10vw;
-  top: 10vh;
-  position: relative; /* à garder, nécéssaire pour placer les médias dans le tableau */
+  left: 12vw;
+  top: 12vh;
+  position: relative; /* Needed for placing media within the board */
   background-color: #d9d9d7;
-  border: 1.25vw solid #dc964c;
   display: flex;
   flex-direction: column;
+  clip-path: polygon(2% 0, 98% 0, 100% 4%, 100% 96%, 98% 100%, 2% 100%, 0 96%, 0 4%);
 }
-
 .folder-header {
   border-bottom: solid black;
   display: flex;
 }
+.folder-top {
+
+  border-bottom: solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1vw;
+}
+/*.back-button {*/
+/*  margin-left: 67vw; !* Ajouter une marge à droite pour le séparer des autres onglets *!*/
+/*  font-family: 'Minecraft', serif; !* Utilisez la même police que vos onglets *!*/
+/*  background-color: lightgrey;*/
+/*  border: none; !* Aucune bordure pour que ça ressemble aux autres onglets *!*/
+/*  cursor: pointer; !* Changez le curseur pour indiquer qu'il s'agit d'un bouton cliquable *!*/
+/*  font-weight: bold; !* Rendez le texte en gras pour qu'il se démarque *!*/
+/*}*/
+
+.back-button {
+  font-size: 1.5rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  margin-right: 0.5vw;
+  position: absolute;
+  right: 17px;
+  top: 1px;
+  margin-top: 0.1%;
+}
+
+/*.button{*/
+/*  position:relative;*/
+/*  display:inline-block;*/
+/*  margin-left:68vw;*/
+/*}*/
+
+/*.button a{*/
+/*  color:white;*/
+/*  font-family:Helvetica, sans-serif;*/
+/*  font-weight:bold;*/
+/*  font-size:12px;*/
+/*  text-align: center;*/
+/*  text-decoration:none;*/
+/*  background-color:#FFA12B;*/
+/*  display:block;*/
+/*  position:relative;*/
+/*  padding:5px 10px;;*/
+
+/*  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);*/
+/*  text-shadow: 0px 1px 0px #000;*/
+/*  filter: dropshadow(color=#000, offx=0px, offy=1px);*/
+
+/*  -webkit-box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;*/
+/*  -moz-box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;*/
+/*  box-shadow:inset 0 1px 0 #FFE5C4, 0 10px 0 #915100;*/
+
+/*  -webkit-border-radius: 5px;*/
+/*  -moz-border-radius: 5px;*/
+/*  border-radius: 5px;*/
+/*}*/
+
+/*.button a:active{*/
+/*  top:10px;*/
+/*  background-color:#F78900;*/
+
+/*  -webkit-box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;*/
+/*  -moz-box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;*/
+/*  box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;*/
+/*}*/
+
+/*.button:after{*/
+/*  content:"";*/
+/*  height:92%;*/
+/*  width:92%;*/
+/*  padding:4px;*/
+/*  position: absolute;*/
+/*  bottom:-13px;*/
+/*  left:-1.5px;*/
+/*  z-index:-1;*/
+/*  background-color:#2B1800;*/
+/*  -webkit-border-radius: 5px;*/
+/*  -moz-border-radius: 5px;*/
+/*  border-radius: 5px;*/
+/*}*/
 
 .tabs {
   flex: 1;
@@ -66,6 +150,12 @@
 
 .add-button {
   margin-top: 1vw;
+  font-size: 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  right: 17px;
+  top: 1px;
 }
 
 .investigation-details {
